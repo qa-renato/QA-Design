@@ -66,7 +66,8 @@ inbot-landing/
 │   ├── design-system.md             # Sistema de design completo
 │   ├── content-principles.md        # Princípios editoriais e de copy
 │   ├── landing-information-architecture.md  # Arquitetura de seções da landing
-│   └── implementation-plan.md       # Plano de fases
+│   ├── implementation-plan.md       # Plano de fases
+│   └── figma-handoff-plan.md        # Integração Figma ↔ código (tokens, componentes, checklist)
 ├── assets/
 │   └── README.md            # Instruções para assets (logotipo, ícones, imagens)
 ├── .gitignore
@@ -95,6 +96,20 @@ inbot-landing/
 
 - **Títulos:** Noopla Bold (proprietária, sem autorização de uso ainda → fallback: Poppins Bold)
 - **Corpo:** Poppins (Google Fonts)
+
+---
+
+## Documentação
+
+| Documento | Conteúdo |
+|-----------|----------|
+| [brand-foundation.md](docs/brand-foundation.md) | Posicionamento, tom de voz, atributos e identidade visual |
+| [visual-benchmark.md](docs/visual-benchmark.md) | Análise das referências Sqala, Apple e Insany |
+| [design-system.md](docs/design-system.md) | Tokens, componentes, estados e acessibilidade |
+| [content-principles.md](docs/content-principles.md) | Princípios editoriais e guia de copy |
+| [landing-information-architecture.md](docs/landing-information-architecture.md) | Arquitetura das 12 seções da landing |
+| [implementation-plan.md](docs/implementation-plan.md) | Plano de 6 fases com critérios de aceite |
+| [figma-handoff-plan.md](docs/figma-handoff-plan.md) | Integração Figma ↔ código: tokens, componentes, naming e checklists |
 
 ---
 
