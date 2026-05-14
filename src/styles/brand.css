@@ -95,3 +95,46 @@ h1, h2, h3, h4, h5, h6 {
   background: var(--color-border-strong);
   border-radius: var(--radius-full);
 }
+
+/* ── AnimatedCTA — contorno SVG animado ─────────────────────── */
+@keyframes inbot-stroke-chase {
+  to { stroke-dashoffset: -100; }
+}
+
+.inbot-cta-track {
+  opacity: var(--inbot-track-op, 0.2);
+  transition: opacity 0.3s ease;
+}
+
+.inbot-cta-dash {
+  opacity: var(--inbot-dash-op, 0.7);
+  stroke-dashoffset: 0;
+  animation: inbot-stroke-chase 3s linear infinite;
+  transition: opacity 0.3s ease;
+}
+
+.inbot-cta-arrow {
+  transition: transform 0.3s ease;
+}
+
+[data-animated-cta]:hover .inbot-cta-track {
+  opacity: var(--inbot-track-hover-op, 0.36);
+}
+
+[data-animated-cta]:hover .inbot-cta-dash {
+  opacity: var(--inbot-dash-hover-op, 1);
+}
+
+[data-animated-cta]:hover .inbot-cta-arrow {
+  transform: translateX(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inbot-cta-dash {
+    animation: none;
+    stroke-dasharray: unset;
+  }
+  .inbot-cta-arrow {
+    transition: none;
+  }
+}

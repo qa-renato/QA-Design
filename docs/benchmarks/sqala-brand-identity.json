@@ -1,0 +1,126 @@
+{
+  "_meta": {
+    "source": "firecrawl_scrape",
+    "url": "https://www.sqala.tech/pt-BR",
+    "formats": ["branding", "markdown"],
+    "scraped_at": "2026-05-14",
+    "purpose": "benchmark visual — referência de sofisticação, ritmo e hierarquia. Não usar diretamente na InBot.",
+    "note": "Dados sanitizados. Sem credenciais, cookies ou chaves de API."
+  },
+  "branding": {
+    "colorScheme": "light",
+    "colors": {
+      "primary": "#0000EE",
+      "secondary": "#9D968E",
+      "accent": "#FFCC00",
+      "background": "#F7F7F7",
+      "textPrimary": "#111111",
+      "link": "#FFCC00",
+      "theme_color": "#000000"
+    },
+    "fonts": [
+      { "family": "Outfit", "role": "primary/heading" },
+      { "family": "Times New Roman", "role": "fallback body stack" },
+      { "family": "Arial", "role": "fallback system" }
+    ],
+    "typography": {
+      "fontFamilies": {
+        "primary": "Outfit",
+        "heading": "Outfit"
+      },
+      "fontStacks": {
+        "heading": ["Outfit", "sans-serif"],
+        "body": ["Times New Roman"],
+        "paragraph": ["Outfit", "sans-serif"]
+      },
+      "fontSizes": {
+        "h1": "64px",
+        "h2": "48px",
+        "body": "16px"
+      }
+    },
+    "spacing": {
+      "baseUnit": 4,
+      "borderRadius": "20px",
+      "note": "base unit 4px (design system 4px grid)"
+    },
+    "components": {
+      "buttonPrimary": {
+        "background": "#F7F7F7",
+        "textColor": "#0000EE",
+        "borderColor": "#FFCC00",
+        "borderRadius": "80px",
+        "shape": "pill / fully-rounded",
+        "shadow": "none",
+        "exampleText": "Falar com especialista"
+      },
+      "buttonSecondary": {
+        "background": "#111111",
+        "textColor": "#FFCC00",
+        "borderRadius": "0px",
+        "shape": "square / sharp corners",
+        "shadow": "none",
+        "exampleText": "Ver mais perguntas"
+      },
+      "input": {
+        "background": "#F7F7F7",
+        "textColor": "#111111",
+        "borderColor": null,
+        "borderRadius": "4px",
+        "shadow": "none"
+      }
+    },
+    "images": {
+      "logoFormat": "SVG",
+      "logoDimensions": "110x47px",
+      "logoAlt": "Logo sqala",
+      "faviconFormat": "PNG"
+    },
+    "personality": {
+      "tone": "modern",
+      "energy": "medium",
+      "targetAudience": "tech-savvy professionals"
+    },
+    "designSystem": {
+      "framework": "custom",
+      "agency": "Insany Design",
+      "stack": "Next.js + Sanity CMS"
+    },
+    "confidence": {
+      "buttons": 0.9,
+      "colors": 0.9,
+      "overall": 0.9
+    }
+  },
+  "structural_patterns": {
+    "sections_detected": [
+      "hero — eyebrow label + H1 grande + CTA único",
+      "feature marquee — scroll horizontal de badges de funcionalidades",
+      "produto principal — tabs/cards com feature list",
+      "produtos secondary — orbit/circle animado com feature items",
+      "diferenciais — slider com screenshots de dashboard",
+      "API/developers — seção técnica com CTA para docs",
+      "números/stats — contadores animados com métricas de negócio",
+      "CTA final — duplo botão (especialista + checkout)",
+      "formulário de contato — campos simples",
+      "FAQ — accordion com chevron amarelo",
+      "footer — logo + nav + social + legal"
+    ],
+    "decorative_elements": [
+      "blur SVGs de background (blur-hero, blur-product, blur-diffs, blur-footer)",
+      "animated-circle SVGs no orbit da seção de produto",
+      "blur radial colorido em seções escuras",
+      "scalable.svg / numbers.svg como ornamentos de seção"
+    ],
+    "ui_patterns": [
+      "eyebrow labels em uppercase com badge/tag antes do H2",
+      "CTA duplo (primário pill + secundário outline/link)",
+      "feature pills/badges em marquee horizontal",
+      "icon + texto em listas de funcionalidades",
+      "slider de screenshots de produto",
+      "FAQ accordion",
+      "contador animado de métricas",
+      "formulário de captura de leads no final da página"
+    ]
+  }
+}

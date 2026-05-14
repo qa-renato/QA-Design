@@ -213,13 +213,64 @@ Sempre: `border-radius: full` / `font-size: xs` / `uppercase` / `tracking-wide`
 - Descrição em texto muted
 - Hover: border mais forte + glow suave
 
+### AnimatedCTA
+
+- Formato pill + círculo com seta à direita
+- Contorno SVG animado (stroke-dashoffset chase, 3s loop)
+- Variantes: `light` (fundo escuro) / `dark` (fundo claro) / `gradient` (MidCTA)
+- Cores Núcleo ↔ Nebulosa no gradiente do contorno
+- Respeita `prefers-reduced-motion`
+- Arquivo: `src/components/ui/AnimatedCTA.jsx`
+
+### LoginPill
+
+- Link `<a>` com shape pill (border-radius: full)
+- Borda `rgba(21,183,254,0.35)` em repouso
+- Hover: borda Nebulosa + fundo `rgba(21,183,254,0.08)`
+- Texto Cintilante, font-medium
+- Focus: ring Nebulosa com offset Aurora
+- Props: `href`, `children`, `className`
+- Arquivo: `src/components/ui/LoginPill.jsx`
+- Usado em: `Header`
+
+### LanguageSwitcher
+
+- `<button>` estático (sem dropdown por ora)
+- Texto "PT-BR" + chevron 10px
+- Visível a partir de md (768px), oculto em mobile
+- Cor muted em repouso, Cintilante no hover
+- aria-label: "Idioma atual: Português (Brasil)"
+- Props: `className`
+- Arquivo: `src/components/ui/LanguageSwitcher.jsx`
+- Usado em: `Header`
+
+### Eyebrow
+
+- Wrapper fino sobre `Badge` com suporte de alinhamento
+- `variant: 'dark'` → sobre fundo escuro (badge `accent`)
+- `variant: 'light'` → sobre fundo claro (badge `dark`)
+- `align: 'left' | 'center'`
+- Props: `children`, `variant`, `align`, `className`
+- Arquivo: `src/components/ui/Eyebrow.jsx`
+
+### FeatureCard
+
+- Card compacto: ícone opcional + título + descrição
+- `variant: 'dark'` → fundo `#12103d`, borda Nebulosa, glow azul no hover
+- `variant: 'light'` → fundo branco, borda Núcleo, shadow no hover
+- Ícone com `group-hover:scale-110` (transform suave)
+- Props: `icon`, `title`, `description`, `variant`, `className`
+- Arquivo: `src/components/ui/FeatureCard.jsx`
+- Usado em: `Differentials` (variant dark)
+
 ### Navbar
 
-- Fundo: `rgba(12,10,59,0.85)` com `backdrop-blur`
-- Borda inferior sutil
+- Fundo: `rgba(12,10,59,0.95)` com `backdrop-blur-md` (após scroll)
+- Fundo transparente antes do scroll
+- Borda inferior `rgba(21,183,254,0.12)` ativada após scroll
 - Altura: 64px
-- Logo + links centrais + CTA à direita
-- Sticky / fixed no topo
+- Logo (esquerda) + nav central (lg+) + LanguageSwitcher + LoginPill (direita)
+- Fixed no topo, z-50
 
 ### Container
 

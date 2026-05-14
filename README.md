@@ -1,7 +1,7 @@
 # InBot Landing Page — Redesign
 
 Projeto de redesign da landing page da InBot.
-Status atual: **Fase 1 — Design System Base** (landing final ainda não implementada).
+Status atual: **Fase 1 concluída + Landing V1 implementada** (branch `feature/landing-v1`).
 
 ---
 
@@ -131,19 +131,62 @@ Nenhuma referência deve ser copiada — apenas inspiração de princípios visu
 - [x] Tailwind configurado com paleta InBot
 - [x] Design tokens (CSS custom properties)
 - [x] Componentes base (Button, Badge, Card, MetricCard, Container, Section, Navbar)
-- [x] Preview do design system em `App.jsx`
 - [x] Documentação completa em `/docs`
-- [ ] Landing page final (Fase 3 — ainda não iniciada)
+- [x] **Landing V1 implementada** (branch `feature/landing-v1`)
+  - Header com scroll behavior
+  - Hero com elemento orbital
+  - Métricas (placeholders — aguardando dados reais)
+  - Soluções por setor (7 cards) — posicionada antes da plataforma para ritmo L/D
+  - Visão geral da plataforma (6 pilares)
+  - Operação Conversacional (antes/depois)
+  - Ecossistema Orbit (diagrama SVG)
+  - Diferenciais (6 cards)
+  - CTA intermediário (banda gradiente horizontal)
+  - Cases (placeholders — aguardando aprovação)
+  - Conteúdos (placeholders)
+  - FAQ (acordeão acessível, 6 perguntas)
+  - CTA Final
+  - Footer completo
 - [ ] Logotipo SVG oficial (aguardando asset)
 - [ ] Fonte Noopla (aguardando autorização de uso)
-- [ ] Métricas reais da InBot (aguardando dados)
+- [ ] Métricas reais validadas (aguardando dados verificados)
+- [ ] Cases reais aprovados pelos clientes
+
+---
+
+## Landing V1 — Componentes
+
+```
+src/components/landing/
+├── Header.jsx              # Navegação com scroll behavior
+├── Hero.jsx                # Headline + CTA + elemento orbital        [D]
+├── Metrics.jsx             # Métricas (placeholders)                  [D]
+├── Solutions.jsx           # 7 soluções por setor                     [L]
+├── PlatformOverview.jsx    # 6 pilares da plataforma                  [D]
+├── ConversationalOperation.jsx  # Antes/depois                        [D]
+├── EcosystemOrbit.jsx      # Diagrama SVG de ecossistema              [D]
+├── Differentials.jsx       # 6 diferenciais                           [D]
+├── MidCTA.jsx              # Banda CTA intermediária (gradiente)      [G]
+├── CasesPreview.jsx        # 3 cases (placeholders)                   [L]
+├── ContentPreview.jsx      # 3 artigos (placeholders)                 [D]
+├── FAQ.jsx                 # Acordeão acessível, 6 perguntas          [L]
+├── FinalCTA.jsx            # CTA de conversão                         [D]
+└── Footer.jsx              # Rodapé completo                          [D]
+
+# Ritmo visual: D=escuro  L=claro  G=gradiente
+
+src/data/landingContent.js  # Fonte de verdade do conteúdo
+```
 
 ---
 
 ## Próximos Passos
 
-1. Validar visualmente o preview do design system (`npm run dev`)
-2. Obter logotipo SVG oficial, ícones e imagens de produto
-3. Confirmar métricas reais para a seção de prova de escala
-4. Aprovar textos das seções antes de implementar
-5. Iniciar Fase 3 — construção da landing completa
+1. Revisar Landing V1 com `npm run dev`
+2. Fornecer métricas reais para substituir os placeholders
+3. Aprovar cases antes de publicar
+4. Obter logotipo SVG oficial e substituir o logotipo textual
+5. Configurar Noopla Bold quando autorizada
+6. Refinamento responsivo mobile (Fase 4)
+7. Melhorias de média prioridade (benchmark Sqala): reformular Soluções por necessidade, adicionar sub-features nos pilares, elevar visual da seção Operação Conversacional
+8. Merge da branch `feature/landing-v1` após aprovação
