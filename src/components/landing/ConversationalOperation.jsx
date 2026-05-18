@@ -1,5 +1,6 @@
 import { Badge } from '../ui/Badge'
-import { operation } from '../../data/landingContent'
+import { Reveal } from '../ui/Reveal'
+import { useLanguage } from '../../context/LanguageContext'
 
 function StateColumn({ title, items, dark = false }) {
   return (
@@ -44,12 +45,15 @@ function StateColumn({ title, items, dark = false }) {
 }
 
 export function ConversationalOperation() {
+  const { content } = useLanguage()
+  const { operation } = content
+
   return (
     <section
       className="bg-[#0e0c3a] py-20 lg:py-28"
       aria-label="Operação conversacional"
     >
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+      <Reveal className="max-w-[1200px] mx-auto px-6 lg:px-8">
         <div className="max-w-2xl mb-14">
           <Badge variant="accent" className="mb-4">{operation.badge}</Badge>
           <h2
@@ -63,7 +67,6 @@ export function ConversationalOperation() {
         <div className="flex flex-col md:flex-row gap-4 items-stretch">
           <StateColumn title={operation.before.title} items={operation.before.items} dark={false} />
 
-          {/* Divisor */}
           <div className="flex md:flex-col items-center justify-center gap-2 shrink-0 my-2 md:my-0 md:px-2" aria-hidden="true">
             <div className="flex-1 w-px md:h-px bg-gradient-to-b md:bg-gradient-to-r from-transparent via-[rgba(21,183,254,0.3)] to-transparent hidden md:block" />
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-nucleo to-nebulosa flex items-center justify-center text-white text-xs font-bold shadow-[0_0_20px_rgba(0,101,254,0.4)]">
@@ -74,7 +77,7 @@ export function ConversationalOperation() {
 
           <StateColumn title={operation.after.title} items={operation.after.items} dark={true} />
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

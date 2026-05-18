@@ -23,6 +23,7 @@ export default {
         'gradient-aurora': 'linear-gradient(180deg, #0c0a3b 0%, #023c8f 100%)',
         'gradient-deep':   'linear-gradient(135deg, #0c0a3b 0%, #023c8f 60%, #0065fe 100%)',
       },
+
     },
   },
   plugins: [],

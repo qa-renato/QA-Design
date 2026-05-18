@@ -1,4 +1,7 @@
 import './index.css'
+import './styles/motion.css'
+import { LanguageProvider } from './context/LanguageContext'
+import { useGsapReveal } from './hooks/useGsapReveal'
 
 // Landing V1 — InBot (ordem revisada: alta prioridade benchmark Sqala)
 import { Header }                  from './components/landing/Header'
@@ -14,6 +17,7 @@ import { CasesPreview }            from './components/landing/CasesPreview'
 import { ContentPreview }          from './components/landing/ContentPreview'
 import { FAQ }                     from './components/landing/FAQ'
 import { FinalCTA }                from './components/landing/FinalCTA'
+import { FooterLocation }          from './components/landing/FooterLocation'
 import { Footer }                  from './components/landing/Footer'
 
 // Mapa de ritmo visual (D = escuro, L = claro):
@@ -22,8 +26,9 @@ import { Footer }                  from './components/landing/Footer'
 // Content(D) → FAQ(L) → FinalCTA(D) → Footer(D)
 
 export default function App() {
+  useGsapReveal()
   return (
-    <>
+    <LanguageProvider>
       <Header />
       <main>
         <Hero />
@@ -38,8 +43,9 @@ export default function App() {
         <ContentPreview />
         <FAQ />
         <FinalCTA />
+        <FooterLocation />
       </main>
       <Footer />
-    </>
+    </LanguageProvider>
   )
 }

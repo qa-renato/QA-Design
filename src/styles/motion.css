@@ -1,0 +1,86 @@
+/* ═══════════════════════════════════════════════════
+   InBot Motion System
+   Tokens, keyframes e padrões reutilizáveis.
+   Principio: sutil, premium, nunca chamativo.
+   ═══════════════════════════════════════════════════ */
+
+/* ── Tokens de timing ──────────────────────────────── */
+:root {
+  --ease-reveal: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-card:   cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ── Section reveal — fade + subida leve ──────────── */
+/*
+  Aplicado via Reveal.jsx (IntersectionObserver).
+  .inbot-reveal: estado inicial (invisível, 18px abaixo).
+  .is-visible: estado final (visível, posição normal).
+  Delay opcional via inline style transitionDelay.
+*/
+
+.inbot-reveal {
+  opacity: 0;
+  transform: translateY(18px);
+  transition:
+    opacity   600ms var(--ease-reveal),
+    transform 600ms var(--ease-reveal);
+}
+
+.inbot-reveal.is-visible {
+  opacity:   1;
+  transform: translateY(0);
+}
+
+/* ── Background glow — breathe e float muito lentos ── */
+/*
+  Para blurs decorativos do Hero e FinalCTA.
+  Duração 10–12s: imperceptível no scroll, mas dá
+  sensação de ambiente vivo quando o usuário para.
+*/
+
+@keyframes inbot-glow-breathe {
+  0%, 100% { opacity: 0.75; transform: scale(1);    }
+  50%       { opacity: 1;    transform: scale(1.06); }
+}
+
+@keyframes inbot-glow-float {
+  0%, 100% { opacity: 0.7;  transform: translateY(0px)   scale(1);    }
+  50%       { opacity: 0.95; transform: translateY(-14px) scale(1.04); }
+}
+
+.inbot-glow-breathe {
+  animation: inbot-glow-breathe 10s ease-in-out infinite;
+}
+
+.inbot-glow-float {
+  animation: inbot-glow-float 12s ease-in-out infinite;
+}
+
+/* Stagger de fase para múltiplos glows não pulsarem juntos */
+.inbot-glow-float-delayed {
+  animation: inbot-glow-float 12s ease-in-out infinite;
+  animation-delay: -5s;
+}
+.inbot-glow-breathe-delayed {
+  animation: inbot-glow-breathe 10s ease-in-out infinite;
+  animation-delay: -4s;
+}
+
+/* ── Reduced motion — remover animações contínuas ──── */
+
+@media (prefers-reduced-motion: reduce) {
+  /* Section reveal: sem animação, mostrar direto */
+  .inbot-reveal {
+    opacity:    1;
+    transform:  none;
+    transition: none;
+  }
+
+  /* Background glows: parar */
+  .inbot-glow-breathe,
+  .inbot-glow-breathe-delayed,
+  .inbot-glow-float,
+  .inbot-glow-float-delayed {
+    animation: none;
+  }
+}

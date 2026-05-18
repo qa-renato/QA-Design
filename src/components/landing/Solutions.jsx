@@ -1,9 +1,9 @@
 import { Badge } from '../ui/Badge'
-import { solutions } from '../../data/landingContent'
+import { useLanguage } from '../../context/LanguageContext'
 
 function SolutionCard({ title, description }) {
   return (
-    <div className="group flex flex-col gap-3 p-6 rounded-2xl bg-white border border-[rgba(2,60,143,0.1)] transition-all duration-300 hover:border-[rgba(0,101,254,0.25)] hover:shadow-[0_4px_24px_rgba(0,101,254,0.08)]">
+    <div className="group flex flex-col gap-3 p-6 rounded-2xl bg-white border border-[rgba(2,60,143,0.1)] transition-all duration-300 hover:border-[rgba(0,101,254,0.28)] hover:shadow-[0_4px_24px_rgba(0,101,254,0.09)] hover:bg-[rgba(0,101,254,0.012)] hover:-translate-y-0.5">
       <h3 className="text-aurora font-semibold text-base group-hover:text-nucleo transition-colors duration-200">
         {title}
       </h3>
@@ -13,6 +13,9 @@ function SolutionCard({ title, description }) {
 }
 
 export function Solutions() {
+  const { content } = useLanguage()
+  const { solutions } = content
+
   return (
     <section
       id="solucoes"
@@ -20,7 +23,7 @@ export function Solutions() {
       aria-label="Soluções InBot por setor"
     >
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-        <div className="max-w-2xl mb-14">
+        <div data-gsap-reveal className="max-w-2xl mb-14">
           <Badge variant="dark" className="mb-4">{solutions.badge}</Badge>
           <h2
             className="text-3xl lg:text-4xl font-bold text-aurora mb-4 leading-tight tracking-tight"
@@ -32,8 +35,7 @@ export function Solutions() {
             {solutions.subtext}
           </p>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        <div data-gsap-stagger className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
           {solutions.items.map((item) => (
             <SolutionCard key={item.title} {...item} />
           ))}

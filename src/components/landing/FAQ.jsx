@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Badge } from '../ui/Badge'
-import { faq } from '../../data/landingContent'
+import { Reveal } from '../ui/Reveal'
+import { useLanguage } from '../../context/LanguageContext'
 
 function FAQItem({ question, answer, index }) {
   const [open, setOpen] = useState(false)
@@ -17,7 +18,6 @@ function FAQItem({ question, answer, index }) {
         <span className="text-aurora font-medium text-base group-hover:text-nucleo transition-colors duration-200">
           {question}
         </span>
-        {/* Ícone +/− */}
         <span
           className="shrink-0 w-6 h-6 rounded-full border border-[rgba(2,60,143,0.2)] flex items-center justify-center text-nucleo text-sm font-bold transition-all duration-200 group-hover:border-nucleo group-hover:bg-[rgba(0,101,254,0.06)]"
           aria-hidden="true"
@@ -26,7 +26,6 @@ function FAQItem({ question, answer, index }) {
           +
         </span>
       </button>
-
       <div
         id={id}
         role="region"
@@ -43,13 +42,16 @@ function FAQItem({ question, answer, index }) {
 }
 
 export function FAQ() {
+  const { content } = useLanguage()
+  const { faq } = content
+
   return (
     <section
       id="faq"
       className="bg-[#f5f7ff] py-20 lg:py-28"
       aria-label="Perguntas frequentes"
     >
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
+      <Reveal className="max-w-[1200px] mx-auto px-6 lg:px-8">
         <div className="max-w-2xl mb-12">
           <Badge variant="dark" className="mb-4">{faq.badge}</Badge>
           <h2
@@ -59,18 +61,12 @@ export function FAQ() {
             {faq.headline}
           </h2>
         </div>
-
         <div className="max-w-3xl bg-white rounded-2xl border border-[rgba(2,60,143,0.08)] px-6 lg:px-8 divide-y-0">
           {faq.items.map((item, i) => (
-            <FAQItem
-              key={i}
-              index={i}
-              question={item.question}
-              answer={item.answer}
-            />
+            <FAQItem key={i} index={i} question={item.question} answer={item.answer} />
           ))}
         </div>
-      </div>
+      </Reveal>
     </section>
   )
 }

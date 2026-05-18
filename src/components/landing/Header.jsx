@@ -1,9 +1,12 @@
 import { useState, useEffect } from 'react'
-import { nav } from '../../data/landingContent'
-import { LoginPill } from '../ui/LoginPill'
+import { useLanguage } from '../../context/LanguageContext'
 import { LanguageSwitcher } from '../ui/LanguageSwitcher'
+import { LoginMenu } from '../ui/LoginMenu'
 
 export function Header() {
+  const { content } = useLanguage()
+  const { nav } = content
+
   const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
@@ -48,9 +51,7 @@ export function Header() {
         {/* Ações: idioma + login */}
         <div className="flex items-center gap-4 shrink-0">
           <LanguageSwitcher />
-          <LoginPill href={nav.actions[1].href}>
-            {nav.actions[1].label}
-          </LoginPill>
+          <LoginMenu />
         </div>
 
       </div>

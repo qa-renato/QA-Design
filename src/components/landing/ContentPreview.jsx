@@ -1,9 +1,9 @@
 import { Badge } from '../ui/Badge'
-import { content } from '../../data/landingContent'
+import { useLanguage } from '../../context/LanguageContext'
 
 function ContentCard({ tag, title, date }) {
   return (
-    <div className="group flex flex-col gap-3 p-6 rounded-2xl bg-[#12103d] border border-[rgba(21,183,254,0.1)] transition-all duration-300 hover:border-[rgba(21,183,254,0.28)] cursor-pointer">
+    <div className="group flex flex-col gap-3 p-6 rounded-2xl bg-[#12103d] border border-[rgba(21,183,254,0.1)] transition-all duration-300 hover:border-[rgba(21,183,254,0.28)] hover:shadow-[0_4px_20px_rgba(21,183,254,0.07)] hover:-translate-y-0.5 cursor-pointer">
       <span className="self-start px-2.5 py-1 rounded-full text-[10px] font-semibold text-nebulosa bg-[rgba(21,183,254,0.1)] border border-[rgba(21,183,254,0.2)] uppercase tracking-wider">
         {tag}
       </span>
@@ -18,6 +18,9 @@ function ContentCard({ tag, title, date }) {
 }
 
 export function ContentPreview() {
+  const { content } = useLanguage()
+  const { content: c } = content
+
   return (
     <section
       id="conteudo"
@@ -25,23 +28,22 @@ export function ContentPreview() {
       aria-label="Conteúdos InBot"
     >
       <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
+        <div data-gsap-reveal className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div className="max-w-xl">
-            <Badge variant="brand" className="mb-4">{content.badge}</Badge>
+            <Badge variant="brand" className="mb-4">{c.badge}</Badge>
             <h2
               className="text-3xl lg:text-4xl font-bold text-cintilante mb-4 leading-tight tracking-tight"
               style={{ fontFamily: 'var(--font-display)' }}
             >
-              {content.headline}
+              {c.headline}
             </h2>
             <p className="text-[rgba(235,235,237,0.5)] text-lg leading-relaxed">
-              {content.subtext}
+              {c.subtext}
             </p>
           </div>
         </div>
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {content.items.map((item) => (
+        <div data-gsap-stagger className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {c.items.map((item) => (
             <ContentCard key={item.title} {...item} />
           ))}
         </div>

@@ -96,41 +96,201 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--radius-full);
 }
 
-/* ── AnimatedCTA — borda animada CSS (p-[1px] + conic-gradient) ─── */
+/* ── HeroEyebrow — chevrons animados laterais ──────────────────── */
 
-@keyframes inbot-border-spin {
-  from { transform: translate(-50%, -50%) rotate(0deg); }
-  to   { transform: translate(-50%, -50%) rotate(360deg); }
+@keyframes inbot-eyebrow-glide-right {
+  from { opacity: 0.2; transform: translateX(-2px); }
+  to   { opacity: 0.65; transform: translateX(2px); }
+}
+@keyframes inbot-eyebrow-glide-left {
+  from { opacity: 0.2; transform: translateX(2px); }
+  to   { opacity: 0.65; transform: translateX(-2px); }
 }
 
-.inbot-cta-border {
-  /* Quadrado grande centralizado no botão.
-     200% da largura do pai garante cobertura total dos cantos do pill
-     em qualquer ângulo da rotação (diagonal < 2× largura para pills).
-     overflow-hidden no pai clipa tudo ao shape do botão. */
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 200%;
-  aspect-ratio: 1 / 1;
-  transform: translate(-50%, -50%) rotate(0deg);
-  animation: inbot-border-spin 3s linear infinite;
-  /* background definido per-variant via inline style em AnimatedCTA.jsx */
+.inbot-eyebrow-chevron-right {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  color: rgba(21, 183, 254, 0.5);
+  animation: inbot-eyebrow-glide-right 2.6s ease-in-out infinite alternate;
+}
+.inbot-eyebrow-chevron-left {
+  display: inline-block;
+  font-size: 14px;
+  line-height: 1;
+  color: rgba(21, 183, 254, 0.5);
+  animation: inbot-eyebrow-glide-left 2.6s ease-in-out infinite alternate;
 }
 
-.inbot-cta-arrow {
-  transition: transform 0.3s ease;
-}
-
-[data-animated-cta]:hover .inbot-cta-arrow {
-  transform: translateX(4px);
+@media (min-width: 1024px) {
+  .inbot-eyebrow-chevron-right,
+  .inbot-eyebrow-chevron-left {
+    font-size: 16px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .inbot-cta-border {
+  .inbot-eyebrow-chevron-right,
+  .inbot-eyebrow-chevron-left {
     animation: none;
+    opacity: 0.35;
   }
-  .inbot-cta-arrow {
-    transition: none;
+}
+
+/* ── Hero CTA — linha de acento com feixe animado ─────────────── */
+/*
+  Estrutura no Hero: wrapper > .inbot-cta-accent-line (fundo) + .inbot-cta-accent-beam (feixe).
+  O wrapper tem overflow:hidden — o beam percorre de fora-esquerda para fora-direita.
+  Percentuais de translateX são relativos à largura do próprio beam (56px):
+    -100% = -56px (fora da borda esquerda do container)
+     400% = 224px (fora da borda direita de um container de 220px)
+*/
+
+@keyframes inbot-accent-line-sweep {
+  from { transform: translateX(-100%); }
+  to   { transform: translateX(400%);  }
+}
+
+.inbot-cta-accent-line {
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(21, 183, 254, 0.18) 20%,
+    rgba(21, 183, 254, 0.28) 50%,
+    rgba(21, 183, 254, 0.18) 80%,
+    transparent 100%
+  );
+}
+
+.inbot-cta-accent-beam {
+  width: 56px;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent 0%,
+    rgba(0, 101, 254, 0.65) 30%,
+    rgba(21, 183, 254, 1) 60%,
+    rgba(235, 235, 237, 0.45) 85%,
+    transparent 100%
+  );
+  animation: inbot-accent-line-sweep 3.5s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inbot-cta-accent-beam {
+    animation: none;
+    opacity: 0;
   }
+}
+
+/* ── Orbital diagram — beams, pulses, nucleus, chip hover ────── */
+
+/* Outer ring — clockwise */
+@keyframes inbot-orbit-sweep {
+  from { stroke-dashoffset: 0;    }
+  to   { stroke-dashoffset: -100; }
+}
+
+.inbot-orbit-beam {
+  stroke-dasharray: 7 93;
+  stroke-dashoffset: 0;
+  animation: inbot-orbit-sweep 11s linear infinite;
+}
+
+/* Middle ring — counterclockwise */
+@keyframes inbot-orbit-sweep-ccw {
+  from { stroke-dashoffset: 0;   }
+  to   { stroke-dashoffset: 100; }
+}
+
+.inbot-orbit-beam-ccw {
+  stroke-dasharray: 5 95;
+  stroke-dashoffset: 0;
+  animation: inbot-orbit-sweep-ccw 14s linear infinite;
+}
+
+/* Radial lines — pulse from center to node.
+   Line length = 38 units in viewBox → dasharray 5 33 (5+33=38, perfect fit).
+   Keyframe shifts the pattern by one full cycle (−38) for a continuous pulse. */
+@keyframes inbot-line-pulse {
+  from { stroke-dashoffset: 0;   }
+  to   { stroke-dashoffset: -38; }
+}
+
+.inbot-radial-pulse {
+  stroke-dasharray: 5 33;
+  stroke-dashoffset: 0;
+  animation: inbot-line-pulse 3.5s linear infinite;
+}
+
+@keyframes inbot-nucleus-pulse {
+  0%, 100% { box-shadow: 0 0 28px rgba(0,101,254,0.45), 0 0 55px rgba(21,183,254,0.12); }
+  50%       { box-shadow: 0 0 40px rgba(0,101,254,0.60), 0 0 72px rgba(21,183,254,0.18); }
+}
+
+.inbot-orbit-nucleus {
+  box-shadow: 0 0 28px rgba(0,101,254,0.45), 0 0 55px rgba(21,183,254,0.12);
+  animation: inbot-nucleus-pulse 7s ease-in-out infinite;
+}
+
+.inbot-orbit-chip {
+  cursor: default;
+  transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease, background-color 250ms ease;
+}
+
+.inbot-orbit-chip:hover {
+  transform: translateY(-2px);
+  border-color: rgba(21, 183, 254, 0.55);
+  background-color: rgba(12, 10, 59, 0.98);
+  box-shadow: 0 0 14px rgba(21, 183, 254, 0.22);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inbot-orbit-beam,
+  .inbot-orbit-beam-ccw,
+  .inbot-radial-pulse  { animation: none; opacity: 0; }
+  .inbot-orbit-nucleus { animation: none; }
+  .inbot-orbit-chip    { transition: none; }
+}
+
+/* ── HeroRobot — float, entrance, orbit beam ─────────────── */
+
+/*
+  Float: translação vertical -8px em 7s alternate ease-in-out.
+  Wrapper externo recebe inbot-robot-appear (entrance).
+  Wrapper interno recebe inbot-robot-float (loop).
+  Separados para que o float não conflite com o translateY do entrance.
+*/
+
+@keyframes inbot-robot-float {
+  from { transform: translateY(0px);  }
+  to   { transform: translateY(-8px); }
+}
+
+.inbot-robot-float {
+  animation: inbot-robot-float 7s ease-in-out infinite alternate;
+  will-change: transform;
+}
+
+/* Entrance: fade-in com leve subida, delay de 0.72s alinha com stagger do Hero */
+@keyframes inbot-robot-appear {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0px);  }
+}
+
+.inbot-robot-appear {
+  animation: inbot-robot-appear 0.9s ease-out 0.72s both;
+}
+
+/* Orbit beam do robot — reusa keyframe inbot-orbit-sweep (já definido acima) */
+.inbot-robot-orbit-beam {
+  stroke-dasharray: 6 94;
+  stroke-dashoffset: 0;
+  animation: inbot-orbit-sweep 16s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inbot-robot-float          { animation: none; }
+  .inbot-robot-appear         { animation: none; opacity: 1; }
+  .inbot-robot-orbit-beam     { animation: none; opacity: 0; }
 }
