@@ -96,44 +96,238 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: var(--radius-full);
 }
 
-/* ── HeroEyebrow — chevrons animados laterais ──────────────────── */
+/* ── HeroEyebrow — chaser/cascata nos chevrons ─────────────────── */
+/*
+  Keyframe: flash rápido (0 → 15% → 30%) + silêncio (30 → 100%).
+  A cascata é criada apenas por animation-delay escalonado por chevron.
+  Sem transform — posição fixa, só opacity e glow variam.
+*/
 
-@keyframes inbot-eyebrow-glide-right {
-  from { opacity: 0.2; transform: translateX(-2px); }
-  to   { opacity: 0.65; transform: translateX(2px); }
-}
-@keyframes inbot-eyebrow-glide-left {
-  from { opacity: 0.2; transform: translateX(2px); }
-  to   { opacity: 0.65; transform: translateX(-2px); }
+@keyframes inbot-chaser-pulse {
+  0%   { opacity: 0.18; text-shadow: none; }
+  15%  { opacity: 1;    text-shadow: 0 0 8px rgba(21, 183, 254, 0.7), 0 0 3px rgba(235, 235, 237, 0.25); }
+  30%  { opacity: 0.18; text-shadow: none; }
+  100% { opacity: 0.18; text-shadow: none; }
 }
 
-.inbot-eyebrow-chevron-right {
+.inbot-chaser-chevron {
   display: inline-block;
   font-size: 14px;
   line-height: 1;
-  color: rgba(21, 183, 254, 0.5);
-  animation: inbot-eyebrow-glide-right 2.6s ease-in-out infinite alternate;
-}
-.inbot-eyebrow-chevron-left {
-  display: inline-block;
-  font-size: 14px;
-  line-height: 1;
-  color: rgba(21, 183, 254, 0.5);
-  animation: inbot-eyebrow-glide-left 2.6s ease-in-out infinite alternate;
+  color: #15b7fe;
+  animation: inbot-chaser-pulse 1.8s linear infinite;
 }
 
 @media (min-width: 1024px) {
-  .inbot-eyebrow-chevron-right,
-  .inbot-eyebrow-chevron-left {
-    font-size: 16px;
+  .inbot-chaser-chevron {
+    font-size: 17px;
   }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .inbot-eyebrow-chevron-right,
-  .inbot-eyebrow-chevron-left {
+  .inbot-chaser-chevron {
     animation: none;
-    opacity: 0.35;
+    opacity: 0.28;
+    text-shadow: none;
+  }
+}
+
+/* ── ShinyButton — borda rotativa + circle expand ───────────────── */
+/*
+  Borda: conic-gradient animado via @property CSS Houdini (sem bug de quadrado).
+  Interior: fill absoluto que parte de um círculo (42px) e expande para pill no hover.
+  Sem ::after girante (era o quadrado visível no hover). Sem span::before glow.
+  Paleta InBot: Aurora fundo, Núcleo borda, Nebulosa fill/highlight.
+
+  Estrutura JSX esperada:
+    <a class="inbot-shiny-btn">
+      <span class="inbot-shiny-fill" />     ← expansão absoluta
+      <span class="inbot-shiny-icon">→</span> ← seta sobre o fill
+      <span class="inbot-shiny-label">…</span> ← texto com color transition
+    </a>
+*/
+
+@property --inbot-shiny-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --inbot-shiny-angle-offset {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+@property --inbot-shiny-percent {
+  syntax: "<percentage>";
+  initial-value: 5%;
+  inherits: false;
+}
+@property --inbot-shiny-shine {
+  syntax: "<color>";
+  initial-value: white;
+  inherits: false;
+}
+
+.inbot-shiny-btn {
+  --shiny-bg:        #0c0a3b;
+  --shiny-bg-inner:  #130f4a;
+  --shiny-fg:        #ebebed;
+  --shiny-color:     #0065fe;
+  --shiny-color-sub: #15b7fe;
+  --shiny-fill:      #15b7fe;
+  --shiny-on-fill:   #050f33;
+  --shiny-duration:  3s;
+  --shiny-shadow:    2px;
+  --shiny-expand:    500ms cubic-bezier(0.16, 1, 0.3, 1);
+  --shiny-border:    800ms cubic-bezier(0.25, 1, 0.5, 1);
+
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  outline-offset: 4px;
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 22px 4px 4px;
+  border: 1px solid transparent;
+  border-radius: 9999px;
+  color: var(--shiny-fg);
+  text-decoration: none;
+  background:
+    linear-gradient(var(--shiny-bg), var(--shiny-bg)) padding-box,
+    conic-gradient(
+      from calc(var(--inbot-shiny-angle) - var(--inbot-shiny-angle-offset)),
+      transparent,
+      var(--shiny-color)       var(--inbot-shiny-percent),
+      var(--inbot-shiny-shine) calc(var(--inbot-shiny-percent) * 2),
+      var(--shiny-color)       calc(var(--inbot-shiny-percent) * 3),
+      transparent              calc(var(--inbot-shiny-percent) * 4)
+    ) border-box;
+  box-shadow: inset 0 0 0 1px var(--shiny-bg-inner);
+  transition: var(--shiny-border);
+  transition-property: --inbot-shiny-angle-offset, --inbot-shiny-percent, --inbot-shiny-shine;
+}
+
+/* Dots pattern — mascarados pelo conic-gradient, sem bug de quadrado */
+.inbot-shiny-btn::before {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset-inline-start: 50%;
+  inset-block-start: 50%;
+  translate: -50% -50%;
+  --pos:   2px;
+  --space: calc(var(--pos) * 2);
+  --size:  calc(100% - var(--shiny-shadow) * 3);
+  width: var(--size);
+  height: var(--size);
+  background: radial-gradient(
+      circle at var(--pos) var(--pos),
+      rgba(255, 255, 255, 0.55) calc(var(--pos) / 4),
+      transparent 0
+    ) padding-box;
+  background-size: var(--space) var(--space);
+  background-repeat: space;
+  mask-image: conic-gradient(
+    from calc(var(--inbot-shiny-angle) + 45deg),
+    black,
+    transparent 10% 90%,
+    black
+  );
+  border-radius: inherit;
+  opacity: 0.35;
+  z-index: 0;
+}
+
+/* Rotação da borda + dots — dupla animação com add para o hover */
+.inbot-shiny-btn,
+.inbot-shiny-btn::before {
+  animation:
+    inbot-shiny-rotate var(--shiny-duration) linear infinite,
+    inbot-shiny-rotate calc(var(--shiny-duration) / 0.4) linear reverse paused;
+  animation-composition: add;
+}
+
+.inbot-shiny-btn:active { translate: 0 1px; }
+
+/* Fill — circle que expande para pill no hover */
+.inbot-shiny-fill {
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 42px;
+  height: 42px;
+  border-radius: 9999px;
+  background: var(--shiny-fill);
+  transition:
+    width    var(--shiny-expand),
+    border-radius var(--shiny-expand);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Icon — seta sobre o fill, sempre escura */
+.inbot-shiny-icon {
+  position: relative;
+  z-index: 2;
+  width: 42px;
+  height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  font-size: 1.125rem;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--shiny-on-fill);
+}
+
+/* Label — cor inverte no hover */
+.inbot-shiny-label {
+  position: relative;
+  z-index: 2;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.2;
+  padding-left: 10px;
+  color: var(--shiny-fg);
+  transition: color var(--shiny-expand);
+  white-space: nowrap;
+}
+
+/* Hover: borda acelerada + fill expande + label escurece */
+.inbot-shiny-btn:is(:hover, :focus-visible) {
+  --inbot-shiny-percent:      20%;
+  --inbot-shiny-angle-offset: 95deg;
+  --inbot-shiny-shine:        var(--shiny-color-sub);
+}
+
+.inbot-shiny-btn:is(:hover, :focus-visible),
+.inbot-shiny-btn:is(:hover, :focus-visible)::before {
+  animation-play-state: running;
+}
+
+.inbot-shiny-btn:is(:hover, :focus-visible) .inbot-shiny-fill {
+  width: calc(100% - 8px);
+}
+
+.inbot-shiny-btn:is(:hover, :focus-visible) .inbot-shiny-label {
+  color: var(--shiny-on-fill);
+}
+
+@keyframes inbot-shiny-rotate { to { --inbot-shiny-angle: 360deg; } }
+
+@media (prefers-reduced-motion: reduce) {
+  .inbot-shiny-btn,
+  .inbot-shiny-btn::before {
+    animation: none !important;
+  }
+  .inbot-shiny-btn {
+    border-color: rgba(0, 101, 254, 0.4);
+  }
+  .inbot-shiny-fill {
+    transition: none;
   }
 }
 

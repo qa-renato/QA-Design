@@ -1,43 +1,40 @@
-// Eyebrow premium do Hero: "›› SOMOS A INBOT ‹‹"
-// Chevrons animados nas laterais com glide suave e stagger.
-// Respeita prefers-reduced-motion via CSS.
+// HeroEyebrow — "SOMOS A INBOT" com chaser/cascata nos chevrons laterais.
+// 4 chevrons por lado; brilho percorre da borda para o texto em ambos os lados.
+// Sem GSAP, sem transform — apenas opacity + text-shadow em CSS.
 
-function Chevron({ char, delay }) {
-  const isLeft = char === '‹'
+const STEP = 0.32 // segundos entre cada chevron
+
+function ChevronChaser({ chars, delays }) {
   return (
-    <span
-      aria-hidden="true"
-      className={isLeft ? 'inbot-eyebrow-chevron-left' : 'inbot-eyebrow-chevron-right'}
-      style={{ animationDelay: delay }}
-    >
-      {char}
+    <span className="inline-flex items-center gap-[3px]" aria-hidden="true">
+      {chars.map((char, i) => (
+        <span key={i} className="inbot-chaser-chevron" style={{ animationDelay: delays[i] }}>
+          {char}
+        </span>
+      ))}
     </span>
   )
 }
 
 export function HeroEyebrow({ children }) {
+  // Grupo esquerdo › › ›: cascata da esquerda (fora) para a direita (texto)
+  const leftDelays  = [`0s`, `${STEP}s`, `${STEP * 2}s`]
+  // Grupo direito ‹ ‹ ‹: cascata da direita (fora) para a esquerda (texto)
+  const rightDelays = [`${STEP * 2}s`, `${STEP}s`, `0s`]
+
   return (
     <div
-      className="inline-flex items-center justify-center gap-2.5"
+      className="inline-flex items-center justify-center gap-3"
       role="text"
       aria-label={typeof children === 'string' ? children : undefined}
     >
-      {/* Chevrons esquerdos (animam para a direita) */}
-      <span className="flex items-center gap-[3px]">
-        <Chevron char="›" delay="0.18s" />
-        <Chevron char="›" delay="0s"    />
-      </span>
+      <ChevronChaser chars={['›', '›', '›']} delays={leftDelays} />
 
-      {/* Texto do eyebrow */}
-      <span className="text-[14px] lg:text-[16px] font-semibold tracking-[0.2em] uppercase text-[rgba(21,183,254,0.75)]">
+      <span className="text-[13px] lg:text-[17px] font-semibold tracking-[0.22em] uppercase text-[rgba(21,183,254,0.82)]">
         {children}
       </span>
 
-      {/* Chevrons direitos (animam para a esquerda) */}
-      <span className="flex items-center gap-[3px]">
-        <Chevron char="‹" delay="0s"    />
-        <Chevron char="‹" delay="0.18s" />
-      </span>
+      <ChevronChaser chars={['‹', '‹', '‹']} delays={rightDelays} />
     </div>
   )
 }

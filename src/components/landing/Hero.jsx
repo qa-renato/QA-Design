@@ -1,4 +1,4 @@
-import { AnimatedCTA } from '../ui/AnimatedCTA'
+import { ShinyButton } from '../ui/ShinyButton'
 import { HeroEyebrow } from '../ui/HeroEyebrow'
 import { HeroRobot } from './HeroRobot'
 import { useLanguage } from '../../context/LanguageContext'
@@ -43,9 +43,9 @@ export function Hero() {
           </p>
 
           <div data-hero-cta>
-            <AnimatedCTA href={hero.cta.href} variant="light">
+            <ShinyButton href={hero.cta.href}>
               {hero.cta.label}
-            </AnimatedCTA>
+            </ShinyButton>
           </div>
 
           <HeroRobot />
