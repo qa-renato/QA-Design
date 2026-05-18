@@ -41,7 +41,7 @@ export function LoginMenu({ className = '' }) {
       <HeaderPopover
         open={open}
         onClose={close}
-        align="right"
+        align="center"
         containerRef={wrapperRef}
       >
         <div className="w-[340px]">

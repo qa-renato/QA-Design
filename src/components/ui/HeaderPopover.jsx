@@ -43,6 +43,11 @@ export function HeaderPopover({ open, onClose, children, align = 'left', contain
 
   if (!mounted) return null
 
+  const positionClass =
+    align === 'center' ? 'left-1/2 -translate-x-1/2' :
+    align === 'right'  ? 'right-0' :
+    'left-0'
+
   return (
     <div
       className={[
@@ -54,7 +59,7 @@ export function HeaderPopover({ open, onClose, children, align = 'left', contain
         visible
           ? 'opacity-100 translate-y-0 scale-100'
           : 'opacity-0 -translate-y-1.5 scale-[0.98] pointer-events-none',
-        align === 'right' ? 'right-0' : 'left-0',
+        positionClass,
       ].join(' ')}
     >
       {children}

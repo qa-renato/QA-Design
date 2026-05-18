@@ -42,11 +42,7 @@ export function Hero() {
             {hero.subtext}
           </p>
 
-          <div data-hero-cta className="flex flex-col items-center gap-4">
-            <div className="relative w-[220px] h-px overflow-hidden" aria-hidden="true">
-              <div className="absolute inset-0 inbot-cta-accent-line" />
-              <span className="absolute top-0 left-0 inbot-cta-accent-beam" />
-            </div>
+          <div data-hero-cta>
             <AnimatedCTA href={hero.cta.href} variant="light">
               {hero.cta.label}
             </AnimatedCTA>
