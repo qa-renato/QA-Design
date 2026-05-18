@@ -1,8 +1,9 @@
-// AnimatedCTA v2 — motion button com círculo expansível
-// Estrutura: pill com overflow:hidden, círculo absoluto à esquerda expande no hover,
-// seta se desloca levemente, texto troca de cor para contraste.
-// Sem SVG externo, sem border beam, sem oval orbital.
-// prefers-reduced-motion: transition desativado via motion-safe:*
+// AnimatedCTA v3 — micro-animation refinada
+// Arrow: 380ms cubic-bezier(0.16,1,0.3,1) + translate 6px
+// Circle: width+filter transition — brightness boost dá presença antes de expandir
+// Pill: scale(1.012) no hover
+// Text: 420ms mesmo cubic-bezier para consistência
+// prefers-reduced-motion: motion-safe:* desativa transitions e transforms
 
 const VARIANTS = {
   light: {
@@ -48,19 +49,25 @@ export function AnimatedCTA({ href, children, variant = 'light', className = '' 
           'relative inline-flex h-[52px] items-center rounded-full overflow-hidden',
           'pl-1 pr-6',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
+          // Pill: scale sutil no hover — max 1.012 conforme spec
+          'motion-safe:transition-transform motion-safe:duration-[420ms]',
+          'motion-safe:[transition-timing-function:cubic-bezier(0.16,1,0.3,1)]',
+          'motion-safe:group-hover:scale-[1.012]',
           v.pill,
           v.ring,
         ].join(' ')}
       >
         {/* Círculo expansível — z-0, absoluto, começa 44×44px e cresce até preencher o pill */}
+        {/* brightness-[1.12] dá presença visual antes de expandir por completo */}
         <span
           aria-hidden="true"
           className={[
             'absolute left-1 top-1/2 -translate-y-1/2',
             'h-[44px] w-[44px] rounded-full',
-            'motion-safe:transition-[width] motion-safe:duration-[500ms]',
-            'motion-safe:ease-[cubic-bezier(0.16,1,0.3,1)]',
+            'motion-safe:transition-[width,filter] motion-safe:duration-[500ms]',
+            'motion-safe:[transition-timing-function:cubic-bezier(0.16,1,0.3,1)]',
             'group-hover:w-[calc(100%_-_8px)]',
+            'motion-safe:group-hover:brightness-[1.12]',
             v.circle,
           ].join(' ')}
         />
@@ -73,8 +80,9 @@ export function AnimatedCTA({ href, children, variant = 'light', className = '' 
           <span
             className={[
               'text-base leading-none font-medium select-none',
-              'motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-out',
-              'motion-safe:group-hover:translate-x-1',
+              'motion-safe:transition-transform motion-safe:duration-[380ms]',
+              'motion-safe:[transition-timing-function:cubic-bezier(0.16,1,0.3,1)]',
+              'motion-safe:group-hover:translate-x-[6px]',
               v.arrowColor,
             ].join(' ')}
           >
@@ -87,7 +95,8 @@ export function AnimatedCTA({ href, children, variant = 'light', className = '' 
           className={[
             'relative z-10 pl-2',
             'text-sm font-semibold tracking-wide whitespace-nowrap',
-            'motion-safe:transition-colors motion-safe:duration-[400ms]',
+            'motion-safe:transition-colors motion-safe:duration-[420ms]',
+            'motion-safe:[transition-timing-function:cubic-bezier(0.16,1,0.3,1)]',
             v.textBase,
             v.textHover,
           ].join(' ')}

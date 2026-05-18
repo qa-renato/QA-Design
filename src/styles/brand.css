@@ -488,3 +488,42 @@ h1, h2, h3, h4, h5, h6 {
   .inbot-robot-appear         { animation: none; opacity: 1; }
   .inbot-robot-orbit-beam     { animation: none; opacity: 0; }
 }
+
+/* ── InteractiveFeatures — panel entrance ────────────────── */
+
+@keyframes inbot-ifeat-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0px);  }
+}
+
+.inbot-ifeat-panel {
+  animation: inbot-ifeat-in 0.35s ease-out both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inbot-ifeat-panel { animation: none; }
+}
+
+/* ── InteractiveFeatures — beam na linha-L decorativa ───── */
+/*
+  Técnica: stroke-dasharray num path SVG em forma de L.
+  beam=100px, gap=600px > path~509px → um único beam por ciclo.
+  dashoffset anima de 0 a -700 (=beam+gap): beam parte do topo
+  do traço vertical, desce, curva 90° e percorre o horizontal.
+  Glow via feGaussianBlur no SVG. Duração 4s ≠ ShinyButton (3s)
+  para ritmos distintos e sem sincronismo visual.
+*/
+@keyframes ifeat-beam-travel {
+  from { stroke-dashoffset:    0; }
+  to   { stroke-dashoffset: -700; }
+}
+
+.ifeat-beam {
+  stroke-dasharray: 100 600;
+  stroke-dashoffset: 0;
+  animation: ifeat-beam-travel 4s linear infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ifeat-beam { animation: none; opacity: 0; }
+}

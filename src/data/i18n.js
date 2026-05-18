@@ -141,6 +141,58 @@ export const translations = {
       cta: { label: 'Falar com a InBot', href: '#contato' },
     },
 
+    interactiveFeatures: {
+      eyebrow: 'COMECE A ESCALAR',
+      title: 'Transforme conversas em operação inteligente',
+      tabs: [
+        {
+          id: 'generative',
+          title: 'IA Generativa aplicada',
+          texts: [
+            'Sua marca precisa responder com naturalidade sem perder consistência?',
+            'A InBot combina IA Generativa e conversação para criar assistentes com tom, personalidade e respostas alinhadas ao seu negócio.',
+          ],
+          highlight: 'Mais criatividade, consistência e fluidez em cada interação.',
+        },
+        {
+          id: 'context',
+          title: 'Respostas com contexto',
+          texts: [
+            'Atendimentos sem histórico geram conversas repetitivas e pouco humanas.',
+            'Com contexto, memória da jornada e busca semântica, a InBot ajuda o assistente a responder de forma mais relevante e personalizada.',
+          ],
+          highlight: 'Conversas mais naturais, úteis e conectadas à jornada do usuário.',
+        },
+        {
+          id: 'curation',
+          title: 'Treinamento e curadoria',
+          texts: [
+            'Um assistente virtual precisa evoluir continuamente para manter precisão.',
+            'A InBot apoia o treinamento com exemplos, curadoria constante e melhoria contínua das respostas e fluxos.',
+          ],
+          highlight: 'Evolução contínua para manter qualidade, precisão e aderência ao negócio.',
+        },
+        {
+          id: 'data',
+          title: 'Dados, relatórios e BI',
+          texts: [
+            'Conversas geram sinais valiosos sobre clientes, dúvidas e oportunidades.',
+            'A InBot transforma dados conversacionais em relatórios e inteligência para apoiar decisões, evolução de jornada e performance.',
+          ],
+          highlight: 'Mais visibilidade para entender, medir e otimizar sua operação.',
+        },
+        {
+          id: 'methodology',
+          title: 'Metodologia para escalar',
+          texts: [
+            'Escalar atendimento exige mais do que tecnologia: exige processo.',
+            'Com metodologia, definição de KPIs, planejamento de jornadas e acompanhamento especializado, a InBot estrutura a evolução da operação.',
+          ],
+          highlight: 'Uma operação conversacional mais organizada, mensurável e pronta para crescer.',
+        },
+      ],
+    },
+
     cases: {
       eyebrow: 'WE BELIEVE IN.BOT',
       title: 'Vozes que confiam na InBot',
@@ -404,6 +456,58 @@ export const translations = {
       cta: { label: 'Talk to InBot', href: '#contato' },
     },
 
+    interactiveFeatures: {
+      eyebrow: 'START SCALING',
+      title: 'Transform conversations into intelligent operation',
+      tabs: [
+        {
+          id: 'generative',
+          title: 'Applied Generative AI',
+          texts: [
+            'Does your brand need to respond naturally without losing consistency?',
+            'InBot combines Generative AI and conversation to create assistants with tone, personality, and responses aligned with your business.',
+          ],
+          highlight: 'More creativity, consistency, and fluidity in every interaction.',
+        },
+        {
+          id: 'context',
+          title: 'Context-aware responses',
+          texts: [
+            'Support without history leads to repetitive, impersonal conversations.',
+            'With context, journey memory, and semantic search, InBot helps the assistant respond in a more relevant and personalized way.',
+          ],
+          highlight: 'More natural, useful conversations connected to the user journey.',
+        },
+        {
+          id: 'curation',
+          title: 'Training and curation',
+          texts: [
+            'A virtual assistant must continuously evolve to maintain accuracy.',
+            'InBot supports training with examples, ongoing curation, and continuous improvement of responses and flows.',
+          ],
+          highlight: 'Continuous evolution to maintain quality, accuracy, and business alignment.',
+        },
+        {
+          id: 'data',
+          title: 'Data, reports, and BI',
+          texts: [
+            'Conversations generate valuable signals about customers, questions, and opportunities.',
+            'InBot turns conversational data into reports and intelligence to support decisions, journey evolution, and performance.',
+          ],
+          highlight: 'More visibility to understand, measure, and optimize your operation.',
+        },
+        {
+          id: 'methodology',
+          title: 'Methodology to scale',
+          texts: [
+            'Scaling support requires more than technology — it requires process.',
+            'With methodology, KPI definition, journey planning, and specialized follow-up, InBot structures the evolution of your operation.',
+          ],
+          highlight: 'A more organized, measurable conversational operation ready to grow.',
+        },
+      ],
+    },
+
     cases: {
       eyebrow: 'WE BELIEVE IN.BOT',
       title: 'Voices that trust InBot',
@@ -665,6 +769,58 @@ export const translations = {
       subtext:
         'Conecte canales, organice datos y dé a sus equipos una base única para operar conversaciones con inteligencia y gobernanza.',
       cta: { label: 'Hablar con InBot', href: '#contato' },
+    },
+
+    interactiveFeatures: {
+      eyebrow: 'EMPIEZA A ESCALAR',
+      title: 'Transforma conversaciones en operación inteligente',
+      tabs: [
+        {
+          id: 'generative',
+          title: 'IA Generativa aplicada',
+          texts: [
+            '¿Tu marca necesita responder con naturalidad sin perder consistencia?',
+            'InBot combina IA Generativa y conversación para crear asistentes con tono, personalidad y respuestas alineadas con tu negocio.',
+          ],
+          highlight: 'Más creatividad, consistencia y fluidez en cada interacción.',
+        },
+        {
+          id: 'context',
+          title: 'Respuestas con contexto',
+          texts: [
+            'Las atenciones sin historial generan conversaciones repetitivas y poco humanas.',
+            'Con contexto, memoria del recorrido y búsqueda semántica, InBot ayuda al asistente a responder de forma más relevante y personalizada.',
+          ],
+          highlight: 'Conversaciones más naturales, útiles y conectadas al recorrido del usuario.',
+        },
+        {
+          id: 'curation',
+          title: 'Entrenamiento y curación',
+          texts: [
+            'Un asistente virtual necesita evolucionar continuamente para mantener precisión.',
+            'InBot apoya el entrenamiento con ejemplos, curación constante y mejora continua de respuestas y flujos.',
+          ],
+          highlight: 'Evolución continua para mantener calidad, precisión y adherencia al negocio.',
+        },
+        {
+          id: 'data',
+          title: 'Datos, informes y BI',
+          texts: [
+            'Las conversaciones generan señales valiosas sobre clientes, dudas y oportunidades.',
+            'InBot transforma datos conversacionales en informes e inteligencia para apoyar decisiones, evolución de recorrido y rendimiento.',
+          ],
+          highlight: 'Más visibilidad para entender, medir y optimizar tu operación.',
+        },
+        {
+          id: 'methodology',
+          title: 'Metodología para escalar',
+          texts: [
+            'Escalar la atención exige más que tecnología: exige proceso.',
+            'Con metodología, definición de KPIs, planificación de recorridos y seguimiento especializado, InBot estructura la evolución de la operación.',
+          ],
+          highlight: 'Una operación conversacional más organizada, medible y lista para crecer.',
+        },
+      ],
     },
 
     cases: {

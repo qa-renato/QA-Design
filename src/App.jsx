@@ -7,7 +7,7 @@ import { useGsapReveal } from './hooks/useGsapReveal'
 import { Header }                  from './components/landing/Header'
 import { Hero }                    from './components/landing/Hero'
 import { Metrics }                 from './components/landing/Metrics'
-import { Solutions }               from './components/landing/Solutions'
+import { InteractiveFeatures }     from './components/landing/InteractiveFeatures'
 import { PlatformOverview }        from './components/landing/PlatformOverview'
 import { ConversationalOperation } from './components/landing/ConversationalOperation'
 import { EcosystemOrbit }          from './components/landing/EcosystemOrbit'
@@ -21,7 +21,7 @@ import { FooterLocation }          from './components/landing/FooterLocation'
 import { Footer }                  from './components/landing/Footer'
 
 // Mapa de ritmo visual (D = escuro, L = claro):
-// Hero(D) → Metrics(D) → Solutions(L) → Platform(D) → ConvOp(D) →
+// Hero(D) → Metrics(D) → InteractiveFeatures(L) → Platform(D) → ConvOp(D) →
 // Ecosystem(D) → Differentials(D) → MidCTA(gradiente) → Cases(L) →
 // Content(D) → FAQ(L) → FinalCTA(D) → Footer(D)
 
@@ -33,7 +33,7 @@ export default function App() {
       <main>
         <Hero />
         <Metrics />
-        <Solutions />
+        <InteractiveFeatures />
         <PlatformOverview />
         <ConversationalOperation />
         <EcosystemOrbit />
