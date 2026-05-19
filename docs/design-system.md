@@ -216,11 +216,51 @@ Sempre: `border-radius: full` / `font-size: xs` / `uppercase` / `tracking-wide`
 ### AnimatedCTA
 
 - Formato pill + círculo com seta à direita
-- Contorno SVG animado (stroke-dashoffset chase, 3s loop)
+- Contorno SVG animado: `<rect>` com `pathLength="500"`, beam `stroke-dasharray="150 350"`, chase infinito
+- Hover: seta direita some (`scale(0)`) e seta esquerda entra (`scale(1)`) — swap suave via CSS Grid `40px|auto|40px`
 - Variantes: `light` (fundo escuro) / `dark` (fundo claro) / `gradient` (MidCTA)
 - Cores Núcleo ↔ Nebulosa no gradiente do contorno
 - Respeita `prefers-reduced-motion`
 - Arquivo: `src/components/ui/AnimatedCTA.jsx`
+- CSS: `.inbot-discover-border`, `.inbot-discover-arrow`, `.inbot-discover-arrow-left/right`
+
+### Header
+
+- Fixo no topo, `z-50`
+- Topo: transparente, `w-full`, sem borda visível
+- Pós-scroll (> 40px): pill flutuante `rounded-full`, `bg-[rgba(12,10,59,0.82)]`, `backdrop-blur-xl`, centrado via `left-1/2 -translate-x-1/2`
+- Transição: `max-w-[9999px] → max-w-[1180px]` (ambos numéricos para CSS interpolar), `border-color`, `box-shadow` em 500ms
+- Arquivo: `src/components/landing/Header.jsx`
+
+### EcosystemOrbit
+
+- Diagrama SVG orbital com núcleo InBot central
+- 3 anéis estáticos (r=42/30/18), tick marks, dots de conexão, linhas radiais tracejadas
+- Animações CSS (sem JS):
+  - `.inbot-ecosystem-beam--outer` — beam cw, `stroke-dasharray: 7 93`, 10s
+  - `.inbot-ecosystem-beam--inner` — beam ccw, 14s
+  - `.inbot-ecosystem-pulse` — pulso radial do núcleo aos chips, 3.2s
+  - `.inbot-ecosystem-core` — breathing glow no núcleo, 6s ease-in-out
+  - `.inbot-ecosystem-chip` — entrada stagger `scale(0.65→1)`, delay `0.4 + i×0.12s`
+- 3 glow orbs absolutos com `filter: blur(28px)` atrás do SVG
+- Respeita `prefers-reduced-motion` (todas as animações desativadas)
+- Arquivo: `src/components/landing/EcosystemOrbit.jsx`
+
+### InteractiveFeatures
+
+- Grid `lg:grid-cols-[420px_minmax(0,1fr)]`, fundo `#f8fbff`
+- Coluna esquerda (`lg:sticky lg:top-20`): card branco com ícone `logosemfundo.png`, eyebrow, h2, tablist vertical
+  - Ícone: 80×80px `rounded-3xl bg-white`, renderiza logo OU fallback SVG (nunca os dois)
+  - Tablist: indicador ativo `w-[3px]` lateral com spring `translateY(i × 58px)`, 5 abas
+- Coluna direita: `FeaturePanel` (card `rounded-[32px] bg-white/75 backdrop-blur-sm`) com:
+  - `FeatureVisual` — div-based, fundo grid + glow orbs, 260px, 5 visuais distintos por aba
+  - `FeatureText` — bullets problema/solução com ícones circulares
+  - `FeatureHighlight` — card de destaque com checkmark
+  - `FeatureDots` — paginação pill, `w-8` ativo / `w-2` inativo
+- `key={activeTab-tab.id}` no FeaturePanel força re-mount → animação `.inbot-feature-panel` re-executa
+- Overlay de pessoa: desabilitado (asset `p1.png` sem transparência real); estrutura pronta para reativar
+- Arquivo: `src/components/landing/InteractiveFeatures.jsx`
+- CSS: `.inbot-feature-panel` (`@keyframes inbot-feature-panel-in`, 420ms)
 
 ### LoginPill
 

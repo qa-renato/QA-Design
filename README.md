@@ -133,14 +133,16 @@ Nenhuma referência deve ser copiada — apenas inspiração de princípios visu
 - [x] Componentes base (Button, Badge, Card, MetricCard, Container, Section, Navbar)
 - [x] Documentação completa em `/docs`
 - [x] **Landing V1 implementada** (branch `feature/landing-v1`)
-  - Header com scroll behavior
+  - Header com scroll behavior + pill flutuante glassmorphism
   - Hero com elemento orbital
   - Métricas (placeholders — aguardando dados reais)
   - Soluções por setor (7 cards) — posicionada antes da plataforma para ritmo L/D
+  - **InteractiveFeatures** — abas verticais com visuais por aba, animação de painel, grid 420px|1fr
   - Visão geral da plataforma (6 pilares)
   - Operação Conversacional (antes/depois)
-  - Ecossistema Orbit (diagrama SVG)
+  - **EcosystemOrbit** — diagrama orbital com glows, beams animados, núcleo breathing, chips com stagger
   - Diferenciais (6 cards)
+  - **AnimatedCTA** — pill com contorno SVG animado, swap de seta, variantes light/dark/gradient
   - CTA intermediário (banda gradiente horizontal)
   - Cases (placeholders — aguardando aprovação)
   - Conteúdos (placeholders)
@@ -151,6 +153,7 @@ Nenhuma referência deve ser copiada — apenas inspiração de princípios visu
 - [ ] Fonte Noopla (aguardando autorização de uso)
 - [ ] Métricas reais validadas (aguardando dados verificados)
 - [ ] Cases reais aprovados pelos clientes
+- [ ] Imagem da pessoa com fundo transparente para overlay em InteractiveFeatures
 
 ---
 
@@ -158,35 +161,44 @@ Nenhuma referência deve ser copiada — apenas inspiração de princípios visu
 
 ```
 src/components/landing/
-├── Header.jsx              # Navegação com scroll behavior
-├── Hero.jsx                # Headline + CTA + elemento orbital        [D]
-├── Metrics.jsx             # Métricas (placeholders)                  [D]
-├── Solutions.jsx           # 7 soluções por setor                     [L]
-├── PlatformOverview.jsx    # 6 pilares da plataforma                  [D]
-├── ConversationalOperation.jsx  # Antes/depois                        [D]
-├── EcosystemOrbit.jsx      # Diagrama SVG de ecossistema              [D]
-├── Differentials.jsx       # 6 diferenciais                           [D]
-├── MidCTA.jsx              # Banda CTA intermediária (gradiente)      [G]
-├── CasesPreview.jsx        # 3 cases (placeholders)                   [L]
-├── ContentPreview.jsx      # 3 artigos (placeholders)                 [D]
-├── FAQ.jsx                 # Acordeão acessível, 6 perguntas          [L]
-├── FinalCTA.jsx            # CTA de conversão                         [D]
-└── Footer.jsx              # Rodapé completo                          [D]
+├── Header.jsx              # Pill flutuante glassmorphism + scroll behavior
+├── Hero.jsx                # Headline + CTA + elemento orbital                [D]
+├── Metrics.jsx             # Métricas (placeholders)                          [D]
+├── Solutions.jsx           # 7 soluções por setor                             [L]
+├── InteractiveFeatures.jsx # Abas verticais + visuais por aba + panel anim.  [L]
+├── PlatformOverview.jsx    # 6 pilares da plataforma                          [D]
+├── ConversationalOperation.jsx  # Antes/depois                                [D]
+├── EcosystemOrbit.jsx      # Orbital SVG: glows, beams, pulses, chip stagger [D]
+├── Differentials.jsx       # 6 diferenciais                                   [D]
+├── MidCTA.jsx              # Banda CTA intermediária (gradiente)              [G]
+├── CasesPreview.jsx        # 3 cases (placeholders)                           [L]
+├── ContentPreview.jsx      # 3 artigos (placeholders)                         [D]
+├── FAQ.jsx                 # Acordeão acessível, 6 perguntas                  [L]
+├── FinalCTA.jsx            # CTA de conversão                                 [D]
+└── Footer.jsx              # Rodapé completo                                  [D]
 
 # Ritmo visual: D=escuro  L=claro  G=gradiente
 
-src/data/landingContent.js  # Fonte de verdade do conteúdo
+src/components/ui/
+├── AnimatedCTA.jsx         # Pill + contorno SVG animado, swap de seta
+├── Badge.jsx
+├── LanguageSwitcher.jsx
+├── LoginMenu.jsx
+└── Reveal.jsx
+
+src/data/landingContent.js  # Fonte de verdade do conteúdo (i18n PT/EN/ES)
+src/context/LanguageContext.jsx
 ```
 
 ---
 
 ## Próximos Passos
 
-1. Revisar Landing V1 com `npm run dev`
-2. Fornecer métricas reais para substituir os placeholders
-3. Aprovar cases antes de publicar
-4. Obter logotipo SVG oficial e substituir o logotipo textual
-5. Configurar Noopla Bold quando autorizada
-6. Refinamento responsivo mobile (Fase 4)
-7. Melhorias de média prioridade (benchmark Sqala): reformular Soluções por necessidade, adicionar sub-features nos pilares, elevar visual da seção Operação Conversacional
-8. Merge da branch `feature/landing-v1` após aprovação
+1. Revisar a landing com `npm run dev` e aprovar visualmente
+2. Fornecer imagem de pessoa com **fundo transparente** (cutout PNG/WebP) para reativar o overlay em InteractiveFeatures
+3. Fornecer métricas reais para substituir os placeholders
+4. Aprovar cases antes de publicar
+5. Obter logotipo SVG oficial e substituir o PNG atual
+6. Configurar Noopla Bold quando autorizada
+7. Refinamento responsivo mobile (Fase 4)
+8. Merge da branch `feature/landing-v1` → `main` após aprovação

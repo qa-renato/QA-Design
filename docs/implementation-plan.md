@@ -8,10 +8,10 @@
 
 | Fase | Objetivo | Status |
 |------|----------|--------|
-| Fase 1 | Base técnica e design system | ✅ Em andamento |
-| Fase 2 | Preview visual do design system | ✅ Concluído (junto à Fase 1) |
-| Fase 3 | Primeira versão da landing | ⏳ Pendente |
-| Fase 4 | Refinamento responsivo | ⏳ Pendente |
+| Fase 1 | Base técnica e design system | ✅ Concluído |
+| Fase 2 | Preview visual do design system | ✅ Concluído |
+| Fase 3 | Primeira versão da landing + refinamento visual | ✅ Concluído |
+| Fase 4 | Refinamento responsivo mobile | ⏳ Pendente |
 | Fase 5 | Performance e acessibilidade | ⏳ Pendente |
 | Fase 6 | Deploy | ⏳ Pendente |
 

@@ -1,37 +1,63 @@
-// AnimatedCTA v3 — micro-animation refinada
-// Arrow: 380ms cubic-bezier(0.16,1,0.3,1) + translate 6px
-// Circle: width+filter transition — brightness boost dá presença antes de expandir
-// Pill: scale(1.012) no hover
-// Text: 420ms mesmo cubic-bezier para consistência
-// prefers-reduced-motion: motion-safe:* desativa transitions e transforms
+// AnimatedCTA v4 — contorno SVG animado + troca de setas no hover
+// SVG <rect> com pathLength="500" normaliza o perímetro: stroke-dasharray="150 350"
+// → beam de 30% do perímetro percorre o pill em loop linear 1.5s.
+// Layout: CSS Grid 40px|auto|40px na <a> — colunas fixas garantem que o
+// texto não se mova quando as setas trocam de estado (scale+opacity, não width).
+// Variantes: light (Hero escuro), dark (seções claras), gradient (MidCTA Abismo).
+// prefers-reduced-motion: animação do stroke parada, transitions das setas removidas.
+
+const ArrowIcon = ({ dir }) => (
+  <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+    {dir === 'right' ? (
+      <path
+        d="M2 7h10M8.5 3.5 12 7l-3.5 3.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    ) : (
+      <path
+        d="M12 7H2M5.5 3.5 2 7l3.5 3.5"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    )}
+  </svg>
+)
 
 const VARIANTS = {
   light: {
-    // Usado no Hero — fundo Aurora escuro
-    pill:       'bg-[#0c0a3b] border border-[rgba(21,183,254,0.28)]',
-    circle:     'bg-[#15b7fe]',           // Nebulosa — fill vibrante no hover
-    arrowColor: 'text-[#0c0a3b]',         // Aurora — contraste sobre Nebulosa
-    textBase:   'text-cintilante',
-    textHover:  'group-hover:text-[#0c0a3b]',
-    ring:       'focus-visible:ring-nebulosa focus-visible:ring-offset-aurora',
+    // FinalCTA e contextos de fundo escuro (Aurora)
+    wrapperBorder: 'border-[rgba(21,183,254,0.22)]',
+    stroke:        '#15b7fe',                                         // Nebulosa
+    inner:         'bg-[#0c0a3b]',                                    // Aurora
+    text:          'text-[#ebebed]',                                  // Cintilante
+    arrowBg:       'bg-[rgba(21,183,254,0.14)] border border-[rgba(21,183,254,0.28)]',
+    arrowColor:    'text-[#ebebed]',
+    ring:          'focus-visible:ring-[#15b7fe] focus-visible:ring-offset-[#0c0a3b]',
   },
   dark: {
-    // Usado em seções claras — pill quase branco
-    pill:       'bg-[#f5f7ff] border border-[rgba(0,101,254,0.2)]',
-    circle:     'bg-[#0065fe]',           // Núcleo — fill azul sólido
-    arrowColor: 'text-[#f5f7ff]',         // Branco — contraste sobre Núcleo
-    textBase:   'text-aurora',
-    textHover:  'group-hover:text-[#f5f7ff]',
-    ring:       'focus-visible:ring-nucleo focus-visible:ring-offset-white',
+    // Seções com fundo claro
+    wrapperBorder: 'border-[rgba(0,101,254,0.22)]',
+    stroke:        '#0065fe',                                         // Núcleo
+    inner:         'bg-[#f5f7ff]',
+    text:          'text-[#0c0a3b]',                                  // Aurora
+    arrowBg:       'bg-[rgba(0,101,254,0.10)] border border-[rgba(0,101,254,0.2)]',
+    arrowColor:    'text-[#0c0a3b]',
+    ring:          'focus-visible:ring-[#0065fe] focus-visible:ring-offset-white',
   },
   gradient: {
-    // Usado no MidCTA — fundo Abismo
-    pill:       'bg-[#023c8f] border border-[rgba(235,235,237,0.18)]',
-    circle:     'bg-[#ebebed]',           // Cintilante (quase branco)
-    arrowColor: 'text-[#0c0a3b]',         // Aurora — contraste sobre Cintilante
-    textBase:   'text-cintilante',
-    textHover:  'group-hover:text-[#0c0a3b]',
-    ring:       'focus-visible:ring-white focus-visible:ring-offset-nucleo',
+    // MidCTA — fundo Abismo (#023c8f)
+    wrapperBorder: 'border-[rgba(235,235,237,0.2)]',
+    stroke:        '#ebebed',                                         // Cintilante
+    inner:         'bg-[#023c8f]',                                    // Abismo
+    text:          'text-[#ebebed]',
+    arrowBg:       'bg-[rgba(235,235,237,0.12)] border border-[rgba(235,235,237,0.24)]',
+    arrowColor:    'text-[#ebebed]',
+    ring:          'focus-visible:ring-white focus-visible:ring-offset-[#023c8f]',
   },
 }
 
@@ -41,67 +67,70 @@ export function AnimatedCTA({ href, children, variant = 'light', className = '' 
   return (
     <div
       data-animated-cta
-      className={['group relative inline-flex', className].join(' ')}
+      className={[
+        'relative inline-flex rounded-full p-1 border',
+        v.wrapperBorder,
+        className,
+      ].join(' ')}
+      style={{ '--inbot-discover-stroke': v.stroke }}
     >
+      {/* Contorno SVG animado — inset-0, stroke percorre o pill em loop */}
+      {/* viewBox 300×56 + preserveAspectRatio="none" estica para qualquer largura */}
+      {/* pathLength="500" normaliza perímetro → dasharray independente de tamanho */}
+      <svg
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 h-full w-full"
+        viewBox="0 0 300 56"
+        preserveAspectRatio="none"
+      >
+        <rect
+          x="1" y="1"
+          width="298" height="54"
+          rx="27"
+          fill="none"
+          stroke="var(--inbot-discover-stroke)"
+          strokeWidth="1.5"
+          pathLength="500"
+          className="inbot-discover-border"
+        />
+      </svg>
+
+      {/* Link interno — z-10 acima do SVG */}
+      {/* Grid 40px|auto|40px: colunas fixas → texto não se move quando setas trocam */}
       <a
         href={href}
         className={[
-          'relative inline-flex h-[52px] items-center rounded-full overflow-hidden',
-          'pl-1 pr-6',
+          'relative z-10 grid grid-cols-[40px_auto_40px] items-center',
+          'rounded-full overflow-hidden h-[44px] px-2',
           'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
-          // Pill: scale sutil no hover — max 1.012 conforme spec
-          'motion-safe:transition-transform motion-safe:duration-[420ms]',
-          'motion-safe:[transition-timing-function:cubic-bezier(0.16,1,0.3,1)]',
-          'motion-safe:group-hover:scale-[1.012]',
-          v.pill,
+          v.inner,
           v.ring,
         ].join(' ')}
       >
-        {/* Círculo expansível — z-0, absoluto, começa 44×44px e cresce até preencher o pill */}
-        {/* brightness-[1.12] dá presença visual antes de expandir por completo */}
+        {/* Seta esquerda — scale(0)/opacity:0 em repouso, aparece no hover */}
         <span
           aria-hidden="true"
-          className={[
-            'absolute left-1 top-1/2 -translate-y-1/2',
-            'h-[44px] w-[44px] rounded-full',
-            'motion-safe:transition-[width,filter] motion-safe:duration-[500ms]',
-            'motion-safe:[transition-timing-function:cubic-bezier(0.16,1,0.3,1)]',
-            'group-hover:w-[calc(100%_-_8px)]',
-            'motion-safe:group-hover:brightness-[1.12]',
-            v.circle,
-          ].join(' ')}
-        />
-
-        {/* Seta — z-10, acima do círculo */}
-        <span
-          aria-hidden="true"
-          className="relative z-10 flex h-[44px] w-[44px] shrink-0 items-center justify-center"
+          className={['inbot-discover-arrow inbot-discover-arrow-left', v.arrowBg, v.arrowColor].join(' ')}
         >
-          <span
-            className={[
-              'text-base leading-none font-medium select-none',
-              'motion-safe:transition-transform motion-safe:duration-[380ms]',
-              'motion-safe:[transition-timing-function:cubic-bezier(0.16,1,0.3,1)]',
-              'motion-safe:group-hover:translate-x-[6px]',
-              v.arrowColor,
-            ].join(' ')}
-          >
-            →
-          </span>
+          <ArrowIcon dir="left" />
         </span>
 
-        {/* Texto do botão */}
+        {/* Texto — centrado na coluna auto; não se move porque colunas são fixas */}
         <span
           className={[
-            'relative z-10 pl-2',
-            'text-sm font-semibold tracking-wide whitespace-nowrap',
-            'motion-safe:transition-colors motion-safe:duration-[420ms]',
-            'motion-safe:[transition-timing-function:cubic-bezier(0.16,1,0.3,1)]',
-            v.textBase,
-            v.textHover,
+            'text-center text-sm font-semibold tracking-wide whitespace-nowrap px-3',
+            v.text,
           ].join(' ')}
         >
           {children}
+        </span>
+
+        {/* Seta direita — scale(1)/opacity:1 em repouso, some no hover */}
+        <span
+          aria-hidden="true"
+          className={['inbot-discover-arrow inbot-discover-arrow-right', v.arrowBg, v.arrowColor].join(' ')}
+        >
+          <ArrowIcon dir="right" />
         </span>
       </a>
     </div>

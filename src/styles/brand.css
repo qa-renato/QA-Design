@@ -331,52 +331,6 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* ── Hero CTA — linha de acento com feixe animado ─────────────── */
-/*
-  Estrutura no Hero: wrapper > .inbot-cta-accent-line (fundo) + .inbot-cta-accent-beam (feixe).
-  O wrapper tem overflow:hidden — o beam percorre de fora-esquerda para fora-direita.
-  Percentuais de translateX são relativos à largura do próprio beam (56px):
-    -100% = -56px (fora da borda esquerda do container)
-     400% = 224px (fora da borda direita de um container de 220px)
-*/
-
-@keyframes inbot-accent-line-sweep {
-  from { transform: translateX(-100%); }
-  to   { transform: translateX(400%);  }
-}
-
-.inbot-cta-accent-line {
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(21, 183, 254, 0.18) 20%,
-    rgba(21, 183, 254, 0.28) 50%,
-    rgba(21, 183, 254, 0.18) 80%,
-    transparent 100%
-  );
-}
-
-.inbot-cta-accent-beam {
-  width: 56px;
-  height: 1px;
-  background: linear-gradient(
-    to right,
-    transparent 0%,
-    rgba(0, 101, 254, 0.65) 30%,
-    rgba(21, 183, 254, 1) 60%,
-    rgba(235, 235, 237, 0.45) 85%,
-    transparent 100%
-  );
-  animation: inbot-accent-line-sweep 3.5s linear infinite;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .inbot-cta-accent-beam {
-    animation: none;
-    opacity: 0;
-  }
-}
-
 /* ── Orbital diagram — beams, pulses, nucleus, chip hover ────── */
 
 /* Outer ring — clockwise */
@@ -445,6 +399,140 @@ h1, h2, h3, h4, h5, h6 {
   .inbot-radial-pulse  { animation: none; opacity: 0; }
   .inbot-orbit-nucleus { animation: none; }
   .inbot-orbit-chip    { transition: none; }
+}
+
+/* ── EcosystemOrbit v2 — ambient glow, orbital beams, core breathe, chip entry ── */
+
+/* Ambient glow orbs — blurred radial gradient blobs behind the diagram */
+.inbot-ecosystem-glow {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+}
+
+.inbot-ecosystem-glow--1 {
+  width: 70%;
+  height: 70%;
+  top: 15%;
+  left: 15%;
+  background: radial-gradient(ellipse at center, rgba(0,101,254,0.22) 0%, rgba(0,101,254,0.06) 45%, transparent 70%);
+  filter: blur(28px);
+}
+
+.inbot-ecosystem-glow--2 {
+  width: 45%;
+  height: 45%;
+  top: -4%;
+  right: 4%;
+  background: radial-gradient(ellipse at center, rgba(21,183,254,0.16) 0%, transparent 65%);
+  filter: blur(22px);
+}
+
+.inbot-ecosystem-glow--3 {
+  width: 38%;
+  height: 38%;
+  bottom: 2%;
+  left: 6%;
+  background: radial-gradient(ellipse at center, rgba(0,101,254,0.13) 0%, transparent 65%);
+  filter: blur(20px);
+}
+
+/* Orbital beam spin — clockwise */
+@keyframes inbot-orbit-spin {
+  from { stroke-dashoffset: 0;    }
+  to   { stroke-dashoffset: -100; }
+}
+
+/* Orbital beam spin — counterclockwise */
+@keyframes inbot-orbit-spin-reverse {
+  from { stroke-dashoffset: 0;   }
+  to   { stroke-dashoffset: 100; }
+}
+
+/* Outer beam — clockwise, 7-unit arc on a 100-unit pathLength ring */
+.inbot-ecosystem-beam--outer {
+  stroke-dasharray: 7 93;
+  stroke-dashoffset: 0;
+  animation: inbot-orbit-spin 10s linear infinite;
+}
+
+/* Inner beam — counterclockwise, slightly shorter arc */
+.inbot-ecosystem-beam--inner {
+  stroke-dasharray: 5 95;
+  stroke-dashoffset: 0;
+  animation: inbot-orbit-spin-reverse 14s linear infinite;
+}
+
+/* Radial pulse line — segment travels from nucleus to chip.
+   38-unit line: dasharray 5 33 (5+33=38 = one exact fit).
+   dashoffset −38 = one full cycle → beam resets seamlessly. */
+@keyframes inbot-pulse-line {
+  from { stroke-dashoffset: 0;   }
+  to   { stroke-dashoffset: -38; }
+}
+
+.inbot-ecosystem-pulse {
+  stroke-dasharray: 5 33;
+  stroke-dashoffset: 0;
+  animation: inbot-pulse-line 3.2s linear infinite;
+}
+
+/* Nucleus breathing — subtle scale + glow pulse */
+@keyframes inbot-core-breathe {
+  0%, 100% {
+    box-shadow:
+      0 0 24px rgba(0,101,254,0.52),
+      0 0 52px rgba(21,183,254,0.16),
+      inset 0 0 14px rgba(0,101,254,0.14);
+  }
+  50% {
+    box-shadow:
+      0 0 40px rgba(0,101,254,0.72),
+      0 0 80px rgba(21,183,254,0.26),
+      inset 0 0 22px rgba(0,101,254,0.22);
+  }
+}
+
+.inbot-ecosystem-core {
+  animation: inbot-core-breathe 6s ease-in-out infinite;
+}
+
+/* Chip entrance — scale from 0.65 → 1, opacity 0 → 1.
+   animation-fill-mode: both → chip invisible until animation starts. */
+@keyframes inbot-chip-enter {
+  from { opacity: 0; transform: scale(0.65); }
+  to   { opacity: 1; transform: scale(1);    }
+}
+
+.inbot-ecosystem-chip {
+  animation: inbot-chip-enter 0.55s cubic-bezier(0.16, 1, 0.3, 1) both;
+  cursor: default;
+  transition:
+    transform      250ms ease,
+    box-shadow     250ms ease,
+    border-color   250ms ease,
+    background-color 250ms ease;
+}
+
+.inbot-ecosystem-chip:hover {
+  transform: translateY(-2px) scale(1.04);
+  border-color: rgba(21,183,254,0.55);
+  background-color: rgba(12,10,59,0.98);
+  box-shadow: 0 0 16px rgba(21,183,254,0.24);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inbot-ecosystem-beam--outer,
+  .inbot-ecosystem-beam--inner { animation: none; opacity: 0; }
+  .inbot-ecosystem-pulse        { animation: none; opacity: 0; }
+  .inbot-ecosystem-core         { animation: none; }
+  .inbot-ecosystem-chip {
+    animation: none;
+    opacity: 1;
+    transform: scale(1);
+    transition: none;
+  }
+  .inbot-ecosystem-glow { filter: none; }
 }
 
 /* ── HeroRobot — float, entrance, orbit beam ─────────────── */
@@ -526,4 +614,78 @@ h1, h2, h3, h4, h5, h6 {
 
 @media (prefers-reduced-motion: reduce) {
   .ifeat-beam { animation: none; opacity: 0; }
+}
+
+/* ── AnimatedCTA v4 — contorno SVG animado + troca de setas ─── */
+/*
+  Técnica: <rect> com pathLength="500" normaliza o perímetro.
+  stroke-dasharray="150 350" → beam de 30% do perímetro, gap de 70%.
+  dashoffset anima de 150 → -350 (percorre 500 unidades = 1 volta completa).
+  Duração 1.5s linear, ritmo distinto do ShinyButton (3s) e ifeat-beam (4s).
+
+  Setas: CSS Grid 40px|auto|40px na <a> garante colunas fixas.
+  Left hidden: transform:scale(0) + opacity:0  → visível: scale(1) + opacity:1.
+  Right visible: scale(1) + opacity:1          → hidden:  scale(0) + opacity:0.
+  Ambas usam a mesma easing/duração, troca é simétrica.
+  Texto centrado na coluna auto — nunca se move.
+*/
+
+@keyframes inbot-discover-border-run {
+  from { stroke-dashoffset:  150; }
+  to   { stroke-dashoffset: -350; }
+}
+
+.inbot-discover-border {
+  stroke-dasharray: 150 350;
+  stroke-dashoffset: 150;
+  animation: inbot-discover-border-run 1.5s linear infinite;
+}
+
+.inbot-discover-arrow {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-radius: 9999px;
+  flex-shrink: 0;
+  transition:
+    transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+    opacity   0.3s ease;
+}
+
+.inbot-discover-arrow-left {
+  transform: scale(0);
+  opacity: 0;
+}
+
+[data-animated-cta]:hover .inbot-discover-arrow-left,
+[data-animated-cta]:focus-within .inbot-discover-arrow-left {
+  transform: scale(1);
+  opacity: 1;
+}
+
+[data-animated-cta]:hover .inbot-discover-arrow-right,
+[data-animated-cta]:focus-within .inbot-discover-arrow-right {
+  transform: scale(0);
+  opacity: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inbot-discover-border { animation: none; }
+  .inbot-discover-arrow  { transition: none; }
+}
+
+/* ── InteractiveFeatures panel entrance ─────────────────────── */
+@keyframes inbot-feature-panel-in {
+  from { opacity: 0; transform: translateY(14px) scale(0.985); }
+  to   { opacity: 1; transform: translateY(0)    scale(1);     }
+}
+
+.inbot-feature-panel {
+  animation: inbot-feature-panel-in 420ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inbot-feature-panel { animation: none !important; }
+  .inbot-feature-panel * { transition-duration: 0.01ms !important; }
 }

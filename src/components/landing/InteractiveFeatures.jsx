@@ -1,274 +1,407 @@
 import { useState } from 'react'
 import { useLanguage } from '../../context/LanguageContext'
 
-// ── L-beam — path ajustado para ícone 72px ────────────────────────────
-// Segmento 1 vertical: x=-8, y=0..97 (para antes do topo do ícone)
-// Salto invisível coberto pelo ícone (DOM order posterior)
-// Segmento 2 horizontal: x=74..400, y=136 (centro vertical do ícone 72px)
-function LBeam() {
-  const PATH = 'M -8 0 L -8 97 M 74 136 L 420 136'
+// ── Linhas decorativas — SVG left-side, escondido no mobile ───────────────
+// Duas paths com gradiente InBot: uma em L descendo pela esquerda-baixo,
+// outra curta subindo pelo canto superior-esquerdo. Inspiradas em anatomia
+// de referência; não copiadas — traçado e gradientes próprios da InBot.
+function FeatureDecorativeLines() {
   return (
     <svg
       aria-hidden="true"
-      focusable="false"
-      width="422"
-      height="142"
-      viewBox="0 0 422 142"
-      className="absolute pointer-events-none hidden lg:block"
-      style={{ top: -100, left: 0, overflow: 'visible' }}
+      className="pointer-events-none absolute left-0 top-4 hidden h-[700px] w-[420px] lg:block"
+      viewBox="0 0 420 700"
+      fill="none"
     >
       <defs>
-        <filter id="ifeat-beam-glow" x="-400%" y="-400%" width="900%" height="900%">
-          <feGaussianBlur stdDeviation="3" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
+        <linearGradient
+          id="inbotFeatLineA"
+          x1="410" y1="700" x2="120" y2="120"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#f8fbff" stopOpacity="0" />
+          <stop offset="0.22" stopColor="#15b7fe" stopOpacity="0.35" />
+          <stop offset="0.62" stopColor="#0065fe" stopOpacity="0.35" />
+          <stop offset="1" stopColor="#f8fbff" stopOpacity="0" />
+        </linearGradient>
+        <linearGradient
+          id="inbotFeatLineB"
+          x1="24" y1="130" x2="0" y2="0"
+          gradientUnits="userSpaceOnUse"
+        >
+          <stop stopColor="#f8fbff" stopOpacity="0" />
+          <stop offset="0.32" stopColor="#15b7fe" stopOpacity="0.32" />
+          <stop offset="1" stopColor="#f8fbff" stopOpacity="0" />
+        </linearGradient>
       </defs>
-      <path d={PATH} stroke="rgba(21,183,254,0.13)" strokeWidth="1.5" fill="none"
-        strokeLinecap="round" strokeLinejoin="round" />
-      <path d={PATH} stroke="#15b7fe" strokeWidth="2" fill="none"
-        strokeLinecap="round" strokeLinejoin="round"
-        filter="url(#ifeat-beam-glow)" className="ifeat-beam" />
+
+      {/* Linha principal — L que desce e curva para a direita */}
+      <path
+        opacity="0.55"
+        d="M410 700V150C410 141.163 402.837 134 394 134H132"
+        stroke="url(#inbotFeatLineA)"
+        strokeWidth="1"
+      />
+
+      {/* Linha secundária curta — canto superior-esquerdo */}
+      <path
+        opacity="0.45"
+        d="M1 0V116C1 124.837 8.163 132 17 132H48"
+        stroke="url(#inbotFeatLineB)"
+        strokeWidth="1"
+      />
     </svg>
   )
 }
 
-// ── SVG illustrations — viewBox="0 0 520 220", conteúdo centrado/esquerda ─
+// ── Ícone do topo da coluna esquerda ──────────────────────────────────────
+// Renderiza logo OU fallback SVG — nunca os dois simultaneamente.
+function FeatureIcon() {
+  const [imgFailed, setImgFailed] = useState(false)
+
+  return (
+    <div className="relative inline-grid h-20 w-20 place-items-center rounded-3xl border border-[rgba(21,183,254,0.22)] bg-white shadow-[0_18px_45px_rgba(0,101,254,0.10)]">
+      {/* Anéis decorativos externos */}
+      <span aria-hidden="true" className="absolute -inset-3 rounded-[2rem] border border-[rgba(21,183,254,0.10)]" />
+      <span aria-hidden="true" className="absolute -inset-6 rounded-[2.4rem] border border-[rgba(0,101,254,0.05)]" />
+
+      {imgFailed ? (
+        <svg
+          aria-hidden="true"
+          className="relative z-10 h-9 w-9 text-[#0065fe]"
+          viewBox="0 0 40 40"
+          fill="none"
+        >
+          <circle cx="20" cy="20" r="13" stroke="currentColor" strokeOpacity="0.22" />
+          <path d="M13 21.5C16.5 15.5 23.5 15.5 27 21.5" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
+          <circle cx="20" cy="21" r="2.5" fill="currentColor" opacity="0.75" />
+        </svg>
+      ) : (
+        <img
+          src="/assets/testimonials/logosemfundo.png"
+          alt="InBot"
+          className="relative z-10 h-12 w-12 object-contain"
+          onError={() => setImgFailed(true)}
+        />
+      )}
+    </div>
+  )
+}
+
+// ── Ícones das abas ────────────────────────────────────────────────────────
+function FeatureTabIcon({ type }) {
+  const props = { width: 20, height: 20, viewBox: '0 0 24 24', fill: 'none', 'aria-hidden': true }
+
+  if (type === 'generative') return (
+    <svg {...props}>
+      <path d="M12 3v4M12 17v4M4.2 7.2l2.8 2.8M17 14l2.8 2.8M3 12h4M17 12h4"
+        stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+      <circle cx="12" cy="12" r="3" stroke="currentColor" strokeWidth="1.6" />
+    </svg>
+  )
+  if (type === 'context') return (
+    <svg {...props}>
+      <path d="M5 7.5h10M5 11h7M8 18l-3 2v-4.5A3.5 3.5 0 0 1 1.5 12V7A3.5 3.5 0 0 1 5 3.5h10A3.5 3.5 0 0 1 18.5 7v5A3.5 3.5 0 0 1 15 15.5H9"
+        stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+  if (type === 'curation') return (
+    <svg {...props}>
+      <path d="M7 6h11M7 12h11M7 18h11M3.5 6l1 1 2-2M3.5 12l1 1 2-2M3.5 18l1 1 2-2"
+        stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+  if (type === 'data') return (
+    <svg {...props}>
+      <path d="M4 19V5M4 19h16M8 16v-5M12 16V8M16 16v-8"
+        stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" />
+    </svg>
+  )
+  // methodology (default)
+  return (
+    <svg {...props}>
+      <path d="M5 6h4v4H5V6ZM15 4h4v4h-4V4ZM15 16h4v4h-4v-4ZM9 8h4M13 6h2M13 18h2M11 10l4 6"
+        stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  )
+}
+
+// ── Menu vertical de abas com indicador ativo ─────────────────────────────
+const TAB_H = 58
+
+function FeatureTabs({ tabs, activeIndex, setActiveIndex }) {
+  return (
+    <nav
+      role="tablist"
+      aria-label="Recursos da InBot"
+      className="relative mt-8 overflow-hidden rounded-2xl border border-[rgba(0,101,254,0.10)] bg-[rgba(248,251,255,0.70)]"
+    >
+      {/* Barra indicadora ativa — spring easing */}
+      <span
+        aria-hidden="true"
+        className="absolute right-0 top-0 w-[3px] h-[58px] rounded-l-full motion-safe:transition-transform motion-safe:duration-300 motion-safe:ease-out"
+        style={{
+          background: 'linear-gradient(180deg,#15b7fe,#0065fe)',
+          transform: `translateY(${activeIndex * TAB_H}px)`,
+        }}
+      />
+
+      {tabs.map((tab, i) => {
+        const isActive = i === activeIndex
+        return (
+          <button
+            key={tab.id}
+            type="button"
+            role="tab"
+            id={`ifeat-tab-${tab.id}`}
+            aria-selected={isActive}
+            aria-controls={`ifeat-panel-${tab.id}`}
+            onClick={() => setActiveIndex(i)}
+            style={{ height: TAB_H }}
+            className={[
+              'group relative flex w-full items-center gap-3.5 border-b border-[rgba(0,101,254,0.08)] px-4 text-left text-[13px] font-medium last:border-b-0 transition-colors duration-150',
+              'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0065fe] focus-visible:ring-inset',
+              isActive
+                ? 'bg-white text-[#0c0a3b]'
+                : 'text-[rgba(12,10,59,0.52)] hover:bg-white/70 hover:text-[#0c0a3b]',
+            ].join(' ')}
+          >
+            {/* Ícone wrapper */}
+            <span
+              className={[
+                'grid h-9 w-9 shrink-0 place-items-center rounded-xl border transition-colors',
+                isActive
+                  ? 'border-[rgba(21,183,254,0.30)] bg-[rgba(21,183,254,0.10)] text-[#0065fe]'
+                  : 'border-[rgba(0,101,254,0.10)] bg-white/70 text-[rgba(12,10,59,0.36)] group-hover:text-[#0065fe]',
+              ].join(' ')}
+            >
+              <FeatureTabIcon type={tab.id} />
+            </span>
+            <span className={isActive ? 'font-semibold' : ''}>
+              {tab.title}
+            </span>
+          </button>
+        )
+      })}
+    </nav>
+  )
+}
+
+// ── Textos problema / solução ──────────────────────────────────────────────
+function FeatureText({ tone, children }) {
+  const isSolution = tone === 'solution'
+  return (
+    <div
+      className={[
+        'flex gap-3 rounded-2xl p-3',
+        isSolution ? 'bg-[rgba(21,183,254,0.05)] text-[#0c0a3b]' : 'text-[rgba(12,10,59,0.56)]',
+      ].join(' ')}
+    >
+      <span
+        className={[
+          'mt-0.5 grid h-5 w-5 shrink-0 place-items-center rounded-full border',
+          isSolution
+            ? 'border-[#15b7fe] bg-[rgba(21,183,254,0.10)]'
+            : 'border-[rgba(12,10,59,0.18)] bg-white',
+        ].join(' ')}
+      >
+        {isSolution
+          ? <span className="h-2 w-2 rounded-full bg-[#15b7fe]" />
+          : <span className="h-2 w-2 rounded-full border border-[rgba(12,10,59,0.22)]" />
+        }
+      </span>
+      <p className="text-[15px] leading-relaxed">{children}</p>
+    </div>
+  )
+}
+
+// ── Card de destaque — checkmark + texto forte ─────────────────────────────
+function FeatureHighlight({ children }) {
+  return (
+    <div className="mt-6 flex items-center gap-4 rounded-[24px] border border-[rgba(0,101,254,0.10)] bg-[#f8fbff] p-5 shadow-[0_18px_50px_rgba(0,101,254,0.08)]">
+      <span className="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[rgba(21,183,254,0.10)] text-[#0065fe]">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </span>
+      <p className="text-[15px] font-semibold leading-snug text-[#0c0a3b]">{children}</p>
+    </div>
+  )
+}
+
+// ── Visuais por aba — div-based, sem imagens externas ────────────────────
 
 function GenerativeVisual() {
-  const nodes = [
-    { x: 80,  y: 110, r: 22, main: true },
-    { x: 200, y: 55,  r: 14 },
-    { x: 200, y: 110, r: 14 },
-    { x: 200, y: 165, r: 14 },
-    { x: 320, y: 75,  r: 10 },
-    { x: 320, y: 110, r: 10 },
-    { x: 320, y: 145, r: 10 },
-    { x: 400, y: 95,  r: 7 },
-    { x: 400, y: 125, r: 7 },
-  ]
-  const edges = [
-    [0,1],[0,2],[0,3],
-    [1,4],[1,5],[2,5],[2,6],[3,6],
-    [4,7],[5,7],[5,8],[6,8],
-  ]
   return (
-    <svg viewBox="0 0 520 220" fill="none" aria-hidden="true" className="w-full h-full">
-      <defs>
-        <radialGradient id="gen-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#15b7fe" stopOpacity="0.18" />
-          <stop offset="100%" stopColor="#15b7fe" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-      <ellipse cx="80" cy="110" rx="55" ry="55" fill="url(#gen-glow)" />
-      {edges.map(([a,b], i) => (
-        <line key={i}
-          x1={nodes[a].x} y1={nodes[a].y} x2={nodes[b].x} y2={nodes[b].y}
-          stroke="rgba(0,101,254,0.18)" strokeWidth="1.2" strokeDasharray="4 3" />
-      ))}
-      {nodes.map((n, i) => (
-        <g key={i}>
-          <circle cx={n.x} cy={n.y} r={n.r + 6} fill="rgba(21,183,254,0.06)" />
-          <circle cx={n.x} cy={n.y} r={n.r}
-            fill={n.main ? '#0c0a3b' : 'white'}
-            stroke={n.main ? '#15b7fe' : 'rgba(0,101,254,0.3)'}
-            strokeWidth={n.main ? 2 : 1.5} />
-          {n.main && (
-            <text x={n.x} y={n.y + 5} textAnchor="middle" fontSize="13" fill="#15b7fe" fontWeight="700">IA</text>
-          )}
-        </g>
-      ))}
-      {/* Output labels */}
-      {[['copy', 400, 82], ['chat', 400, 112], ['flow', 400, 142]].map(([l,x,y]) => (
-        <rect key={l} x={x + 12} y={y - 10} width={42} height={18} rx="5"
-          fill="rgba(0,101,254,0.08)" stroke="rgba(0,101,254,0.2)" strokeWidth="1" />
-      ))}
-      {[['copy', 433, 94], ['chat', 433, 124], ['flow', 433, 154]].map(([l,x,y]) => (
-        <text key={l} x={x} y={y} textAnchor="middle" fontSize="9" fill="#023c8f" fontWeight="600">{l}</text>
-      ))}
-    </svg>
+    <div className="relative z-10 flex h-full items-center justify-center">
+      <div className="relative grid h-[96px] w-[96px] place-items-center rounded-[26px] border border-[rgba(21,183,254,0.30)] bg-white/85 shadow-[0_18px_56px_rgba(0,101,254,0.18)]">
+        <span className="relative z-10 text-2xl font-bold tracking-[-0.05em] text-[#0065fe]">IA</span>
+        {/* Concentric rings */}
+        <span aria-hidden="true" className="absolute -inset-5 rounded-[2.2rem] border border-[rgba(21,183,254,0.15)]" />
+        <span aria-hidden="true" className="absolute -inset-9 rounded-[2.8rem] border border-[rgba(0,101,254,0.08)]" />
+        {/* Floating context pills */}
+        {[
+          { pos: '-left-[76px] top-[-8px]',    label: 'tom' },
+          { pos: '-right-[84px] top-[14px]',   label: 'contexto' },
+          { pos: '-left-[68px] bottom-[-16px]', label: 'fluxo' },
+          { pos: '-right-[82px] bottom-[-12px]', label: 'resposta' },
+        ].map(({ pos, label }) => (
+          <span
+            key={label}
+            className={`absolute ${pos} rounded-full border border-[rgba(0,101,254,0.12)] bg-white/95 px-3 py-1.5 text-[11px] font-medium text-[rgba(12,10,59,0.62)] shadow-sm`}
+          >
+            {label}
+          </span>
+        ))}
+      </div>
+    </div>
   )
 }
 
 function ContextVisual() {
-  const bubbles = [
-    { x: 60,  y: 35,  w: 160, h: 32, right: false, text: 'Quero saber sobre planos' },
-    { x: 220, y: 85,  w: 140, h: 32, right: true,  text: 'Claro! Qual é seu perfil?' },
-    { x: 60,  y: 135, w: 170, h: 32, right: false, text: 'Sou empreendedor, 50 users' },
-    { x: 200, y: 183, w: 180, h: 32, right: true,  text: 'Recomendo o plano Growth!' },
-  ]
   return (
-    <svg viewBox="0 0 520 230" fill="none" aria-hidden="true" className="w-full h-full">
-      {bubbles.map((b, i) => (
-        <g key={i}>
-          <rect x={b.x} y={b.y} width={b.w} height={b.h} rx="10"
-            fill={b.right ? 'rgba(0,101,254,0.1)' : 'white'}
-            stroke={b.right ? 'rgba(0,101,254,0.25)' : 'rgba(0,101,254,0.18)'} strokeWidth="1.2" />
-          <text x={b.x + 12} y={b.y + 21} fontSize="9.5" fill={b.right ? '#023c8f' : 'rgba(12,10,59,0.65)'}
-            fontWeight={b.right ? '600' : '400'}>{b.text}</text>
-        </g>
-      ))}
-      {/* Context bar — right side */}
-      <rect x="390" y="30" width="110" height="170" rx="12"
-        fill="rgba(0,101,254,0.04)" stroke="rgba(0,101,254,0.15)" strokeWidth="1" />
-      <text x="445" y="52" textAnchor="middle" fontSize="8" fill="#023c8f" fontWeight="700" letterSpacing="1">CONTEXTO</text>
-      {[['Perfil', 'Empreend.', 70],['Plano', 'Growth', 100],['Jornada', 'D3', 130],['Score', '92%', 160]].map(([k,v,y]) => (
-        <g key={k}>
-          <text x="402" y={y} fontSize="8" fill="rgba(12,10,59,0.45)">{k}</text>
-          <text x="493" y={y} textAnchor="end" fontSize="8.5" fill="#0065fe" fontWeight="600">{v}</text>
-          <line x1="402" y1={y+5} x2="493" y2={y+5} stroke="rgba(0,101,254,0.08)" strokeWidth="1" />
-        </g>
-      ))}
-      {/* Connecting dots */}
-      {[51, 101, 151, 197].map((y,i) => (
-        <circle key={i} cx="382" cy={y} r="3" fill="rgba(21,183,254,0.5)" />
-      ))}
-    </svg>
+    <div className="relative z-10 flex h-full flex-col justify-center gap-2.5 px-7 py-5">
+      <div className="self-start max-w-[72%] rounded-2xl rounded-tl-sm border border-[rgba(0,101,254,0.14)] bg-white/90 px-4 py-2.5 text-xs text-[rgba(12,10,59,0.70)] shadow-sm">
+        Quero saber mais sobre os planos disponíveis
+      </div>
+      <div className="self-end max-w-[75%] rounded-2xl rounded-tr-sm border border-[rgba(0,101,254,0.24)] bg-[rgba(0,101,254,0.07)] px-4 py-2.5 text-xs font-semibold text-[#023c8f] shadow-sm">
+        Com base no seu histórico e perfil, recomendo o Growth!
+      </div>
+      <div className="mt-1 flex flex-wrap gap-2">
+        {['perfil', 'histórico', 'intenção'].map((chip) => (
+          <span
+            key={chip}
+            className="rounded-full border border-[rgba(21,183,254,0.30)] bg-[rgba(21,183,254,0.08)] px-3 py-1 text-[10px] font-semibold text-[#0065fe]"
+          >
+            {chip}
+          </span>
+        ))}
+      </div>
+    </div>
   )
 }
 
 function CurationVisual() {
   const stages = [
-    { x: 55,  label: 'Treino',   items: ['Exemplo A','Exemplo B','Exemplo C'] },
-    { x: 215, label: 'Curadoria', items: ['✓ Aprovado','✗ Ajustado','✓ Aprovado'] },
-    { x: 375, label: 'Deploy',    items: ['v1.4 ativo','Produção','98% ok'] },
+    { label: 'Treino',    done: true  },
+    { label: 'Curadoria', done: true  },
+    { label: 'Deploy',    done: false },
   ]
   return (
-    <svg viewBox="0 0 520 220" fill="none" aria-hidden="true" className="w-full h-full">
-      {stages.map((s, si) => (
-        <g key={si}>
-          <rect x={s.x} y="20" width="130" height="170" rx="12"
-            fill={si === 1 ? 'rgba(0,101,254,0.06)' : 'white'}
-            stroke="rgba(0,101,254,0.18)" strokeWidth="1.2" />
-          <rect x={s.x} y="20" width="130" height="30" rx="12"
-            fill={si === 1 ? 'rgba(0,101,254,0.15)' : 'rgba(0,101,254,0.07)'} />
-          <rect x={s.x} y="38" width="130" height="12" rx="0"
-            fill={si === 1 ? 'rgba(0,101,254,0.15)' : 'rgba(0,101,254,0.07)'} />
-          <text x={s.x + 65} y="40" textAnchor="middle" fontSize="10" fill="#023c8f" fontWeight="700">{s.label}</text>
-          {s.items.map((item, ii) => (
-            <g key={ii}>
-              <rect x={s.x + 10} y={67 + ii * 36} width="110" height="24" rx="6"
-                fill="white" stroke="rgba(0,101,254,0.12)" strokeWidth="1" />
-              <text x={s.x + 65} y={83 + ii * 36} textAnchor="middle" fontSize="9"
-                fill={item.startsWith('✓') ? '#0065fe' : item.startsWith('✗') ? '#023c8f' : 'rgba(12,10,59,0.55)'}
-                fontWeight={item.startsWith('✓') || item.startsWith('✗') ? '600' : '400'}>{item}</text>
-            </g>
-          ))}
-        </g>
-      ))}
-      {/* Arrows between stages */}
-      {[185, 345].map((x, i) => (
-        <g key={i}>
-          <line x1={x} y1="110" x2={x + 22} y2="110" stroke="rgba(0,101,254,0.4)" strokeWidth="1.5" />
-          <polygon points={`${x+22},106 ${x+30},110 ${x+22},114`} fill="rgba(0,101,254,0.4)" />
-        </g>
-      ))}
-    </svg>
+    <div className="relative z-10 flex h-full items-center justify-center px-6">
+      <div className="flex items-center gap-2">
+        {stages.map((s, i) => (
+          <div key={s.label} className="flex items-center gap-2">
+            <div
+              className={[
+                'flex h-[80px] w-[84px] flex-col items-center justify-center gap-2 rounded-2xl border text-xs font-semibold',
+                s.done
+                  ? 'border-[rgba(0,101,254,0.22)] bg-[rgba(0,101,254,0.06)] text-[#023c8f]'
+                  : 'border-[rgba(0,101,254,0.10)] bg-white/70 text-[rgba(12,10,59,0.38)]',
+              ].join(' ')}
+            >
+              {s.done ? (
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <path d="M4.5 10.5l3.5 3.5 7.5-7.5" stroke="#0065fe" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+              ) : (
+                <svg width="20" height="20" viewBox="0 0 20 20" fill="none" aria-hidden="true">
+                  <circle cx="10" cy="10" r="6" stroke="rgba(0,101,254,0.28)" strokeWidth="1.5" strokeDasharray="3 2" />
+                </svg>
+              )}
+              {s.label}
+            </div>
+            {i < stages.length - 1 && (
+              <svg width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+                <path d="M4 9h10M10 5l4 4-4 4" stroke="rgba(0,101,254,0.35)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
   )
 }
 
 function DataVisual() {
-  const bars = [38, 62, 48, 80, 58, 92, 70]
-  const kpis = [['NPS', '87'], ['CSAT', '94%'], ['Desvio', '2.1%']]
+  const bars = [38, 56, 44, 72, 86, 66, 94]
   return (
-    <svg viewBox="0 0 520 220" fill="none" aria-hidden="true" className="w-full h-full">
-      {/* Grid lines */}
-      {[40, 80, 120, 160].map((y, i) => (
-        <line key={i} x1="50" y1={y} x2="340" y2={y}
-          stroke="rgba(0,101,254,0.07)" strokeWidth="1" strokeDasharray="4 3" />
-      ))}
-      {/* Bars */}
-      {bars.map((h, i) => {
-        const barH = h * 1.5
-        const x = 65 + i * 40
-        const y = 170 - barH
-        return (
-          <g key={i}>
-            <rect x={x} y={y} width="24" height={barH} rx="4"
-              fill={i === 5 ? '#0065fe' : 'rgba(0,101,254,0.2)'}
-              stroke={i === 5 ? 'rgba(0,101,254,0.5)' : 'none'} />
-            {i === 5 && (
-              <text x={x + 12} y={y - 6} textAnchor="middle" fontSize="9" fill="#0065fe" fontWeight="700">pico</text>
-            )}
-          </g>
-        )
-      })}
-      {/* Trend line */}
-      <polyline
-        points={bars.map((h, i) => `${77 + i * 40},${170 - h * 1.5}`).join(' ')}
-        stroke="#15b7fe" strokeWidth="2" strokeLinejoin="round"
-        fill="none" strokeDasharray="4 2" opacity="0.7" />
-      {/* KPI cards */}
-      {kpis.map(([k, v], i) => (
-        <g key={k}>
-          <rect x={360} y={20 + i * 62} width="130" height="50" rx="10"
-            fill="white" stroke="rgba(0,101,254,0.18)" strokeWidth="1" />
-          <text x={376} y={44 + i * 62} fontSize="9" fill="rgba(12,10,59,0.45)" fontWeight="500">{k}</text>
-          <text x={376} y={60 + i * 62} fontSize="17" fill="#0065fe" fontWeight="800">{v}</text>
-        </g>
-      ))}
-      {/* X axis */}
-      <line x1="50" y1="172" x2="340" y2="172" stroke="rgba(0,101,254,0.15)" strokeWidth="1" />
-    </svg>
+    <div className="relative z-10 flex h-full items-center justify-center px-6">
+      <div className="w-full max-w-[80%] rounded-[22px] border border-[rgba(0,101,254,0.10)] bg-white/88 p-5 shadow-[0_18px_56px_rgba(12,10,59,0.10)]">
+        <div className="mb-4 flex items-center justify-between">
+          <span className="text-[13px] font-semibold text-[#0c0a3b]">Insights conversacionais</span>
+          <span className="rounded-full bg-[rgba(21,183,254,0.12)] px-3 py-1 text-[10px] font-semibold text-[#0065fe]">BI</span>
+        </div>
+        <div className="flex h-24 items-end gap-2">
+          {bars.map((h, i) => (
+            <div
+              key={i}
+              className="flex-1 rounded-t-xl"
+              style={{
+                height: `${h}%`,
+                background: 'linear-gradient(to top, #0065fe, #15b7fe)',
+                opacity: 0.36 + i * 0.07,
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    </div>
   )
 }
 
 function MethodologyVisual() {
-  const steps = [
-    { n: '1', label: 'Diagnóstico', done: true },
-    { n: '2', label: 'Roadmap',     done: true },
-    { n: '3', label: 'Implantação', done: true },
-    { n: '4', label: 'Medição',     done: false },
-    { n: '5', label: 'Escala',      done: false },
-  ]
+  const steps = ['Diagnóstico', 'Roadmap', 'Implantação', 'Medição', 'Escala']
+  const done = 3
   return (
-    <svg viewBox="0 0 520 220" fill="none" aria-hidden="true" className="w-full h-full">
-      {/* Track line */}
-      <line x1="60" y1="110" x2="460" y2="110" stroke="rgba(0,101,254,0.12)" strokeWidth="2" />
-      {/* Progress fill — 3 of 5 */}
-      <line x1="60" y1="110" x2="252" y2="110" stroke="#0065fe" strokeWidth="2.5" />
-      {steps.map((s, i) => {
-        const x = 60 + i * 100
-        return (
-          <g key={i}>
-            {/* Connector */}
-            {i < steps.length - 1 && (
-              <line x1={x} y1="110" x2={x + 100} y2="110"
-                stroke={s.done ? '#0065fe' : 'rgba(0,101,254,0.12)'} strokeWidth="2" />
-            )}
-            {/* Step circle */}
-            <circle cx={x} cy={110} r={18}
-              fill={s.done ? '#0065fe' : 'white'}
-              stroke={s.done ? '#0065fe' : 'rgba(0,101,254,0.3)'} strokeWidth="1.5" />
-            {s.done
-              ? <text x={x} y={115} textAnchor="middle" fontSize="11" fill="white" fontWeight="700">✓</text>
-              : <text x={x} y={115} textAnchor="middle" fontSize="11" fill="rgba(0,101,254,0.5)" fontWeight="700">{s.n}</text>
-            }
-            {/* Label */}
-            <text x={x} y={143} textAnchor="middle" fontSize="9" fill={s.done ? '#023c8f' : 'rgba(12,10,59,0.38)'}
-              fontWeight={s.done ? '600' : '400'}>{s.label}</text>
-            {/* KPI pill for done steps */}
-            {s.done && i < 3 && (
-              <g>
-                <rect x={x - 24} y={65} width={48} height={20} rx="6"
-                  fill="rgba(0,101,254,0.08)" stroke="rgba(0,101,254,0.2)" strokeWidth="1" />
-                <text x={x} y={79} textAnchor="middle" fontSize="8.5" fill="#0065fe" fontWeight="600">
-                  {['100%', '+18 KPIs', 'MVP'][i]}
-                </text>
-              </g>
-            )}
-          </g>
-        )
-      })}
-      {/* Current step highlight */}
-      <circle cx={360} cy={110} r={24} fill="none" stroke="rgba(0,101,254,0.2)" strokeWidth="2" strokeDasharray="4 3" />
-      <text x="260" y="185" textAnchor="middle" fontSize="9" fill="rgba(12,10,59,0.35)">Etapa atual — Medição de KPIs e performance</text>
-    </svg>
+    <div className="relative z-10 flex h-full flex-col items-center justify-center gap-4 px-4">
+      {/* Linha de progresso + círculos */}
+      <div className="relative flex w-full max-w-[340px] items-center justify-between">
+        <div className="absolute left-0 right-0 top-1/2 h-[2px] -translate-y-1/2 rounded-full bg-[rgba(0,101,254,0.08)]" />
+        <div
+          className="absolute left-0 top-1/2 h-[2px] -translate-y-1/2 rounded-full bg-[#0065fe]"
+          style={{ width: `${(done / (steps.length - 1)) * 100}%` }}
+        />
+        {steps.map((_, i) => (
+          <div
+            key={i}
+            className={[
+              'relative z-10 flex h-9 w-9 items-center justify-center rounded-full border-2 text-xs font-bold',
+              i < done
+                ? 'border-[#0065fe] bg-[#0065fe] text-white'
+                : i === done
+                ? 'border-[#0065fe] bg-white text-[#0065fe]'
+                : 'border-[rgba(0,101,254,0.20)] bg-white text-[rgba(0,101,254,0.35)]',
+            ].join(' ')}
+          >
+            {i < done ? (
+              <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
+                <path d="M2.5 7l3 3 6-5.5" stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
+              </svg>
+            ) : i + 1}
+          </div>
+        ))}
+      </div>
+      {/* Labels */}
+      <div className="flex w-full max-w-[340px] justify-between">
+        {steps.map((s, i) => (
+          <span
+            key={s}
+            className={[
+              'text-center text-[9px] font-medium leading-tight',
+              i < done ? 'text-[#023c8f]' : 'text-[rgba(12,10,59,0.35)]',
+            ].join(' ')}
+            style={{ width: 56 }}
+          >
+            {s}
+          </span>
+        ))}
+      </div>
+    </div>
   )
 }
 
+// ── Área visual com fundo grid + glow orbs ────────────────────────────────
 const TAB_VISUALS = {
   generative:  GenerativeVisual,
   context:     ContextVisual,
@@ -277,193 +410,153 @@ const TAB_VISUALS = {
   methodology: MethodologyVisual,
 }
 
-// ── Componente principal ───────────────────────────────────────────────
+function FeatureVisual({ type }) {
+  const Visual = TAB_VISUALS[type] ?? GenerativeVisual
+  return (
+    <div className="relative h-[260px] overflow-hidden rounded-[24px] border border-[rgba(0,101,254,0.10)] bg-[linear-gradient(135deg,#eef7ff_0%,#ffffff_42%,#eaf8ff_100%)]">
+      {/* Grid de fundo */}
+      <div
+        aria-hidden="true"
+        className="absolute inset-0 opacity-[0.28]"
+        style={{
+          backgroundImage:
+            'linear-gradient(rgba(0,101,254,0.10) 1px, transparent 1px), linear-gradient(90deg, rgba(0,101,254,0.10) 1px, transparent 1px)',
+          backgroundSize: '32px 32px',
+        }}
+      />
+      {/* Glow orbs */}
+      <div aria-hidden="true" className="absolute -left-16 -top-16 h-56 w-56 rounded-full bg-[rgba(21,183,254,0.18)] blur-3xl" />
+      <div aria-hidden="true" className="absolute -bottom-20 right-8 h-64 w-64 rounded-full bg-[rgba(0,101,254,0.12)] blur-3xl" />
+      <Visual />
+    </div>
+  )
+}
+
+// ── Painel principal — card grande direito ────────────────────────────────
+// key no componente pai força re-mount e dispara animação CSS ao trocar tab.
+function FeaturePanel({ tab }) {
+  return (
+    <div
+      id={`ifeat-panel-${tab.id}`}
+      role="tabpanel"
+      aria-labelledby={`ifeat-tab-${tab.id}`}
+      className="inbot-feature-panel relative rounded-[32px] border border-[rgba(0,101,254,0.10)] bg-white/75 p-5 shadow-[0_28px_80px_rgba(12,10,59,0.10)] backdrop-blur-sm lg:p-8"
+    >
+      <FeatureVisual type={tab.id} />
+      <div className="mt-6 space-y-3">
+        <FeatureText tone="problem">{tab.texts[0]}</FeatureText>
+        <FeatureText tone="solution">{tab.texts[1]}</FeatureText>
+      </div>
+      <FeatureHighlight>{tab.highlight}</FeatureHighlight>
+    </div>
+  )
+}
+
+// ── Person overlay — desabilitada temporariamente ─────────────────────────
+// p1.png não tem fundo transparente (todos os pixels têm alpha=255 / fundo branco).
+// Reativar assim que asset com cutout transparente estiver disponível.
+function FeatureWomanOverlay() {
+  return null
+}
+
+// ── Dots/indicadores das abas ─────────────────────────────────────────────
+function FeatureDots({ tabs, activeIndex, setActiveIndex }) {
+  return (
+    <div className="mt-6 flex justify-center gap-2 lg:justify-end">
+      {tabs.map((tab, i) => (
+        <button
+          key={tab.id}
+          type="button"
+          aria-label={`Ver recurso: ${tab.title}`}
+          onClick={() => setActiveIndex(i)}
+          className={[
+            'h-2 rounded-full motion-safe:transition-all motion-safe:duration-300',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0065fe] focus-visible:ring-offset-2 focus-visible:ring-offset-[#f8fbff]',
+            i === activeIndex
+              ? 'w-8 bg-[#0065fe]'
+              : 'w-2 bg-[rgba(0,101,254,0.20)] hover:bg-[rgba(0,101,254,0.40)]',
+          ].join(' ')}
+        />
+      ))}
+    </div>
+  )
+}
+
+// ── Componente principal ───────────────────────────────────────────────────
 export function InteractiveFeatures() {
   const { content } = useLanguage()
   const { interactiveFeatures } = content
   const [activeTab, setActiveTab] = useState(0)
 
   const tab = interactiveFeatures.tabs[activeTab]
-  const Visual = TAB_VISUALS[tab.id]
 
   return (
     <section
       id="solucoes"
-      className="bg-[#f7f9ff] py-20 lg:py-28 border-t border-[rgba(0,101,254,0.1)]"
+      className="relative overflow-hidden bg-[#f8fbff] py-24 lg:py-32 border-t border-[rgba(0,101,254,0.08)]"
       aria-labelledby="ifeat-title"
     >
-      <div className="max-w-[1200px] mx-auto px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-[400px_1fr] gap-10 lg:gap-14 items-start">
+      <div className="relative mx-auto max-w-[1200px] px-6 lg:px-8">
 
-          {/* ═══════════════════════════════════════════════════════
-              COLUNA ESQUERDA — ícone standalone + card com tablist
-              ═══════════════════════════════════════════════════════ */}
-          <div className="relative flex flex-col gap-5 lg:sticky lg:top-20">
+        {/* Linhas decorativas — z-0, absolutas, atrás de todo conteúdo */}
+        <FeatureDecorativeLines />
 
-            {/* L-beam — só desktop */}
-            <LBeam />
+        <div className="relative z-10 grid gap-10 lg:grid-cols-[420px_minmax(0,1fr)] lg:gap-12 lg:items-start xl:gap-14">
 
-            {/* Ícone 72px — standalone, acima do card */}
-            <div className="inline-flex items-center justify-center w-[72px] h-[72px] rounded-2xl bg-[#0c0a3b] border border-[rgba(21,183,254,0.28)] shadow-[0_0_28px_rgba(21,183,254,0.2)] shrink-0">
-              <img
-                src="/assets/testimonials/logo.png"
-                alt="InBot"
-                className="w-[52px] h-[52px] object-contain brightness-0 invert"
-                loading="eager"
-                draggable="false"
+          {/* ═══ COLUNA ESQUERDA — FeatureIntroCard ═══════════════════════
+              Card branco grande contendo: ícone, eyebrow, título e tablist.
+              lg:sticky garante navegação visível enquanto o painel direito rola.
+              ═══════════════════════════════════════════════════════════════ */}
+          <aside className="lg:sticky lg:top-20">
+            <div className="relative overflow-hidden rounded-[32px] border border-[rgba(0,101,254,0.10)] bg-white/85 px-8 py-9 shadow-[0_24px_70px_rgba(12,10,59,0.08)] backdrop-blur-sm lg:px-10">
+
+              {/* Linhas decorativas internas do card */}
+              <div
+                aria-hidden="true"
+                className="absolute left-12 top-0 h-14 w-px bg-gradient-to-b from-transparent via-[rgba(21,183,254,0.30)] to-transparent"
+              />
+              <div
+                aria-hidden="true"
+                className="absolute left-12 top-14 h-px w-32 bg-gradient-to-r from-[rgba(21,183,254,0.25)] to-transparent"
+              />
+
+              <FeatureIcon />
+
+              <span className="mt-7 block text-[11px] font-semibold uppercase tracking-[0.28em] text-[#0065fe]">
+                {interactiveFeatures.eyebrow}
+              </span>
+
+              <h2
+                id="ifeat-title"
+                className="mt-3 text-[26px] font-bold leading-[1.18] tracking-tight text-[#0c0a3b] lg:text-[30px]"
+                style={{ fontFamily: 'var(--font-display)' }}
+              >
+                {interactiveFeatures.title}
+              </h2>
+
+              <FeatureTabs
+                tabs={interactiveFeatures.tabs}
+                activeIndex={activeTab}
+                setActiveIndex={setActiveTab}
               />
             </div>
+          </aside>
 
-            {/* Card branco com eyebrow + título + tablist */}
-            <div className="rounded-[28px] bg-white border border-[rgba(0,101,254,0.1)] shadow-[0_2px_24px_rgba(0,101,254,0.06)] overflow-hidden">
-
-              {/* Header do card */}
-              <div className="px-7 pt-7 pb-5">
-                <p className="text-[10px] font-semibold tracking-[0.28em] uppercase text-[#0065fe] mb-4">
-                  {interactiveFeatures.eyebrow}
-                </p>
-                <h2
-                  id="ifeat-title"
-                  className="text-[22px] lg:text-[26px] font-bold leading-[1.2] tracking-tight text-[#0c0a3b]"
-                  style={{ fontFamily: 'var(--font-display)' }}
-                >
-                  {interactiveFeatures.title}
-                </h2>
-                <div className="w-8 h-[2px] bg-[rgba(0,101,254,0.2)] mt-5" aria-hidden="true" />
-              </div>
-
-              {/* Tablist vertical */}
-              <nav role="tablist" aria-label={interactiveFeatures.title}>
-                {interactiveFeatures.tabs.map((t, i) => {
-                  const isActive = i === activeTab
-                  return (
-                    <div key={t.id}>
-                      {i > 0 && (
-                        <div className="h-px bg-[rgba(0,101,254,0.07)] mx-7" aria-hidden="true" />
-                      )}
-                      <button
-                        role="tab"
-                        id={`ifeat-tab-${t.id}`}
-                        aria-selected={isActive}
-                        aria-controls={`ifeat-panel-${t.id}`}
-                        onClick={() => setActiveTab(i)}
-                        className={[
-                          'flex items-center gap-4 w-full px-7 py-[15px] text-left',
-                          'border-l-[3px] transition-all duration-150',
-                          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0065fe] focus-visible:ring-inset',
-                          isActive
-                            ? 'border-[#0065fe] bg-[rgba(0,101,254,0.05)]'
-                            : 'border-transparent hover:bg-[rgba(0,101,254,0.025)] hover:border-[rgba(0,101,254,0.15)]',
-                        ].join(' ')}
-                      >
-                        {/* Dot indicator */}
-                        <span
-                          aria-hidden="true"
-                          className={[
-                            'shrink-0 w-2 h-2 rounded-full transition-all duration-150',
-                            isActive
-                              ? 'bg-[#0065fe]'
-                              : 'border-[1.5px] border-[rgba(0,101,254,0.35)] bg-transparent',
-                          ].join(' ')}
-                        />
-                        <span
-                          className={[
-                            'text-[13px] leading-snug transition-colors duration-150',
-                            isActive
-                              ? 'font-semibold text-[#0c0a3b]'
-                              : 'font-medium text-[rgba(12,10,59,0.48)]',
-                          ].join(' ')}
-                        >
-                          {t.title}
-                        </span>
-                      </button>
-                    </div>
-                  )
-                })}
-              </nav>
-
-              <div className="h-5" />
-            </div>
-
-          </div>
-
-          {/* ═══════════════════════════════════════════════════════
-              COLUNA DIREITA — card visual + mulher + textos
-              ═══════════════════════════════════════════════════════ */}
-          <div className="relative mt-0">
-
-            {/* Card visual grande — overflow-visible p/ mulher */}
-            <div
-              className="relative rounded-[24px] overflow-visible bg-gradient-to-br from-[#edf3ff] to-[#f0f5ff] border border-[rgba(0,101,254,0.13)] shadow-[0_1px_16px_rgba(0,101,254,0.07)]"
-              style={{ minHeight: 232 }}
-              aria-hidden="true"
-            >
-              {/* Ilustração SVG — área responsiva */}
-              <div className="pr-0 lg:pr-[202px] w-full h-[232px] lg:h-[240px]">
-                <Visual />
-              </div>
-
-              {/* Detalhe de canto — círculos sutis */}
-              <div className="absolute -right-6 -top-6 w-[120px] h-[120px] rounded-full border border-[rgba(0,101,254,0.07)] pointer-events-none" />
-              <div className="absolute -right-2 -top-2 w-[72px] h-[72px] rounded-full border border-[rgba(0,101,254,0.05)] pointer-events-none" />
-            </div>
-
-            {/* Mulher — absoluta, canto direito do card, apenas desktop */}
-            <div
-              className="absolute right-[-8px] top-[-24px] w-[195px] pointer-events-none select-none hidden lg:block"
-              aria-hidden="true"
-            >
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full h-[80px] rounded-full bg-[radial-gradient(ellipse,rgba(0,101,254,0.1)_0%,transparent_70%)]" />
-              <img
-                src="/assets/testimonials/p1.png"
-                alt=""
-                className="relative w-full object-contain"
-                loading="lazy"
-                draggable="false"
-              />
-            </div>
-
-            {/* Painel ativo — key força re-mount e re-anima entrada */}
-            <div
+          {/* ═══ COLUNA DIREITA — FeaturePanel + overlay + dots ═══════════
+              min-h-[620px] garante altura mínima para o person overlay caber.
+              position:relative é o referencial do FeatureWomanOverlay (absolute).
+              ═══════════════════════════════════════════════════════════════ */}
+          <div className="relative">
+            <FeaturePanel
               key={`${activeTab}-${tab.id}`}
-              role="tabpanel"
-              id={`ifeat-panel-${tab.id}`}
-              aria-labelledby={`ifeat-tab-${tab.id}`}
-              className="inbot-ifeat-panel mt-6 pr-0 lg:pr-[210px] flex flex-col gap-4"
-            >
-              {/* Bullets de texto */}
-              <div className="flex flex-col gap-3">
-                {tab.texts.map((text, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <span
-                      aria-hidden="true"
-                      className="mt-[10px] shrink-0 w-[7px] h-[7px] rounded-full border-[1.5px] border-[#0065fe] opacity-60"
-                    />
-                    <p className="text-[rgba(12,10,59,0.68)] text-[15px] leading-[1.75]">
-                      {text}
-                    </p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Highlight card com ícone decorativo */}
-              <div className="flex items-start gap-4 p-4 rounded-[16px] border border-[rgba(0,101,254,0.16)] bg-white shadow-[0_1px_8px_rgba(0,101,254,0.05)]">
-                <div
-                  className="shrink-0 w-9 h-9 rounded-xl bg-[rgba(0,101,254,0.08)] border border-[rgba(0,101,254,0.12)] flex items-center justify-center"
-                  aria-hidden="true"
-                >
-                  <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                    <circle cx="8" cy="8" r="5" stroke="#0065fe" strokeWidth="1.5" />
-                    <circle cx="8" cy="8" r="2" fill="#0065fe" />
-                  </svg>
-                </div>
-                <p className="text-[#023c8f] text-[13px] lg:text-[14px] font-semibold leading-relaxed">
-                  {tab.highlight}
-                </p>
-              </div>
-
-            </div>
-
+              tab={tab}
+            />
+            <FeatureWomanOverlay />
+            <FeatureDots
+              tabs={interactiveFeatures.tabs}
+              activeIndex={activeTab}
+              setActiveIndex={setActiveTab}
+            />
           </div>
 
         </div>
