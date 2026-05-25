@@ -515,10 +515,25 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .inbot-ecosystem-chip:hover {
-  transform: translateY(-2px) scale(1.04);
-  border-color: rgba(21,183,254,0.55);
+  border-color: rgba(21,183,254,0.60);
   background-color: rgba(12,10,59,0.98);
-  box-shadow: 0 0 16px rgba(21,183,254,0.24);
+  box-shadow: 0 0 18px rgba(21,183,254,0.30);
+}
+
+/* Orbiting chip rotation — two directions */
+@keyframes inbot-chip-orbit-cw  { to { transform: rotate( 360deg); } }
+@keyframes inbot-chip-orbit-ccw { to { transform: rotate(-360deg); } }
+
+/* Responsive orbit radii via CSS vars */
+:root {
+  --eco-orbit-outer: 115px;
+  --eco-orbit-inner:  66px;
+}
+@media (min-width: 480px) {
+  :root { --eco-orbit-outer: 148px; --eco-orbit-inner: 84px; }
+}
+@media (min-width: 768px) {
+  :root { --eco-orbit-outer: 182px; --eco-orbit-inner: 104px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -533,6 +548,10 @@ h1, h2, h3, h4, h5, h6 {
     transition: none;
   }
   .inbot-ecosystem-glow { filter: none; }
+  .inbot-orbit-arm-cw,
+  .inbot-orbit-arm-ccw,
+  .inbot-orbit-counter-cw,
+  .inbot-orbit-counter-ccw { animation: none !important; }
 }
 
 /* ── HeroRobot — float, entrance, orbit beam ─────────────── */
@@ -688,4 +707,46 @@ h1, h2, h3, h4, h5, h6 {
 @media (prefers-reduced-motion: reduce) {
   .inbot-feature-panel { animation: none !important; }
   .inbot-feature-panel * { transition-duration: 0.01ms !important; }
+}
+
+/* ── HeaderNavLink — hover vertical slide ────────────────────── */
+/* Dois spans sobrepostos: o de cima sobe (-translate-y-full) no hover,
+   o de baixo (top-full → -translate-y-full) entra de baixo para cima.
+   overflow-hidden na <a> garante que o span fora da viewport seja invisível. */
+
+@media (prefers-reduced-motion: reduce) {
+  .inbot-nav-slide span {
+    transition: none !important;
+    transform: none !important;
+  }
+}
+
+/* ── Logo Marquee (WE BELIEVE IN.BOT strip) ─────────────────── */
+@keyframes inbot-logo-marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to   { transform: translate3d(var(--marquee-offset, -50%), 0, 0); }
+}
+
+.inbot-logo-track {
+  animation: inbot-logo-marquee 32s linear infinite;
+  will-change: transform;
+  backface-visibility: hidden;
+}
+
+.inbot-logo-track:hover {
+  animation-play-state: paused;
+}
+
+/* ── HeaderPillCTA — dot indicator ──────────────────────────── */
+/* Dot anima apenas width/height (transform seria mais perf, mas
+   o efeito "bolha que cresce" requer mudança de dimensão real).
+   Valores pequenos (2px→10px) minimizam custo de layout reflow. */
+
+@media (prefers-reduced-motion: reduce) {
+  .inbot-nav-slide span,
+  .inbot-motion {
+    animation: none !important;
+    transition-duration: 0.01ms !important;
+    transform: none !important;
+  }
 }

@@ -14,6 +14,29 @@ import { LoginMenu } from '../ui/LoginMenu'
 // border sempre presente (1px) — só border-color muda, sem add/remove.
 // motion-safe: garante que prefers-reduced-motion desative a transição.
 
+// Hover vertical: dois spans sobrepostos — o segundo entra de baixo.
+// overflow-hidden na <a> corta o span fora da viewport.
+// prefers-reduced-motion: regra global .inbot-nav-slide em brand.css desativa tudo.
+function HeaderNavLink({ href, children }) {
+  return (
+    <a
+      href={href}
+      className="inbot-nav-slide group relative inline-flex h-[1.25em] overflow-hidden whitespace-nowrap text-sm font-medium tracking-[-0.025em] text-[rgba(235,235,237,0.65)]"
+    >
+      <span className="block transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-full">
+        {children}
+      </span>
+      <span
+        aria-hidden="true"
+        className="absolute left-0 top-full block text-[#15b7fe] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-full"
+      >
+        {children}
+      </span>
+    </a>
+  )
+}
+
+
 export function Header() {
   const { content } = useLanguage()
   const { nav } = content
@@ -77,20 +100,16 @@ export function Header() {
         {/* Nav principal — visível a partir de lg */}
         <nav className="hidden lg:flex items-center gap-6 xl:gap-8" aria-label="Navegação principal">
           {nav.links.map((link) => (
-            <a
-              key={link.label}
-              href={link.href}
-              className="text-sm text-[rgba(235,235,237,0.65)] hover:text-[#15b7fe] transition-colors duration-200 whitespace-nowrap"
-            >
+            <HeaderNavLink key={link.label} href={link.href}>
               {link.label}
-            </a>
+            </HeaderNavLink>
           ))}
         </nav>
 
-        {/* Ações: idioma + login */}
+        {/* Ações: CTA Contato + idioma + login */}
         {/* Os popovers (HeaderPopover) usam "absolute top-full" relativo
             ao seu próprio wrapper — não são afetados pela forma do header */}
-        <div className="flex items-center gap-4 shrink-0">
+        <div className="flex items-center gap-3 shrink-0">
           <LanguageSwitcher />
           <LoginMenu />
         </div>

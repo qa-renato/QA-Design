@@ -1,60 +1,49 @@
+import { memo, useEffect, useRef } from 'react'
 import { useLanguage } from '../../context/LanguageContext'
 
-// Wordmark textual — fallback elegante enquanto logos oficiais não estão disponíveis
-function CompanyWordmark({ name }) {
+const PARTNER_LOGOS = [
+  { src: '/assets/testimonials/bradesco.png',                alt: 'Bradesco' },
+  { src: '/assets/testimonials/tecban.png',                  alt: 'TecBan' },
+  { src: '/assets/testimonials/logo-ambev.jpg',              alt: 'Ambev' },
+  { src: '/assets/testimonials/LOGO_AZUL_LINHAS_AEREAS.png', alt: 'Linhas Aéreas Brasileiras', scale: 'scale-125' },
+  { src: '/assets/testimonials/Logotipo_do_SBT.svg.png',     alt: 'SBT' },
+  { src: '/assets/testimonials/logo_detran.png',             alt: 'DETRAN' },
+  { src: '/assets/testimonials/logo_hev.png',                alt: 'HEV' },
+]
+
+const LogoStrip = memo(function LogoStrip() {
+  const trackRef = useRef(null)
+  const items = [...PARTNER_LOGOS, ...PARTNER_LOGOS]
+
+  useEffect(() => {
+    const track = trackRef.current
+    if (!track) return
+    // Exact pixel offset = width of one set (half of the duplicated track)
+    const offset = Math.round(track.scrollWidth / 2)
+    track.style.setProperty('--marquee-offset', `-${offset}px`)
+  }, [])
+
   return (
-    <span
-      className="text-[11px] font-bold tracking-[0.18em] uppercase text-[rgba(12,10,59,0.35)]"
-      aria-label={name}
+    <div
+      className="relative overflow-hidden my-10"
+      aria-hidden="true"
     >
-      {name}
-    </span>
-  )
-}
-
-function TestimonialCard({ wordmark, logo, quote, person, area }) {
-  return (
-    <article className="
-      group flex flex-col
-      p-8 lg:p-10 rounded-3xl
-      bg-white
-      border border-[rgba(2,60,143,0.08)]
-      shadow-[0_2px_16px_rgba(2,60,143,0.04)]
-      transition-all duration-300
-      hover:border-[rgba(0,101,254,0.14)]
-      hover:shadow-[0_4px_28px_rgba(0,101,254,0.07)]
-      hover:-translate-y-0.5
-    ">
-      {/* Logo ou wordmark textual como fallback */}
-      <div className="flex items-center h-20">
-        {logo
-          ? <img src={logo} alt={wordmark} className="max-h-16 w-auto max-w-[200px] object-contain" />
-          : <CompanyWordmark name={wordmark} />
-        }
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[#f5f7ff] to-transparent" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[#f5f7ff] to-transparent" />
+      <div ref={trackRef} className="flex inbot-logo-track">
+        {items.map((logo, i) => (
+          <div key={i} className="flex-none flex items-center justify-center mx-8 h-16">
+            <img
+              src={logo.src}
+              alt={logo.alt}
+              className={`h-full w-auto object-contain grayscale opacity-40 mix-blend-multiply transition-all duration-300 hover:opacity-70 ${logo.scale ?? ''}`}
+            />
+          </div>
+        ))}
       </div>
-
-      {/* Aspas decorativas */}
-      <span
-        aria-hidden="true"
-        className="mt-5 text-[64px] leading-none text-nucleo opacity-[0.12] -mb-2 select-none"
-        style={{ fontFamily: 'Georgia, serif' }}
-      >
-        &ldquo;
-      </span>
-
-      {/* Depoimento */}
-      <p className="flex-1 text-[rgba(12,10,59,0.68)] text-[15px] leading-[1.82] italic">
-        {quote}
-      </p>
-
-      {/* Atribuição */}
-      <div className="mt-6 pt-5 border-t border-[rgba(2,60,143,0.07)]">
-        <p className="text-aurora font-semibold text-sm leading-snug">{person}</p>
-        <p className="text-nucleo text-xs mt-1 font-medium">{area}</p>
-      </div>
-    </article>
+    </div>
   )
-}
+})
 
 export function CasesPreview() {
   const { content } = useLanguage()
@@ -84,15 +73,8 @@ export function CasesPreview() {
           </p>
         </div>
 
-        {/* ── Cards de depoimento ── */}
-        <div
-          data-gsap-stagger
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-        >
-          {cases.testimonials.map((t) => (
-            <TestimonialCard key={t.person} {...t} />
-          ))}
-        </div>
+        {/* ── Logo strip ── */}
+        <LogoStrip />
 
       </div>
     </section>

@@ -2,18 +2,52 @@ import { Badge } from '../ui/Badge'
 import { Reveal } from '../ui/Reveal'
 import { useLanguage } from '../../context/LanguageContext'
 
+// Chip que orbita ao redor do centro.
+// Técnica: wrapper roda em CW/CCW (transform-origin: 0 0 = centro do container),
+// arm translada para fora, counter div contra-roda para o chip ficar sempre upright.
+function OrbitingChip({ label, duration, index, total, reverse }) {
+  const delay = `${(-(index / total) * duration).toFixed(2)}s`
+  const spinFwd = `inbot-chip-orbit-${reverse ? 'ccw' : 'cw'} ${duration}s linear infinite`
+  const spinRev = `inbot-chip-orbit-${reverse ? 'cw' : 'ccw'} ${duration}s linear infinite`
+  const radiusVar = `var(--eco-orbit-${reverse ? 'inner' : 'outer'})`
+
+  return (
+    <div
+      className="absolute left-1/2 top-1/2 w-0 h-0 will-change-transform"
+      style={{ animation: spinFwd, animationDelay: delay, transformOrigin: '0 0' }}
+    >
+      <div style={{ transform: `translateX(${radiusVar})` }}>
+        {/* contra-rotação — mantém chip upright */}
+        <div style={{ animation: spinRev, animationDelay: delay }}>
+          {/* centraliza o chip no ponto da órbita */}
+          <div
+            className="inbot-ecosystem-chip px-3 py-[6px] rounded-full text-[11px] font-semibold text-nebulosa bg-[rgba(12,10,59,0.92)] border border-[rgba(21,183,254,0.28)] whitespace-nowrap"
+            style={{ transform: 'translate(-50%, -50%)' }}
+          >
+            {label}
+          </div>
+        </div>
+      </div>
+    </div>
+  )
+}
+
 function OrbitDiagram({ nodes }) {
+  // Outer orbit (CW): primeiros 5 nodes  |  Inner orbit (CCW): último node
+  const outerNodes = nodes.slice(0, 5)
+  const innerNodes = nodes.slice(5)
+
   return (
     <div
       className="relative w-full max-w-[520px] mx-auto aspect-square flex items-center justify-center"
       aria-hidden="true"
     >
-      {/* Ambient glow orbs — blurred radial gradients behind everything */}
+      {/* Ambient glow orbs */}
       <div className="inbot-ecosystem-glow inbot-ecosystem-glow--1 pointer-events-none" />
       <div className="inbot-ecosystem-glow inbot-ecosystem-glow--2 pointer-events-none" />
       <div className="inbot-ecosystem-glow inbot-ecosystem-glow--3 pointer-events-none" />
 
-      {/* SVG: rings, tick marks, radial guides, pulse beams, orbital beams */}
+      {/* SVG: rings, tick marks, orbital beams */}
       <svg
         className="absolute inset-0 w-full h-full pointer-events-none"
         viewBox="0 0 100 100"
@@ -30,75 +64,26 @@ function OrbitDiagram({ nodes }) {
           </filter>
         </defs>
 
-        {/* Static orbital rings — outer (r=42), middle (r=30), inner (r=18) */}
+        {/* Orbital rings — outer (r=42), middle (r=30), inner (r=18) */}
         <circle cx="50" cy="50" r="42" stroke="rgba(21,183,254,0.09)" strokeWidth="0.28" />
         <circle cx="50" cy="50" r="30" stroke="rgba(21,183,254,0.13)" strokeWidth="0.28" />
         <circle cx="50" cy="50" r="18" stroke="rgba(0,101,254,0.22)"  strokeWidth="0.28" />
 
-        {/* Tick marks on outer ring — 12 evenly spaced markers */}
+        {/* Tick marks on outer ring — 12 markers */}
         {Array.from({ length: 12 }).map((_, i) => {
           const ang = ((i * 30) - 90) * (Math.PI / 180)
-          const r1 = 41.1, r2 = 42.9
           return (
             <line
               key={i}
-              x1={50 + r1 * Math.cos(ang)} y1={50 + r1 * Math.sin(ang)}
-              x2={50 + r2 * Math.cos(ang)} y2={50 + r2 * Math.sin(ang)}
+              x1={50 + 41.1 * Math.cos(ang)} y1={50 + 41.1 * Math.sin(ang)}
+              x2={50 + 42.9 * Math.cos(ang)} y2={50 + 42.9 * Math.sin(ang)}
               stroke="rgba(21,183,254,0.22)"
               strokeWidth="0.24"
             />
           )
         })}
 
-        {/* Connection dots on outer ring at each chip angle */}
-        {nodes.map((_, i) => {
-          const ang = ((i * 360 / nodes.length) - 90) * (Math.PI / 180)
-          return (
-            <circle
-              key={`cdot${i}`}
-              cx={50 + 42 * Math.cos(ang)}
-              cy={50 + 42 * Math.sin(ang)}
-              r="0.85"
-              fill="rgba(21,183,254,0.50)"
-            />
-          )
-        })}
-
-        {/* Static radial guide lines — dashed from center to each chip */}
-        {nodes.map((_, i) => {
-          const ang = ((i * 360 / nodes.length) - 90) * (Math.PI / 180)
-          const x = 50 + 38 * Math.cos(ang)
-          const y = 50 + 38 * Math.sin(ang)
-          return (
-            <line
-              key={`g${i}`}
-              x1="50" y1="50" x2={x} y2={y}
-              stroke="rgba(21,183,254,0.09)"
-              strokeWidth="0.2"
-              strokeDasharray="1.4 2.2"
-            />
-          )
-        })}
-
-        {/* Radial pulse lines — energy pulses traveling from nucleus to each chip */}
-        {nodes.map((_, i) => {
-          const ang = ((i * 360 / nodes.length) - 90) * (Math.PI / 180)
-          const x = 50 + 38 * Math.cos(ang)
-          const y = 50 + 38 * Math.sin(ang)
-          return (
-            <line
-              key={`p${i}`}
-              x1="50" y1="50" x2={x} y2={y}
-              stroke="rgba(21,183,254,0.58)"
-              strokeWidth="0.36"
-              strokeLinecap="round"
-              className="inbot-ecosystem-pulse"
-              style={{ animationDelay: `${(i * 0.55).toFixed(2)}s` }}
-            />
-          )
-        })}
-
-        {/* Outer orbital beam — clockwise, glowing Nebulosa */}
+        {/* Outer orbital beam — clockwise */}
         <circle
           cx="50" cy="50" r="42"
           stroke="rgba(21,183,254,0.82)"
@@ -110,7 +95,7 @@ function OrbitDiagram({ nodes }) {
           filter="url(#eco-beam-glow)"
         />
 
-        {/* Middle orbital beam — counterclockwise, Núcleo blue */}
+        {/* Inner orbital beam — counterclockwise */}
         <circle
           cx="50" cy="50" r="30"
           stroke="rgba(0,101,254,0.65)"
@@ -127,10 +112,8 @@ function OrbitDiagram({ nodes }) {
         className="relative z-10 flex flex-col items-center justify-center w-24 h-24 rounded-2xl inbot-ecosystem-core"
         style={{ background: 'linear-gradient(145deg, #0c0a3b 0%, #0d3690 48%, #0065fe 100%)' }}
       >
-        {/* Concentric inner ring accents */}
         <div className="absolute inset-[7px] rounded-[14px] border border-[rgba(21,183,254,0.20)]" />
         <div className="absolute inset-[13px] rounded-[10px] border border-[rgba(21,183,254,0.11)]" />
-
         <span
           className="relative z-10 text-white font-bold text-base tracking-tight"
           style={{ fontFamily: 'var(--font-display)' }}
@@ -142,26 +125,29 @@ function OrbitDiagram({ nodes }) {
         </span>
       </div>
 
-      {/* Node chips — staggered entry animation */}
-      {nodes.map((label, i) => {
-        const ang = ((i * 360 / nodes.length) - 90) * (Math.PI / 180)
-        const x = 50 + 38 * Math.cos(ang)
-        const y = 50 + 38 * Math.sin(ang)
-        return (
-          <div
-            key={i}
-            className="absolute flex items-center justify-center"
-            style={{ left: `${x}%`, top: `${y}%`, transform: 'translate(-50%,-50%)' }}
-          >
-            <div
-              className="inbot-ecosystem-chip px-3 py-[6px] rounded-full text-[11px] font-semibold text-nebulosa bg-[rgba(12,10,59,0.92)] border border-[rgba(21,183,254,0.28)] whitespace-nowrap"
-              style={{ animationDelay: `${(0.4 + i * 0.12).toFixed(2)}s` }}
-            >
-              {label}
-            </div>
-          </div>
-        )
-      })}
+      {/* Outer orbiting chips — CW, 24s */}
+      {outerNodes.map((label, i) => (
+        <OrbitingChip
+          key={label}
+          label={label}
+          duration={24}
+          index={i}
+          total={outerNodes.length}
+          reverse={false}
+        />
+      ))}
+
+      {/* Inner orbiting chips — CCW, 16s */}
+      {innerNodes.map((label, i) => (
+        <OrbitingChip
+          key={label}
+          label={label}
+          duration={16}
+          index={i}
+          total={Math.max(innerNodes.length, 1)}
+          reverse={true}
+        />
+      ))}
     </div>
   )
 }
