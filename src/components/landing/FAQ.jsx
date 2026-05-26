@@ -30,12 +30,19 @@ function FAQItem({ question, answer, index }) {
         id={id}
         role="region"
         aria-labelledby={`faq-question-${index}`}
-        className="overflow-hidden transition-all duration-300 ease-in-out"
-        style={{ maxHeight: open ? '400px' : '0px' }}
+        className="grid"
+        style={{
+          gridTemplateRows: open ? '1fr' : '0fr',
+          transition: open
+            ? 'grid-template-rows 350ms cubic-bezier(0.16,1,0.3,1)'
+            : 'grid-template-rows 200ms ease-in',
+        }}
       >
-        <p className="text-[rgba(12,10,59,0.6)] text-sm leading-relaxed pb-5 pr-10">
-          {answer}
-        </p>
+        <div className="overflow-hidden min-h-0">
+          <p className="text-[rgba(12,10,59,0.6)] text-sm leading-relaxed pb-5 pr-10">
+            {answer}
+          </p>
+        </div>
       </div>
     </div>
   )

@@ -35,7 +35,7 @@ export function Button({
   className = '',
   ...props
 }) {
-  const base = 'inline-flex items-center gap-2 transition-all duration-200 cursor-pointer select-none'
+  const base = 'inline-flex items-center gap-2 transition-[transform,box-shadow,opacity,border-color,background-color,color] duration-200 cursor-pointer select-none'
   const classes = `${base} ${variants[variant]} ${sizes[size]} ${className}`
 
   if (href) {

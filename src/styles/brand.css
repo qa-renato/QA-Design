@@ -250,19 +250,18 @@ h1, h2, h3, h4, h5, h6 {
 
 .inbot-shiny-btn:active { translate: 0 1px; }
 
-/* Fill — circle que expande para pill no hover */
+/* Fill — circle que expande para pill no hover via clip-path (GPU-only) */
 .inbot-shiny-fill {
   position: absolute;
   left: 4px;
   top: 50%;
   transform: translateY(-50%);
-  width: 42px;
+  width: calc(100% - 8px);
   height: 42px;
   border-radius: 9999px;
   background: var(--shiny-fill);
-  transition:
-    width    var(--shiny-expand),
-    border-radius var(--shiny-expand);
+  clip-path: inset(0 calc(100% - 42px) 0 0 round 9999px);
+  transition: clip-path var(--shiny-expand);
   z-index: 1;
   pointer-events: none;
 }
@@ -309,7 +308,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .inbot-shiny-btn:is(:hover, :focus-visible) .inbot-shiny-fill {
-  width: calc(100% - 8px);
+  clip-path: inset(0 0 0 0 round 9999px);
 }
 
 .inbot-shiny-btn:is(:hover, :focus-visible) .inbot-shiny-label {
@@ -386,11 +385,13 @@ h1, h2, h3, h4, h5, h6 {
   transition: transform 250ms ease, box-shadow 250ms ease, border-color 250ms ease, background-color 250ms ease;
 }
 
-.inbot-orbit-chip:hover {
-  transform: translateY(-2px);
-  border-color: rgba(21, 183, 254, 0.55);
-  background-color: rgba(12, 10, 59, 0.98);
-  box-shadow: 0 0 14px rgba(21, 183, 254, 0.22);
+@media (hover: hover) and (pointer: fine) {
+  .inbot-orbit-chip:hover {
+    transform: translateY(-2px);
+    border-color: rgba(21, 183, 254, 0.55);
+    background-color: rgba(12, 10, 59, 0.98);
+    box-shadow: 0 0 14px rgba(21, 183, 254, 0.22);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -500,7 +501,7 @@ h1, h2, h3, h4, h5, h6 {
 /* Chip entrance — scale from 0.65 → 1, opacity 0 → 1.
    animation-fill-mode: both → chip invisible until animation starts. */
 @keyframes inbot-chip-enter {
-  from { opacity: 0; transform: scale(0.65); }
+  from { opacity: 0; transform: scale(0.85); }
   to   { opacity: 1; transform: scale(1);    }
 }
 
@@ -514,10 +515,12 @@ h1, h2, h3, h4, h5, h6 {
     background-color 250ms ease;
 }
 
-.inbot-ecosystem-chip:hover {
-  border-color: rgba(21,183,254,0.60);
-  background-color: rgba(12,10,59,0.98);
-  box-shadow: 0 0 18px rgba(21,183,254,0.30);
+@media (hover: hover) and (pointer: fine) {
+  .inbot-ecosystem-chip:hover {
+    border-color: rgba(21,183,254,0.60);
+    background-color: rgba(12,10,59,0.98);
+    box-shadow: 0 0 18px rgba(21,183,254,0.30);
+  }
 }
 
 /* Orbiting chip rotation — two directions */
@@ -673,7 +676,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .inbot-discover-arrow-left {
-  transform: scale(0);
+  transform: scale(0.7);
   opacity: 0;
 }
 
@@ -749,4 +752,44 @@ h1, h2, h3, h4, h5, h6 {
     transition-duration: 0.01ms !important;
     transform: none !important;
   }
+}
+
+/* ── Reveal — fade + translateY no scroll ────────────────────── */
+.inbot-reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition:
+    opacity   600ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.inbot-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .inbot-reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ── Hero stagger — entrada escalonada dos elementos do hero ─── */
+@keyframes inbot-hero-up {
+  from { opacity: 0; transform: translateY(14px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+
+[data-hero-eyebrow] { animation: inbot-hero-up 500ms cubic-bezier(0.16, 1, 0.3, 1)   0ms both; }
+[data-hero-h1]      { animation: inbot-hero-up 600ms cubic-bezier(0.16, 1, 0.3, 1)  80ms both; }
+[data-hero-sub]     { animation: inbot-hero-up 600ms cubic-bezier(0.16, 1, 0.3, 1) 160ms both; }
+[data-hero-cta]     { animation: inbot-hero-up 500ms cubic-bezier(0.16, 1, 0.3, 1) 240ms both; }
+
+@media (prefers-reduced-motion: reduce) {
+  [data-hero-eyebrow],
+  [data-hero-h1],
+  [data-hero-sub],
+  [data-hero-cta] { animation: none; }
 }

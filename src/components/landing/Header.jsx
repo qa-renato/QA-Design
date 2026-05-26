@@ -23,12 +23,12 @@ function HeaderNavLink({ href, children }) {
       href={href}
       className="inbot-nav-slide group relative inline-flex h-[1.25em] overflow-hidden whitespace-nowrap text-sm font-medium tracking-[-0.025em] text-[rgba(235,235,237,0.65)]"
     >
-      <span className="block transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-full">
+      <span className="block transition-transform duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-full">
         {children}
       </span>
       <span
         aria-hidden="true"
-        className="absolute left-0 top-full block text-[#15b7fe] transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-full"
+        className="absolute left-0 top-full block text-[#15b7fe] transition-transform duration-[250ms] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-full"
       >
         {children}
       </span>
@@ -58,7 +58,7 @@ export function Header() {
         // Borda sempre presente (1px) para animar apenas border-color
         'border',
         // Transição suave — respeitando prefers-reduced-motion
-        'motion-safe:transition-all motion-safe:duration-500',
+        'motion-safe:transition-[max-width,border-radius,background-color,border-color,box-shadow,top,backdrop-filter] motion-safe:duration-[250ms]',
         'motion-safe:[transition-timing-function:cubic-bezier(0.4,0,0.2,1)]',
         scrolled ? [
           // ── Estado pill/cápsula flutuante ──────────────────────────────

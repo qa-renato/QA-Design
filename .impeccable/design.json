@@ -1,0 +1,179 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-25T00:00:00Z",
+  "title": "Design System: InBot",
+  "extensions": {
+    "colorMeta": {
+      "void-midnight": {
+        "role": "neutral",
+        "displayName": "Void Midnight",
+        "canonical": "#0c0a3b",
+        "tonalRamp": ["#050318", "#0c0a3b", "#141260", "#1c1888", "#2a27b0", "#3d37cc", "#5a52e0", "#8078f0"]
+      },
+      "command-deep": {
+        "role": "secondary",
+        "displayName": "Command Deep",
+        "canonical": "#023c8f",
+        "tonalRamp": ["#00102a", "#011a50", "#022a78", "#023c8f", "#0352b8", "#1468d0", "#4488e8", "#80b0f8"]
+      },
+      "operator-blue": {
+        "role": "primary",
+        "displayName": "Operator Blue",
+        "canonical": "#0065fe",
+        "tonalRamp": ["#001540", "#002880", "#0040c8", "#0065fe", "#2d88ff", "#62a8ff", "#99c6ff", "#cce3ff"]
+      },
+      "live-signal": {
+        "role": "primary",
+        "displayName": "Live Signal",
+        "canonical": "#15b7fe",
+        "tonalRamp": ["#003852", "#005580", "#0078b8", "#0098e8", "#15b7fe", "#45c9ff", "#80dcff", "#c0eeff"]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "Surface Layer",
+        "canonical": "#12103d",
+        "tonalRamp": ["#08071f", "#0d0b30", "#12103d", "#191750", "#222068", "#2e2c82", "#4442a8", "#7472d0"]
+      },
+      "surface-raised": {
+        "role": "neutral",
+        "displayName": "Surface Raised",
+        "canonical": "#181660",
+        "tonalRamp": ["#0a0928", "#10104a", "#181660", "#201e80", "#2c2aa0", "#403ec0", "#6462d8", "#9896f0"]
+      },
+      "surface-light": {
+        "role": "neutral",
+        "displayName": "Surface Light",
+        "canonical": "#f5f7ff",
+        "tonalRamp": ["#c0c8f0", "#ccd4f5", "#d8dff8", "#e4e8fa", "#edf0fc", "#f0f2fd", "#f5f7ff", "#ffffff"]
+      },
+      "off-white": {
+        "role": "neutral",
+        "displayName": "Off-White / Cintilante",
+        "canonical": "#ebebed",
+        "tonalRamp": ["#606065", "#7a7a80", "#96969c", "#b2b2b8", "#ccccd0", "#dddde0", "#e8e8eb", "#ebebed"]
+      }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "Hero headline only. One per page. 8-10 words max." },
+      "headline": { "displayName": "Headline", "purpose": "Section titles. First thing scanned. One message per section." },
+      "title": { "displayName": "Title", "purpose": "Subsection headers, prominent card titles." },
+      "body": { "displayName": "Body", "purpose": "Standard body copy. Max 65-75ch line length." },
+      "label": { "displayName": "Label", "purpose": "Badges, eyebrows, metadata. Always uppercase." }
+    },
+    "shadows": [
+      { "name": "ambient", "value": "0 1px 3px rgba(0,0,0,0.3)", "purpose": "Subtle separation for small floating elements." },
+      { "name": "elevated", "value": "0 4px 16px rgba(0,0,0,0.4)", "purpose": "Cards and elevated containers." },
+      { "name": "modal", "value": "0 8px 32px rgba(0,0,0,0.5)", "purpose": "Overlay and modal elements." },
+      { "name": "signal-glow", "value": "0 0 40px rgba(21,183,254,0.15)", "purpose": "Hover state on dark cards. Communicates interactivity." },
+      { "name": "active-glow", "value": "0 0 60px rgba(0,101,254,0.25)", "purpose": "Active or featured elements. Brightest state." },
+      { "name": "button-glow", "value": "0 0 30px rgba(0,101,254,0.4)", "purpose": "Primary button hover glow." }
+    ],
+    "motion": [
+      { "name": "entrance", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Panel entrances, chip appearances, fill expansions. Exponential ease-out." },
+      { "name": "micro", "value": "200ms ease", "purpose": "Hover state changes, border color transitions." },
+      { "name": "normal", "value": "250ms ease", "purpose": "Standard transitions: opacity, transform, color." },
+      { "name": "deliberate", "value": "400ms ease", "purpose": "Larger state changes, component reveals." },
+      { "name": "orbit-beam-outer", "value": "10s linear infinite", "purpose": "EcosystemOrbit outer ring beam, clockwise." },
+      { "name": "orbit-beam-inner", "value": "14s linear infinite reverse", "purpose": "EcosystemOrbit inner ring beam, counterclockwise." },
+      { "name": "shiny-rotate", "value": "3s linear infinite", "purpose": "ShinyButton conic-gradient border rotation." },
+      { "name": "cta-beam", "value": "1.5s linear infinite", "purpose": "AnimatedCTA SVG border beam. Fastest animation in the system." }
+    ],
+    "breakpoints": [
+      { "name": "sm", "value": "640px" },
+      { "name": "md", "value": "768px" },
+      { "name": "lg", "value": "1024px" },
+      { "name": "xl", "value": "1280px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Button Primary",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The only call-to-action that glows. Used once per section as the primary action.",
+      "html": "<button class=\"ds-btn-primary\">Ver a plataforma em ação</button>",
+      "css": ".ds-btn-primary { display: inline-flex; align-items: center; gap: 8px; background: linear-gradient(135deg, #0065fe 0%, #15b7fe 100%); color: #ebebed; font-family: 'Poppins', system-ui, sans-serif; font-size: 1rem; font-weight: 600; padding: 12px 24px; border-radius: 16px; border: none; cursor: pointer; transition: opacity 200ms ease, box-shadow 200ms ease, transform 150ms ease; text-decoration: none; } .ds-btn-primary:hover { opacity: 0.9; box-shadow: 0 0 30px rgba(0,101,254,0.4); } .ds-btn-primary:active { transform: scale(0.98); } .ds-btn-primary:focus-visible { outline: 2px solid #15b7fe; outline-offset: 3px; border-radius: 16px; }"
+    },
+    {
+      "name": "Button Secondary",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "Alternative path. Never competes with primary. On dark backgrounds only.",
+      "html": "<button class=\"ds-btn-secondary\">Conhecer a operação</button>",
+      "css": ".ds-btn-secondary { display: inline-flex; align-items: center; gap: 8px; background: transparent; color: #ebebed; font-family: 'Poppins', system-ui, sans-serif; font-size: 1rem; font-weight: 500; padding: 12px 24px; border-radius: 16px; border: 1px solid rgba(21,183,254,0.4); cursor: pointer; transition: border-color 200ms ease, background-color 200ms ease, transform 150ms ease; text-decoration: none; } .ds-btn-secondary:hover { border-color: #15b7fe; background: rgba(21,183,254,0.08); } .ds-btn-secondary:active { transform: scale(0.98); } .ds-btn-secondary:focus-visible { outline: 2px solid #15b7fe; outline-offset: 3px; border-radius: 16px; }"
+    },
+    {
+      "name": "Badge Brand",
+      "kind": "chip",
+      "refersTo": "badge-brand",
+      "description": "Section eyebrow on dark backgrounds. Always uppercase, always pill-shaped.",
+      "html": "<span class=\"ds-badge-brand\">Infraestrutura</span>",
+      "css": ".ds-badge-brand { display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 9999px; background: rgba(0,101,254,0.15); color: #15b7fe; border: 1px solid rgba(21,183,254,0.3); font-family: 'Poppins', system-ui, sans-serif; font-size: 0.75rem; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; }"
+    },
+    {
+      "name": "Card Dark",
+      "kind": "card",
+      "refersTo": "card-dark",
+      "description": "Standard content card on dark section backgrounds.",
+      "html": "<div class=\"ds-card-dark\"><h3 class=\"ds-card-title\">Governança de agentes</h3><p class=\"ds-card-body\">Logs, auditorias e visibilidade em tempo real para operações que não podem errar.</p></div>",
+      "css": ".ds-card-dark { background: #12103d; border: 1px solid rgba(21,183,254,0.12); border-radius: 24px; padding: 24px; transition: border-color 200ms ease, box-shadow 200ms ease; } .ds-card-dark:hover { border-color: rgba(21,183,254,0.35); box-shadow: 0 0 40px rgba(21,183,254,0.15); } .ds-card-title { font-family: 'Poppins', system-ui, sans-serif; font-size: 1.5rem; font-weight: 600; color: #ebebed; margin-bottom: 8px; line-height: 1.3; letter-spacing: -0.02em; } .ds-card-body { font-family: 'Poppins', system-ui, sans-serif; font-size: 1rem; font-weight: 400; color: rgba(235,235,237,0.55); line-height: 1.6; }"
+    },
+    {
+      "name": "Animated CTA",
+      "kind": "custom",
+      "refersTo": "button-primary",
+      "description": "Signature pill CTA with animated SVG border beam and directional arrow swap. Three variants: light (dark bg), dark (light bg), gradient (Abismo bg).",
+      "html": "<div class=\"ds-animated-cta\" data-animated-cta><svg aria-hidden=\"true\" class=\"ds-animated-cta-svg\" viewBox=\"0 0 300 56\" preserveAspectRatio=\"none\"><rect x=\"1\" y=\"1\" width=\"298\" height=\"54\" rx=\"27\" fill=\"none\" stroke=\"#15b7fe\" stroke-width=\"1.5\" class=\"ds-cta-border\"/></svg><a href=\"#\" class=\"ds-animated-cta-inner\"><span class=\"ds-cta-arrow ds-cta-arrow-left\" aria-hidden=\"true\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\"><path d=\"M12 7H2M5.5 3.5 2 7l3.5 3.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span><span class=\"ds-cta-label\">Ver a plataforma em ação</span><span class=\"ds-cta-arrow ds-cta-arrow-right\" aria-hidden=\"true\"><svg width=\"14\" height=\"14\" viewBox=\"0 0 14 14\" fill=\"none\"><path d=\"M2 7h10M8.5 3.5 12 7l-3.5 3.5\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span></a></div>",
+      "css": ".ds-animated-cta { position: relative; display: inline-flex; border-radius: 9999px; padding: 4px; border: 1px solid rgba(21,183,254,0.22); } .ds-animated-cta-svg { pointer-events: none; position: absolute; inset: 0; height: 100%; width: 100%; } @keyframes ds-cta-beam { from { stroke-dashoffset: 150; } to { stroke-dashoffset: -350; } } .ds-cta-border { stroke-dasharray: 150 350; stroke-dashoffset: 150; animation: ds-cta-beam 1.5s linear infinite; } .ds-animated-cta-inner { position: relative; z-index: 1; display: grid; grid-template-columns: 40px auto 40px; align-items: center; border-radius: 9999px; overflow: hidden; height: 44px; padding: 0 8px; background: #0c0a3b; text-decoration: none; } .ds-cta-arrow { width: 40px; height: 40px; display: grid; place-items: center; border-radius: 9999px; flex-shrink: 0; background: rgba(21,183,254,0.14); border: 1px solid rgba(21,183,254,0.28); color: #ebebed; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.3s ease; } .ds-cta-arrow-left { transform: scale(0); opacity: 0; } .ds-cta-label { text-align: center; font-family: 'Poppins', system-ui, sans-serif; font-size: 0.875rem; font-weight: 600; letter-spacing: 0.05em; white-space: nowrap; padding: 0 12px; color: #ebebed; } [data-animated-cta]:hover .ds-cta-arrow-left { transform: scale(1); opacity: 1; } [data-animated-cta]:hover .ds-cta-arrow-right { transform: scale(0); opacity: 0; } @media (prefers-reduced-motion: reduce) { .ds-cta-border { animation: none; } .ds-cta-arrow { transition: none; } }"
+    },
+    {
+      "name": "Header Pill (Scrolled)",
+      "kind": "nav",
+      "refersTo": "button-secondary",
+      "description": "The floating navigation pill that appears after 40px of scroll. Glassmorphism used purposefully — the one sanctioned exception.",
+      "html": "<nav class=\"ds-header-pill\"><span class=\"ds-header-logo\">InBot</span><a href=\"#\" class=\"ds-header-login\">Entrar</a></nav>",
+      "css": ".ds-header-pill { position: fixed; top: 16px; left: 50%; transform: translateX(-50%); z-index: 50; display: flex; align-items: center; justify-content: space-between; max-width: 1180px; width: calc(100% - 32px); padding: 12px 24px; border-radius: 9999px; background: rgba(12,10,59,0.82); backdrop-filter: blur(20px); border: 1px solid rgba(21,183,254,0.12); box-shadow: 0 4px 16px rgba(0,0,0,0.4); } .ds-header-logo { font-family: 'Poppins', system-ui, sans-serif; font-weight: 700; font-size: 1rem; color: #ebebed; } .ds-header-login { display: inline-flex; align-items: center; padding: 6px 16px; border-radius: 9999px; border: 1px solid rgba(21,183,254,0.35); color: #ebebed; font-family: 'Poppins', system-ui, sans-serif; font-size: 0.875rem; font-weight: 500; text-decoration: none; transition: border-color 200ms ease, background-color 200ms ease; } .ds-header-login:hover { border-color: #15b7fe; background: rgba(21,183,254,0.08); } .ds-header-login:focus-visible { outline: 2px solid #15b7fe; outline-offset: 3px; border-radius: 9999px; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Control Room",
+    "overview": "The InBot design system is built for operators, not spectators. Every surface, every interaction, and every typographic choice is an instrument: legible under pressure, precise by default, and purposeful in what it reveals. The visual language communicates infrastructure — not as a metaphor, but as a material fact. There are no decorative elements that don't earn their place.\n\nThe palette lives deep in the spectrum: near-black indigo foundations with electric signal accents that communicate activity, not decoration. The typography is authoritative, with tight tracking on display sizes that reads like a system dashboard, not a marketing page. Motion exists to confirm state changes and guide attention, never to entertain.\n\nWhat this system explicitly rejects: generic SaaS cream-and-teal templates, chatbot UI with balloon animations and mascots, stock-photo hero sections with smiling professionals, hero-metric layouts with big numbers on gradient backgrounds, and the performative complexity of glassmorphism used as visual filler.",
+    "keyCharacteristics": [
+      "Dark-primary: the default reading environment is deep navy, not white",
+      "Instrument precision: every interactive element behaves predictably and confirms its state",
+      "Controlled accent: Operator Blue and Live Signal appear purposefully, not as decoration",
+      "Tonal depth: surfaces layer from dark to lighter, creating hierarchy without shadow overhead",
+      "Motion discipline: animations exist only in orbital diagrams, SVG beams, and entrance reveals"
+    ],
+    "rules": [
+      { "name": "The Gradient Rule", "body": "The primary gradient (Operator Blue → Live Signal, 135°) is reserved for primary CTA elements and the hero background. Never on text except MetricCard values.", "section": "colors" },
+      { "name": "The Signal Economy Rule", "body": "Live Signal (#15b7fe) appears in ≤ 3 roles per screen. When it appears everywhere, it loses its signal value. Rarity is the point.", "section": "colors" },
+      { "name": "The One Sentence Rule", "body": "If a headline runs to three lines, rewrite it. If a body paragraph runs past 65ch, wrap it. Typography is infrastructure: it routes attention, not prose.", "section": "typography" },
+      { "name": "The Flat-By-Default Rule", "body": "Surfaces are flat at rest. Glows appear only as a response to hover, active state, or diagram animation. A card that glows at rest has no hover state to reveal.", "section": "elevation" }
+    ],
+    "dos": [
+      "Do use void-midnight (#0c0a3b) as the default dark surface. Never pure black.",
+      "Do alternate dark and light sections to create scroll rhythm.",
+      "Do use Live Signal (#15b7fe) sparingly: active borders, focus rings, hover glows.",
+      "Do keep display headlines at 8-10 words maximum.",
+      "Do use tonal layering before reaching for shadows.",
+      "Do respect prefers-reduced-motion on every animation.",
+      "Do give all focusable elements a 2px Live Signal outline with 3px offset.",
+      "Do lead with the consequence, not the feature.",
+      "Do use the gradient on primary buttons only — one gradient anchor per screen."
+    ],
+    "donts": [
+      "Don't use chatbot UI clichés: animated speech bubbles, smiling robot mascots.",
+      "Don't use generic SaaS landing templates: cream backgrounds, hero-metric layouts.",
+      "Don't use side-stripe borders (border-left > 1px as a colored accent). Prohibited.",
+      "Don't use gradient text on body copy, headlines, or labels.",
+      "Don't use glassmorphism decoratively — only the floating header pill is sanctioned.",
+      "Don't use identical card grids: same icon-plus-title-plus-text repeated uniformly.",
+      "Don't use bank-photo aesthetics: smiling people at laptops, stock office imagery.",
+      "Don't use buzzwords without evidence: revolutionary, disruptive, transformational.",
+      "Don't animate layout properties (width, height, margin, padding).",
+      "Don't use bounce or elastic easing. Exponential ease-out only.",
+      "Don't open modals as the first response to a user action."
+    ]
+  }
+}
