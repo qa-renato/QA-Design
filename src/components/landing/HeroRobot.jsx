@@ -1,15 +1,20 @@
 // HeroRobot — avatar SVG inline, zero dependências externas
 // Visual: esfera gradiente Aurora→Abismo, visor Nebulosa, orbit ring com beam
 // Motion: float CSS + orbit beam CSS, entrance com delay 0.72s
-// Oculto em mobile (<md); tamanho controlado em tablet e desktop
+// wrapperClassName controla visibilidade/display — default: hidden md:flex
+// size: 'default' (220/260px) | 'large' (300/360px)
 
-export function HeroRobot() {
+export function HeroRobot({ wrapperClassName = 'hidden md:flex', size = 'default' }) {
+  const sizeClass = size === 'large'
+    ? 'w-[300px] xl:w-[360px]'
+    : 'w-[220px] lg:w-[260px]'
+
   return (
     <div
-      className="hidden md:flex justify-center items-center inbot-robot-appear"
+      className={`${wrapperClassName} justify-center items-center inbot-robot-appear`}
       aria-hidden="true"
     >
-      <div className="relative w-[220px] lg:w-[260px] inbot-robot-float">
+      <div className={`relative ${sizeClass} inbot-robot-float`}>
         <svg
           viewBox="0 0 200 200"
           xmlns="http://www.w3.org/2000/svg"
