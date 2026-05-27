@@ -1,0 +1,347 @@
+- generic:
+  - generic:
+    - list
+    - region "Notifications alt+T"
+    - generic:
+      - generic:
+        - generic:
+          - banner:
+            - generic:
+              - button:
+                - img
+                - generic: Aurora
+                - img
+            - generic:
+              - img
+            - generic:
+              - button:
+                - img
+                - generic: Toggle theme
+      - generic:
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - button:
+                      - img
+                      - generic: Toggle sidebar
+                - generic:
+                  - generic:
+                    - generic: Menu
+                    - generic:
+                      - list:
+                        - listitem:
+                          - link:
+                            - /url: /
+                            - img
+                            - generic: Home
+                  - generic:
+                    - generic: Dashboards
+                    - generic:
+                      - list:
+                        - listitem:
+                          - link:
+                            - /url: /adesao
+                            - img
+                            - generic: Resumo de Adesão
+                        - listitem:
+                          - link:
+                            - /url: /metricas-ia
+                            - img
+                            - generic: Métricas da IA
+                  - generic:
+                    - generic: Colaboradores
+                    - generic:
+                      - list:
+                        - listitem:
+                          - link:
+                            - /url: /colaboradores
+                            - img
+                            - generic: Gestão de Colaboradores
+                        - listitem:
+                          - link:
+                            - /url: /pedidos
+                            - img
+                            - generic: Pedidos de Protocolo
+                  - generic:
+                    - generic: Sistema
+                    - generic:
+                      - list:
+                        - listitem:
+                          - link:
+                            - /url: /auditoria
+                            - img
+                            - generic: Auditoria
+                        - listitem:
+                          - link:
+                            - /url: /configuracoes
+                            - img
+                            - generic: Configurações
+                - generic:
+                  - generic:
+                    - list:
+                      - generic:
+                        - generic:
+                          - generic: U
+                          - generic:
+                            - paragraph: User
+                          - button:
+                            - img
+        - generic:
+          - generic:
+            - generic:
+              - generic:
+                - generic:
+                  - banner:
+                    - generic:
+                      - navigation:
+                        - list:
+                          - listitem:
+                            - link [disabled]: Gestão de Colaboradores
+                - button:
+                  - img
+                  - text: Adicionar
+              - generic:
+                - generic:
+                  - switch [checked]
+                  - generic: Mostrar Inativos
+                - combobox:
+                  - generic: Financeiro
+                  - img
+                - generic:
+                  - img
+                  - textbox:
+                    - /placeholder: Buscar por nome, e-mail ou CPF...
+          - main:
+            - generic:
+              - generic:
+                - generic:
+                  - generic:
+                    - table:
+                      - rowgroup:
+                        - row:
+                          - columnheader:
+                            - generic:
+                              - text: Nome
+                              - generic:
+                                - img
+                                - img
+                          - columnheader:
+                            - generic: CPF
+                          - columnheader:
+                            - generic:
+                              - text: E-mail
+                              - generic:
+                                - img
+                                - img
+                          - columnheader:
+                            - generic:
+                              - text: Departamento
+                              - generic:
+                                - img
+                                - img
+                          - columnheader:
+                            - generic:
+                              - text: Cargo
+                              - generic:
+                                - img
+                                - img
+                          - columnheader:
+                            - generic:
+                              - text: Status
+                              - generic:
+                                - img
+                                - img
+                          - columnheader:
+                            - generic: Ações
+                      - rowgroup:
+                        - row:
+                          - cell: TESTEZAO DA SILVA SANTOS TESTE...
+                          - cell: 123.456.789-00
+                          - cell: ana.ferreira@aurora-demoo.com....
+                          - cell: Financeiro
+                          - cell: Analista Pleno
+                          - cell:
+                            - button
+                          - cell:
+                            - generic:
+                              - button:
+                                - img
+                        - row:
+                          - cell: Carla Menezes Oliveira
+                          - cell: 345.678.901-22
+                          - cell: carla.oliveira@aurora-demo.com...
+                          - cell: Financeiro
+                          - cell: Analista Júnior
+                          - cell:
+                            - button
+                          - cell:
+                            - generic:
+                              - button:
+                                - img
+                        - row:
+                          - cell: Felipe Rocha Alves
+                          - cell: 678.901.234-55
+                          - cell: felipe.alves@aurora-demo.com.b...
+                          - cell: Financeiro
+                          - cell: Analista Júnior
+                          - cell:
+                            - button
+                          - cell:
+                            - generic:
+                              - button:
+                                - img
+                        - row:
+                          - cell: Isabella Moura Cardoso
+                          - cell: 901.234.567-88
+                          - cell: isabella.cardoso@aurora-demo.c...
+                          - cell: Financeiro
+                          - cell: Controler
+                          - cell:
+                            - button
+                          - cell:
+                            - generic:
+                              - button:
+                                - img
+                        - row:
+                          - cell: Paulo Sergio Machado
+                          - cell: 666.777.888-99
+                          - cell: paulo.machado@aurora-demo.com....
+                          - cell: Financeiro
+                          - cell: CFO
+                          - cell:
+                            - button
+                          - cell:
+                            - generic:
+                              - button:
+                                - img
+                        - row:
+                          - cell: Maria Aparecida
+                          - cell: 321.654.987-00
+                          - cell: maria.aparecida@empresa.com.br
+                          - cell: Financeiro
+                          - cell: Analista Sênior
+                          - cell:
+                            - button
+                          - cell:
+                            - generic:
+                              - button:
+                                - img
+                        - row:
+                          - cell: Carlos Silva
+                          - cell: 111.222.333-96
+                          - cell: carlos@teste.com
+                          - cell: Financeiro
+                          - cell: Analista Pleno
+                          - cell:
+                            - button
+                          - cell:
+                            - generic:
+                              - button:
+                                - img
+                        - row:
+                          - cell: Roberto Mendes Silva
+                          - cell: 374.916.852-39
+                          - cell: roberto.silva@empresa.com
+                          - cell: Financeiro
+                          - cell: Coordenador
+                          - cell:
+                            - button
+                          - cell:
+                            - generic:
+                              - button:
+                                - img
+                        - row:
+                          - cell: Roberto Mendes Silva
+                          - cell: 751.349.862-38
+                          - cell: roberto.silva2@empresa.com
+                          - cell: Financeiro
+                          - cell: Coordenador
+                          - cell:
+                            - button
+                          - cell:
+                            - generic:
+                              - button:
+                                - img
+                - generic:
+                  - generic:
+                    - generic: Mostrando 1-9 de 9 itens
+                    - combobox:
+                      - generic: 10 itens
+                      - img
+                  - generic:
+                    - button [disabled]:
+                      - img
+                      - text: Anterior
+                    - button [disabled]:
+                      - text: Próxima
+                      - img
+  - dialog "Editar Colaborador" [active] [ref=e406]:
+    - generic [ref=e407]:
+      - heading "Editar Colaborador" [level=2] [ref=e409]
+      - generic [ref=e411]:
+        - generic [ref=e412]:
+          - paragraph [ref=e413]: Informações Obrigatórias
+          - generic [ref=e414]:
+            - generic [ref=e415]:
+              - text: Nome Completo *
+              - textbox "Nome Completo *" [ref=e416]: Carla Menezes Oliveira
+            - generic [ref=e417]:
+              - text: CPF *
+              - textbox "CPF *" [ref=e418]:
+                - /placeholder: 000.000.000-00
+                - text: 345.678.901-22
+            - generic [ref=e419]:
+              - text: E-mail *
+              - textbox "E-mail *" [ref=e420]: carla.oliveira@aurora-demo.com.br
+            - generic [ref=e421]:
+              - text: Data de Nascimento *
+              - textbox "Data de Nascimento *" [ref=e422]:
+                - /placeholder: dd/mm/aaaa
+                - text: 07/08/1993
+            - generic [ref=e423]:
+              - text: Área de Trabalho (Depto) *
+              - combobox "Área de Trabalho (Depto) *" [ref=e424] [cursor=pointer]:
+                - generic: Financeiro
+                - img [ref=e425]
+              - combobox [ref=e427]
+            - generic [ref=e428]:
+              - text: Ocupação (Cargo) *
+              - combobox "Ocupação (Cargo) *" [ref=e429] [cursor=pointer]:
+                - generic: Analista Júnior
+                - img [ref=e430]
+              - combobox [ref=e432]
+        - generic [ref=e433]:
+          - paragraph [ref=e434]: Informações Opcionais
+          - generic [ref=e435]:
+            - generic [ref=e436]:
+              - text: Telefone
+              - textbox "Telefone" [ref=e437]:
+                - /placeholder: (00) 00000-0000
+                - text: PORQUE ESSE CAMPO ACEITA LETRA?????????
+            - generic [ref=e438]:
+              - text: Gênero
+              - combobox [ref=e439] [cursor=pointer]:
+                - generic: Feminino
+                - img [ref=e440]
+              - combobox [ref=e442]
+            - generic [ref=e443]:
+              - text: Estado Civil
+              - combobox [ref=e444] [cursor=pointer]:
+                - generic: Selecione...
+                - img [ref=e445]
+              - combobox [ref=e447]
+            - generic [ref=e448]:
+              - text: Escolaridade
+              - combobox [ref=e449] [cursor=pointer]:
+                - generic: Selecione...
+                - img [ref=e450]
+              - combobox [ref=e452]
+      - generic [ref=e454]:
+        - button "Cancelar" [ref=e455] [cursor=pointer]
+        - button "Salvar" [ref=e456] [cursor=pointer]
+      - button "Close" [ref=e457] [cursor=pointer]:
+        - img [ref=e458]
+        - generic [ref=e461]: Close

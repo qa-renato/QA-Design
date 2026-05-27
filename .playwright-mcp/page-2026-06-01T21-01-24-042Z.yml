@@ -1,0 +1,30 @@
+- generic [ref=e1]:
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - img "Imagem do plano de fundo da organização" [ref=e2]
+          - generic [ref=e3]:
+            - generic [ref=e11]:
+              - img "Microsoft" [ref=e13]
+              - main [ref=e14]:
+                - generic [ref=e15]:
+                  - generic "renato.paulino@inbot.com.br" [ref=e19]
+                  - generic [ref=e21]:
+                    - heading "Aprovar solicitação de entradas" [level=1] [ref=e22]
+                    - generic [ref=e25]: Abra o aplicativo Authenticator e aprove a solicitação. Insira o número, se solicitado.
+                    - generic "Abra o aplicativo Authenticator e aprove a solicitação. Insira o número, se solicitado. 38" [active] [ref=e29]: "38"
+                    - generic [ref=e31]: Não recebeu uma solicitação de entrada? Deslize para baixo para atualizar o conteúdo do seu aplicativo.
+                    - generic [ref=e36]:
+                      - link "Não consigo usar meu aplicativo Microsoft Authenticator agora" [ref=e38] [cursor=pointer]:
+                        - /url: "#"
+                      - link "Mais informações sobre a verificação em duas etapas" [ref=e40] [cursor=pointer]:
+                        - /url: https://go.microsoft.com/fwlink/p/?LinkId=708614
+                        - text: Mais informações
+            - contentinfo [ref=e41]:
+              - generic [ref=e42]:
+                - link "Termos de uso" [ref=e43] [cursor=pointer]:
+                  - /url: https://www.microsoft.com/pt-BR/servicesagreement/
+                - link "Privacidade e cookies" [ref=e44] [cursor=pointer]:
+                  - /url: https://privacy.microsoft.com/pt-BR/privacystatement
+                - button "Clique aqui para obter informações sobre solução de problemas" [ref=e45] [cursor=pointer]: ...

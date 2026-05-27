@@ -1,0 +1,215 @@
+- generic [ref=e2]:
+  - region "Notifications (F8)":
+    - list
+  - region "Notifications alt+T"
+  - generic [ref=e3]:
+    - banner [ref=e6]:
+      - button "Aurora" [ref=e8] [cursor=pointer]:
+        - img
+        - generic [ref=e9]: Aurora
+        - img
+      - img [ref=e11]
+      - button "Toggle theme" [ref=e16] [cursor=pointer]:
+        - img
+        - generic [ref=e17]: Toggle theme
+    - generic [ref=e18]:
+      - generic [ref=e23]:
+        - button "Toggle sidebar" [ref=e26] [cursor=pointer]:
+          - img
+          - generic [ref=e27]: Toggle sidebar
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - generic [ref=e30]: Menu
+            - list [ref=e32]:
+              - listitem [ref=e33]:
+                - link "Home" [ref=e34] [cursor=pointer]:
+                  - /url: /
+                  - img [ref=e35]
+                  - generic [ref=e38]: Home
+          - generic [ref=e39]:
+            - generic [ref=e40]: Dashboards
+            - list [ref=e42]:
+              - listitem [ref=e43]:
+                - link "Resumo de Adesão" [ref=e44] [cursor=pointer]:
+                  - /url: /adesao
+                  - img [ref=e45]
+                  - generic [ref=e49]: Resumo de Adesão
+              - listitem [ref=e50]:
+                - link "Métricas da IA" [ref=e51] [cursor=pointer]:
+                  - /url: /metricas-ia
+                  - img [ref=e52]
+                  - generic [ref=e55]: Métricas da IA
+          - generic [ref=e56]:
+            - generic [ref=e57]: Colaboradores
+            - list [ref=e59]:
+              - listitem [ref=e60]:
+                - link "Gestão de Colaboradores" [ref=e61] [cursor=pointer]:
+                  - /url: /colaboradores
+                  - img [ref=e62]
+                  - generic [ref=e67]: Gestão de Colaboradores
+              - listitem [ref=e68]:
+                - link "Pedidos de Protocolo" [ref=e69] [cursor=pointer]:
+                  - /url: /pedidos
+                  - img [ref=e70]
+                  - generic [ref=e73]: Pedidos de Protocolo
+          - generic [ref=e74]:
+            - generic [ref=e75]: Sistema
+            - list [ref=e77]:
+              - listitem [ref=e78]:
+                - link "Auditoria" [ref=e79] [cursor=pointer]:
+                  - /url: /auditoria
+                  - img [ref=e80]
+                  - generic [ref=e83]: Auditoria
+              - listitem [ref=e84]:
+                - link "Configurações" [ref=e85] [cursor=pointer]:
+                  - /url: /configuracoes
+                  - img [ref=e86]
+                  - generic [ref=e89]: Configurações
+        - list [ref=e92]:
+          - generic [ref=e94]:
+            - generic [ref=e95]: U
+            - generic [ref=e96]:
+              - paragraph [ref=e97]: User
+              - paragraph
+            - button [ref=e98] [cursor=pointer]:
+              - img
+      - generic [ref=e99]:
+        - generic [ref=e101]:
+          - generic [ref=e102]:
+            - banner [ref=e104]:
+              - navigation "breadcrumb" [ref=e106]:
+                - list [ref=e107]:
+                  - listitem [ref=e108]:
+                    - link "Gestão de Colaboradores" [disabled] [ref=e109]
+            - button "Adicionar" [disabled]:
+              - img
+              - text: Adicionar
+          - generic [ref=e110]:
+            - generic [ref=e111]:
+              - switch "Mostrar Inativos" [ref=e112] [cursor=pointer]
+              - generic [ref=e113] [cursor=pointer]: Mostrar Inativos
+            - combobox [ref=e114] [cursor=pointer]:
+              - generic: Todos os departamentos
+              - img [ref=e115]
+            - generic [ref=e117]:
+              - img [ref=e118]
+              - textbox "Buscar por nome, e-mail ou CPF..." [ref=e121]
+        - main [ref=e122]:
+          - table [ref=e127]:
+            - rowgroup [ref=e128]:
+              - row "Nome CPF E-mail Departamento Cargo Status Ações" [ref=e129]:
+                - columnheader "Nome" [ref=e130] [cursor=pointer]:
+                  - generic [ref=e131]:
+                    - text: Nome
+                    - generic [ref=e132]:
+                      - img [ref=e133]
+                      - img [ref=e135]
+                - columnheader "CPF" [ref=e137]:
+                  - generic [ref=e138]: CPF
+                - columnheader "E-mail" [ref=e139] [cursor=pointer]:
+                  - generic [ref=e140]:
+                    - text: E-mail
+                    - generic [ref=e141]:
+                      - img [ref=e142]
+                      - img [ref=e144]
+                - columnheader "Departamento" [ref=e146] [cursor=pointer]:
+                  - generic [ref=e147]:
+                    - text: Departamento
+                    - generic [ref=e148]:
+                      - img [ref=e149]
+                      - img [ref=e151]
+                - columnheader "Cargo" [ref=e153] [cursor=pointer]:
+                  - generic [ref=e154]:
+                    - text: Cargo
+                    - generic [ref=e155]:
+                      - img [ref=e156]
+                      - img [ref=e158]
+                - columnheader "Status" [ref=e160] [cursor=pointer]:
+                  - generic [ref=e161]:
+                    - text: Status
+                    - generic [ref=e162]:
+                      - img [ref=e163]
+                      - img [ref=e165]
+                - columnheader "Ações" [ref=e167]:
+                  - generic [ref=e168]: Ações
+            - rowgroup [ref=e169]:
+              - row [ref=e170]:
+                - cell [ref=e171]
+                - cell [ref=e173]
+                - cell [ref=e175]
+                - cell [ref=e177]
+                - cell [ref=e179]
+                - cell [ref=e181]
+                - cell [ref=e183]
+              - row [ref=e185]:
+                - cell [ref=e186]
+                - cell [ref=e188]
+                - cell [ref=e190]
+                - cell [ref=e192]
+                - cell [ref=e194]
+                - cell [ref=e196]
+                - cell [ref=e198]
+              - row [ref=e200]:
+                - cell [ref=e201]
+                - cell [ref=e203]
+                - cell [ref=e205]
+                - cell [ref=e207]
+                - cell [ref=e209]
+                - cell [ref=e211]
+                - cell [ref=e213]
+              - row [ref=e215]:
+                - cell [ref=e216]
+                - cell [ref=e218]
+                - cell [ref=e220]
+                - cell [ref=e222]
+                - cell [ref=e224]
+                - cell [ref=e226]
+                - cell [ref=e228]
+              - row [ref=e230]:
+                - cell [ref=e231]
+                - cell [ref=e233]
+                - cell [ref=e235]
+                - cell [ref=e237]
+                - cell [ref=e239]
+                - cell [ref=e241]
+                - cell [ref=e243]
+              - row [ref=e245]:
+                - cell [ref=e246]
+                - cell [ref=e248]
+                - cell [ref=e250]
+                - cell [ref=e252]
+                - cell [ref=e254]
+                - cell [ref=e256]
+                - cell [ref=e258]
+              - row [ref=e260]:
+                - cell [ref=e261]
+                - cell [ref=e263]
+                - cell [ref=e265]
+                - cell [ref=e267]
+                - cell [ref=e269]
+                - cell [ref=e271]
+                - cell [ref=e273]
+              - row [ref=e275]:
+                - cell [ref=e276]
+                - cell [ref=e278]
+                - cell [ref=e280]
+                - cell [ref=e282]
+                - cell [ref=e284]
+                - cell [ref=e286]
+                - cell [ref=e288]
+              - row [ref=e290]:
+                - cell [ref=e291]
+                - cell [ref=e293]
+                - cell [ref=e295]
+                - cell [ref=e297]
+                - cell [ref=e299]
+                - cell [ref=e301]
+                - cell [ref=e303]
+              - row [ref=e305]:
+                - cell [ref=e306]
+                - cell [ref=e308]
+                - cell [ref=e310]
+                - cell [ref=e312]
+                - cell [ref=e314]
+                - cell [ref=e316]
+                - cell [ref=e318]

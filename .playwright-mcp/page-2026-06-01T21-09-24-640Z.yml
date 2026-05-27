@@ -1,0 +1,322 @@
+- generic [active] [ref=e1]:
+  - link "Skip to content":
+    - /url: "#geist-skip-nav"
+  - main [ref=e3]:
+    - generic [ref=e4]:
+      - generic [ref=e5]:
+        - generic [ref=e6]:
+          - generic [ref=e9]:
+            - link "Renato's projects Hobby" [ref=e10] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951
+              - img [ref=e11]
+              - generic [ref=e12]:
+                - generic [ref=e13]: Renato's projects
+                - generic [ref=e15]: Hobby
+            - button [ref=e16] [cursor=pointer]:
+              - img [ref=e18]
+          - button "Find… F" [ref=e21]:
+            - generic [ref=e23]:
+              - img [ref=e25]
+              - generic [ref=e27]: Find…
+              - generic [ref=e29]: F
+        - navigation [ref=e31]:
+          - generic [ref=e34]:
+            - link "Projects" [ref=e35] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951
+              - img [ref=e37]
+              - generic [ref=e40]: Projects
+            - link "Deployments" [ref=e41] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/deployments
+              - img [ref=e43]
+              - generic [ref=e46]: Deployments
+            - link "Logs" [ref=e47] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/logs
+              - img [ref=e49]
+              - generic [ref=e52]: Logs
+            - link "Analytics" [ref=e53] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/analytics
+              - img [ref=e55]
+              - generic [ref=e58]: Analytics
+            - link "Speed Insights" [ref=e59] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/speed-insights
+              - img [ref=e61]
+              - generic [ref=e64]: Speed Insights
+            - link "Observability" [ref=e65] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/observability
+              - img [ref=e67]
+              - generic [ref=e70]: Observability
+              - img [ref=e72]
+            - link "Firewall" [ref=e74] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/firewall
+              - img [ref=e76]
+              - generic [ref=e80]: Firewall
+            - link "CDN" [ref=e81] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/cdn
+              - img [ref=e83]
+              - generic [ref=e86]: CDN
+            - separator [ref=e87]
+            - link "Environment Variables" [ref=e88] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/settings/environment-variables
+              - img [ref=e90]
+              - generic [ref=e93]: Environment Variables
+            - link "Domains" [ref=e94] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/domains
+              - img [ref=e96]
+              - generic [ref=e99]: Domains
+            - link "Integrations" [ref=e100] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/integrations
+              - img [ref=e102]
+              - generic [ref=e105]: Integrations
+            - link "Storage" [ref=e106] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/stores
+              - img [ref=e108]
+              - generic [ref=e111]: Storage
+            - link "Flags" [ref=e112] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/experimentation/collections
+              - img [ref=e114]
+              - generic [ref=e117]: Flags
+            - link "Agent" [ref=e118] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/agent
+              - img [ref=e120]
+              - generic [ref=e123]: Agent
+              - img [ref=e125]
+            - link "AI Gateway" [ref=e127] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/ai-gateway
+              - img [ref=e129]
+              - generic [ref=e132]: AI Gateway
+              - img [ref=e134]
+            - link "Sandboxes" [ref=e136] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/sandboxes
+              - img [ref=e138]
+              - generic [ref=e141]: Sandboxes
+            - link "Workflows" [ref=e142] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/workflows
+              - img [ref=e144]
+              - generic [ref=e147]: Workflows
+            - separator [ref=e148]
+            - link "Usage" [ref=e149] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/usage
+              - img [ref=e151]
+              - generic [ref=e154]: Usage
+            - link "Support" [ref=e155] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/support
+              - img [ref=e157]
+              - generic [ref=e160]: Support
+            - link "Settings" [ref=e161] [cursor=pointer]:
+              - /url: /renatos-projects-790a8951/~/settings
+              - img [ref=e163]
+              - generic [ref=e166]: Settings
+              - img [ref=e168]
+        - generic [ref=e172]:
+          - generic [ref=e173]:
+            - generic [ref=e174]:
+              - generic [ref=e177]:
+                - generic [ref=e178]: Ship
+                - generic [ref=e180]: "26"
+              - button "Dismiss" [ref=e181] [cursor=pointer]:
+                - img [ref=e183]
+            - generic [ref=e185]:
+              - generic [ref=e186]: Coming to five cities worldwide.
+              - button "Get your ticket" [ref=e188] [cursor=pointer]:
+                - generic [ref=e189]: Get your ticket
+          - generic [ref=e191]:
+            - button "Avatar for renatopaulino-1902 Renato" [ref=e192] [cursor=pointer]:
+              - img "Avatar for renatopaulino-1902" [ref=e193]:
+                - img "Avatar for renatopaulino-1902" [ref=e194]
+              - generic [ref=e196]: Renato
+              - img [ref=e198]
+            - img [ref=e202]
+      - button [ref=e205] [cursor=pointer]:
+        - img [ref=e206]
+    - generic [ref=e209]:
+      - generic [ref=e210]:
+        - button "All projects" [ref=e214] [cursor=pointer]:
+          - generic [ref=e215]: All projects
+          - img [ref=e217]
+        - generic [ref=e221]: Overview
+        - button "Open page actions menu" [ref=e223] [cursor=pointer]:
+          - img [ref=e225]
+      - generic [ref=e230]:
+        - generic [ref=e232]:
+          - generic [ref=e233]:
+            - searchbox "Search" [ref=e234]
+            - img [ref=e236]
+          - button "Filter and Sort Projects" [ref=e238] [cursor=pointer]:
+            - img [ref=e240]
+          - button "Add New..." [ref=e242] [cursor=pointer]:
+            - generic [ref=e243]: Add New...
+            - img [ref=e245]
+        - generic [ref=e247]:
+          - generic [ref=e250]:
+            - generic [ref=e251]:
+              - link "Usage" [ref=e253] [cursor=pointer]:
+                - /url: /renatos-projects-790a8951/~/usage
+              - generic [ref=e254]:
+                - generic [ref=e255]:
+                  - link "Last 30 days" [ref=e257] [cursor=pointer]:
+                    - /url: /renatos-projects-790a8951/~/usage
+                  - button "Upgrade" [ref=e258] [cursor=pointer]:
+                    - generic [ref=e259]: Upgrade
+                - list [ref=e260]:
+                  - listitem [ref=e261]:
+                    - link "0 Fast Data Transfer 0 / 100 GB 1 TB" [ref=e262] [cursor=pointer]:
+                      - /url: /renatos-projects-790a8951/~/usage/networking-fast-data-transfer
+                      - progressbar [ref=e263]:
+                        - img [ref=e264]
+                      - generic [ref=e267]:
+                        - generic [ref=e268]: Fast Data Transfer
+                        - img [ref=e271]
+                      - generic [ref=e274]:
+                        - text: 0 /
+                        - generic [ref=e275]: 100 GB
+                      - generic: 1 TB
+                  - listitem [ref=e276]:
+                    - link "0 Fast Origin Transfer 0 / 10 GB 100 GB" [ref=e277] [cursor=pointer]:
+                      - /url: /renatos-projects-790a8951/~/usage/networking-fast-origin-transfer
+                      - progressbar [ref=e278]:
+                        - img [ref=e279]
+                      - generic [ref=e282]:
+                        - generic [ref=e283]: Fast Origin Transfer
+                        - img [ref=e286]
+                      - generic [ref=e289]:
+                        - text: 0 /
+                        - generic [ref=e290]: 10 GB
+                      - generic: 100 GB
+                  - listitem [ref=e291]:
+                    - link "0 Edge Requests 0 / 1M 10M" [ref=e292] [cursor=pointer]:
+                      - /url: /renatos-projects-790a8951/~/usage/networking-edge-requests
+                      - progressbar [ref=e293]:
+                        - img [ref=e294]
+                      - generic [ref=e297]:
+                        - generic [ref=e298]: Edge Requests
+                        - img [ref=e301]
+                      - generic [ref=e304]:
+                        - text: 0 /
+                        - generic [ref=e305]: 1M
+                      - generic: 10M
+                  - listitem [ref=e306]:
+                    - link "0 Edge Request CPU Duration 0 / 1h" [ref=e307] [cursor=pointer]:
+                      - /url: /renatos-projects-790a8951/~/usage/networking-edge-request-cpu-duration
+                      - progressbar [ref=e308]:
+                        - img [ref=e309]
+                      - generic [ref=e312]:
+                        - generic [ref=e313]: Edge Request CPU Duration
+                        - img [ref=e316]
+                      - generic [ref=e319]: 0 / 1h
+                  - listitem [ref=e320]:
+                    - link "0 Microfrontends Routing 0 / 50K" [ref=e321] [cursor=pointer]:
+                      - /url: /renatos-projects-790a8951/~/usage/networking-microfrontends-routing
+                      - progressbar [ref=e322]:
+                        - img [ref=e323]
+                      - generic [ref=e326]:
+                        - generic [ref=e327]: Microfrontends Routing
+                        - img [ref=e330]
+                      - generic [ref=e333]: 0 / 50K
+                  - listitem [ref=e334]:
+                    - link "0 ISR Reads 0 / 1M 10M" [ref=e335] [cursor=pointer]:
+                      - /url: /renatos-projects-790a8951/~/usage/isr-reads
+                      - progressbar [ref=e336]:
+                        - img [ref=e337]
+                      - generic [ref=e340]:
+                        - generic [ref=e341]: ISR Reads
+                        - img [ref=e344]
+                      - generic [ref=e347]:
+                        - text: 0 /
+                        - generic [ref=e348]: 1M
+                      - generic: 10M
+                  - listitem [ref=e349]:
+                    - link "0 ISR Writes 0 / 200K 2M" [ref=e350] [cursor=pointer]:
+                      - /url: /renatos-projects-790a8951/~/usage/isr-writes
+                      - progressbar [ref=e351]:
+                        - img [ref=e352]
+                      - generic [ref=e355]:
+                        - generic [ref=e356]: ISR Writes
+                        - img [ref=e359]
+                      - generic [ref=e362]:
+                        - text: 0 /
+                        - generic [ref=e363]: 200K
+                      - generic: 2M
+                  - listitem [ref=e364]:
+                    - link "0 Function Invocations 0 / 1M" [ref=e365] [cursor=pointer]:
+                      - /url: /renatos-projects-790a8951/~/usage/vercel-functions-invocations
+                      - progressbar [ref=e366]:
+                        - img [ref=e367]
+                      - generic [ref=e370]:
+                        - generic [ref=e371]: Function Invocations
+                        - img [ref=e374]
+                      - generic [ref=e377]: 0 / 1M
+                  - listitem [ref=e378]:
+                    - link "0 Function Duration 0 / 100 GB-Hrs 1,000 GB-Hrs" [ref=e379] [cursor=pointer]:
+                      - /url: /renatos-projects-790a8951/~/usage/vercel-functions-duration
+                      - progressbar [ref=e380]:
+                        - img [ref=e381]
+                      - generic [ref=e384]:
+                        - generic [ref=e385]: Function Duration
+                        - img [ref=e388]
+                      - generic [ref=e391]:
+                        - text: 0 /
+                        - generic [ref=e392]: 100 GB-Hrs
+                      - generic: 1,000 GB-Hrs
+                  - listitem [ref=e393]:
+                    - link "0 Fluid Provisioned Memory 0 / 360 GB-Hrs 1,440 GB-Hrs" [ref=e394] [cursor=pointer]:
+                      - /url: /renatos-projects-790a8951/~/usage/vercel-functions-fluid-duration
+                      - progressbar [ref=e395]:
+                        - img [ref=e396]
+                      - generic [ref=e399]:
+                        - generic [ref=e400]: Fluid Provisioned Memory
+                        - img [ref=e403]
+                      - generic [ref=e406]:
+                        - text: 0 /
+                        - generic [ref=e407]: 360 GB-Hrs
+                      - generic: 1,440 GB-Hrs
+              - button "Show More Usage" [ref=e408] [cursor=pointer]:
+                - img [ref=e410]
+            - generic [ref=e412]:
+              - link "Alerts" [ref=e414] [cursor=pointer]:
+                - /url: /renatos-projects-790a8951/~/observability/alerts
+              - generic [ref=e419]:
+                - generic [ref=e420]:
+                  - generic [ref=e421]: Get alerted for anomalies
+                  - generic [ref=e422]: Automatically monitor your projects for anomalies and get notified.
+                - button "Upgrade to Pro" [ref=e423] [cursor=pointer]:
+                  - generic [ref=e424]: Upgrade to Pro
+            - generic [ref=e425]:
+              - generic [ref=e427]: Recent Previews
+              - list [ref=e428]:
+                - generic [ref=e430]:
+                  - img [ref=e432]
+                  - generic [ref=e435]: Preview deployments that you have recently visited or created will appear here.
+          - generic [ref=e437]:
+            - generic [ref=e439]: Projects
+            - generic [ref=e443]:
+              - img [ref=e445]
+              - generic [ref=e447]:
+                - generic [ref=e448]: Deploy your first project
+                - generic [ref=e449]: Start with one of our templates or create something new.
+              - generic [ref=e451]:
+                - generic [ref=e452]:
+                  - img [ref=e455]
+                  - generic [ref=e457]:
+                    - paragraph [ref=e458]: Import Project
+                    - paragraph [ref=e459]: Add a repo from your git provider
+                - link "Import" [ref=e461] [cursor=pointer]:
+                  - /url: ""
+                  - generic [ref=e462]: Import
+              - generic [ref=e504]:
+                - generic [ref=e505]:
+                  - paragraph [ref=e506]: Browse Templates
+                  - paragraph [ref=e507]: Jumpstart AI projects, ecommerce, and more
+                - generic [ref=e508]:
+                  - generic [ref=e509]:
+                    - img [ref=e511]
+                    - img [ref=e514]
+                    - img [ref=e518]
+                  - link "templates marketplace" [ref=e522] [cursor=pointer]:
+                    - /url: /templates
+                    - img [ref=e524]
+  - alert [ref=e526]
+  - generic:
+    - generic:
+      - generic:
+        - generic:
+          - img

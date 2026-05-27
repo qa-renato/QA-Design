@@ -1,0 +1,27 @@
+- generic [ref=e5]:
+  - img "Imagem do plano de fundo da organização" [ref=e6]
+  - generic [ref=e7]:
+    - generic [ref=e13]:
+      - img "Microsoft" [ref=e54]
+      - main [ref=e17]:
+        - generic [ref=e18]:
+          - generic [ref=e57]:
+            - button "Voltar" [ref=e58] [cursor=pointer]
+            - generic "renato.paulino@inbot.com.br" [ref=e59]
+          - generic [ref=e60]:
+            - textbox [ref=e61]: renato.paulino@inbot.com.br
+            - heading "Insira a senha" [level=1] [ref=e63]
+            - generic [ref=e65]:
+              - alert
+              - textbox "Insira a senha para renato.paulino@inbot.com.br" [active] [ref=e67]:
+                - /placeholder: Senha
+            - link "Esqueci minha senha" [ref=e74] [cursor=pointer]:
+              - /url: https://passwordreset.microsoftonline.com/?ru=https%3a%2f%2flogin.microsoftonline.com%2f761914d0-6448-4027-ba37-4d1f8e246a42%2freprocess%3fctx%3drQQIARAArZE7b9NQAEbtJulLQNNMjAyZaP2M7TqRKpSmzcNN81BISMxQXftex5ZfqX3t4kxUYqgYUCWY2ECCoVPFhJhY6dQFqWLqWHWBsQsSqqr-A85w9C1n-h6neJot5XlWNwRYFCkIhAIlFFmRAjrHUVAoyIahiRri5SC3mD3wM5d_j8KNN8lq-kdd6h2THRPjSVhiGBsluuMDmw4xGFvemEYUiLBJ644fQSZAwHFDJsRjyvImgW9YDmK0wLdRwFie5mMGeXDiWx7-SpJnJHlJkr9mltrlCJv8jfzAmqKrmYzjjy3vfeoD6VVjY2JF1e2YE_plUAdmhKXpZmcX2Nsqv6Hs9KgoMiQTt_p0t6xhLG8Nx7ZOJ0ETvgDa7lPf5WDAwR4YqsUxjRIlgb2G1HBNFtY3pm1LjnW-Gqk1JUYVbqK5SgwrnAmHSqy7WxF0B8mIH4RNt7qvV2SrWVESWLnpW7Fa61tG9ziVZ28pUDe-lX637viSyq9JXJETIEtJgiBTAsuvURoorFEC5AwZ8YIEBP40tdAPUUAHCMDzFHmWJq_S99hMaX5-Mbv0cO4RcZ0mP2Zyi9ll5XzlSe6g-a74HLzMrxCnGUZoPxs091VW5LFTkUeJ3tjzrE6ra-uNqLM53RIn3dqgBYOgM16XS9zRLPlnljycI74t_Pdzv98nrh-8_fnp8-tXJ7_rV0ur0xHaq49Er2q3y3uMGvVqWG33doSVuLHjTy0_dLtDxam2O2J__SRLXGSJi2Xiejl7mCP-AQ2&mkt=pt-BR&hosted=0&device_platform=macOS
+            - button "Entrar" [ref=e77] [cursor=pointer]
+    - contentinfo [ref=e49]:
+      - generic [ref=e50]:
+        - link "Termos de uso" [ref=e51] [cursor=pointer]:
+          - /url: https://www.microsoft.com/pt-BR/servicesagreement/
+        - link "Privacidade e cookies" [ref=e52] [cursor=pointer]:
+          - /url: https://privacy.microsoft.com/pt-BR/privacystatement
+        - button "Clique aqui para obter informações sobre solução de problemas" [ref=e53] [cursor=pointer]: ...

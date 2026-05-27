@@ -1,0 +1,27 @@
+- generic [ref=e5]:
+  - img "Imagem do plano de fundo da organização" [ref=e6]
+  - generic [ref=e7]:
+    - generic [ref=e12]:
+      - generic [ref=e13]:
+        - img "Microsoft" [ref=e16]
+        - main [ref=e17]:
+          - generic [ref=e20]:
+            - heading "Entrar" [level=1] [ref=e24]
+            - generic [ref=e25]:
+              - alert
+              - generic [ref=e27]:
+                - textbox "Insira o seu email, telefone ou Skype." [active] [ref=e28]:
+                  - /placeholder: Email, telefone ou Skype
+                - textbox [ref=e29]
+            - link "Não consegue acessar sua conta?" [ref=e35] [cursor=pointer]:
+              - /url: "#"
+            - button "Avançar" [ref=e38] [cursor=pointer]
+      - button "Opções de entrada" [ref=e44] [cursor=pointer]:
+        - generic [ref=e48]: Opções de entrada
+    - contentinfo [ref=e49]:
+      - generic [ref=e50]:
+        - link "Termos de uso" [ref=e51] [cursor=pointer]:
+          - /url: https://www.microsoft.com/pt-BR/servicesagreement/
+        - link "Privacidade e cookies" [ref=e52] [cursor=pointer]:
+          - /url: https://privacy.microsoft.com/pt-BR/privacystatement
+        - button "Clique aqui para obter informações sobre solução de problemas" [ref=e53] [cursor=pointer]: ...

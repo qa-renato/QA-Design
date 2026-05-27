@@ -1,0 +1,32 @@
+[     902ms] [LOG] %c
+▲
+
+    ____                               _ __
+   / __ \________  ____ _____ ___     (_) /_
+  / / / / ___/ _ \/ __ `/ __ `__ \   / / __/
+ / /_/ / /  /  __/ /_/ / / / / / /  / / /__
+/_____/_/   \___/\__,_/_/ /_/ /_/  /_/\__( )
+   _____ __    _          _ __           |/
+  / ___// /_  (_)___     (_) /_
+  \__ \/ __ \/ / __ \   / / __/
+ ___/ / / / / / /_/ /  / / /_
+/____/_/ /_/_/ .___/  /_/\__/
+            /_/
+  
+
+Hello!
+
+- Open Source https://vercel.com/oss
+- Careers https://vercel.com/careers
+- Status https://vercel-status.com
+
+ font-family: "Geist Mono", monospace; white-space: pre; line-height: 1; @ https://vercel.com/_next/static/immutable/chunks/2ltm-shlkw-ie.js:78
+[    1503ms] [WARNING] iso_swr: SSR fetch failed for "/v1/dashboard/projects/sandbox-inbot-aurora?teamId=renatos-projects-790a8951" {error: iso_swr_fetch_error, message: Project not found} @ https://vercel.com/renatos-projects-790a8951/sandbox-inbot-aurora/settings/advanced:543
+[    1549ms] [WARNING] iso_swr: SSR fetch failed for "/api/v9/projects/sandbox-inbot-aurora?latestDeployments=0&rollbackInfo=true&teamId=renatos-projects-790a8951" {error: iso_swr_fetch_error, message: Project not found.} @ https://vercel.com/renatos-projects-790a8951/sandbox-inbot-aurora/settings/advanced:581
+[    1772ms] [WARNING] iso_swr[warn] [client] fallback error for key: "/v1/dashboard/projects/sandbox-inbot-aurora?teamId=renatos-projects-790a8951" {error: iso_swr_fetch_error, message: Project not found} @ https://vercel.com/_next/static/immutable/chunks/15dgetjo2c04l.js:2
+[    1792ms] [WARNING] iso_swr[warn] [client] fallback error for key: "/api/v9/projects/sandbox-inbot-aurora?latestDeployments=0&rollbackInfo=true&teamId=renatos-projects-790a8951" {error: iso_swr_fetch_error, message: Project not found.} @ https://vercel.com/_next/static/immutable/chunks/15dgetjo2c04l.js:2
+[    2064ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://vercel.com/api/v1/dashboard/projects/sandbox-inbot-aurora?teamId=renatos-projects-790a8951:0
+[    2109ms] [WARNING] Deprecated API for given entry type. @ https://vercel.com/_next/static/immutable/chunks/0ff0fyh11d0bh.js:18
+[    2317ms] [ERROR] Failed to load resource: the server responded with a status of 404 () @ https://vercel.com/api/user/permissions?projectIdOrName=sandbox-inbot-aurora&slug=renatos-projects-790a8951:0
+[    5807ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/3d792zqltro0t.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/renatos-projects-790a8951/sandbox-inbot-aurora/settings/advanced:0
+[   15797ms] [WARNING] The resource https://vercel.com/_next/static/immutable/chunks/3d792zqltro0t.css was preloaded using link preload but not used within a few seconds from the window's load event. Please make sure it has an appropriate `as` value and it is preloaded intentionally. @ https://vercel.com/renatos-projects-790a8951/sandbox-inbot-aurora/settings/advanced:0

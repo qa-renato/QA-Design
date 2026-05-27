@@ -1,0 +1,13 @@
+[     530ms] [LOG] [@inbot/auth] 🔧 Criando instância Keycloak: {url: https://keycloak.staging.e-auth.cloud, realm: stg-inprofile, clientId: app-admin} @ https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:47
+[    1078ms] [LOG] [@inbot/auth] 🔧 Criando instância Keycloak: {url: https://keycloak.staging.e-auth.cloud, realm: stg-inprofile, clientId: app-admin} @ https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:47
+[    1328ms] [ERROR] Access to fetch at 'https://keycloak.staging.e-auth.cloud/realms/stg-inprofile/protocol/openid-connect/token' from origin 'https://sandbox-inbot-aurora.vercel.app' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://sandbox-inbot-aurora.vercel.app/?session_state=b1375e1b-850b-4af5-ab8d-6eb858f5592d&iss=https%3A%2F%2Fkeycloak.staging.e-auth.cloud%2Frealms%2Fstg-inprofile&code=05597656-0f49-4847-8955-c8db4ec4eb24.b1375e1b-850b-4af5-ab8d-6eb858f5592d.cab2ddc5-a6ff-4e89-b576-bd5d49a5d9f6:0
+[    1329ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://keycloak.staging.e-auth.cloud/realms/stg-inprofile/protocol/openid-connect/token:0
+[    1329ms] [LOG] [InbotAuthProvider] 🔑 Keycloak evento: onAuthError @ https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:47
+[    1329ms] [LOG] [InbotAuthProvider] 🔑 Keycloak evento: onInitError @ https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:47
+[    1329ms] [ERROR] [InbotAuthProvider] ❌ Keycloak erro: TypeError: Failed to fetch
+    at D8 (https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:48:12571)
+    at rc (https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:48:12503)
+    at R8 (https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:48:12170)
+    at x8.Ma (https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:48:6244)
+    at x8.h2 (https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:48:651)
+    at async x8.init (https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:40:61190) @ https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:47

@@ -1,0 +1,31 @@
+- generic [ref=e3]:
+  - banner [ref=e4]:
+    - generic [ref=e5]: stg-inprofile
+  - main [ref=e6]:
+    - heading "Sign in to your account" [level=1] [ref=e8]
+    - generic [ref=e9]:
+      - generic [ref=e10]:
+        - generic [ref=e11]:
+          - generic [ref=e13]: Username or email
+          - generic [ref=e14]:
+            - textbox [ref=e17]: renato.paulino@inbot.com.br
+            - button "Restart login" [ref=e19] [cursor=pointer]:
+              - generic [ref=e20]: 
+        - generic [ref=e22]: Please re-authenticate to continue
+        - generic [ref=e25]:
+          - generic [ref=e26]:
+            - generic [ref=e28]: Password
+            - generic [ref=e29]:
+              - textbox "Password" [active] [ref=e32]
+              - button "Show password" [ref=e34] [cursor=pointer]:
+                - generic [ref=e35]: 
+          - button "Sign In" [ref=e38] [cursor=pointer]
+      - generic [ref=e39]:
+        - paragraph [ref=e41]: Or sign in with
+        - list [ref=e43]:
+          - listitem [ref=e44]:
+            - link "inbot (microsoft)" [ref=e45] [cursor=pointer]:
+              - /url: /realms/stg-inprofile/broker/inbot/login?client_id=app-admin&tab_id=VjUt_7e9ksg&client_data=eyJydSI6Imh0dHBzOi8vc2FuZGJveC1pbmJvdC1hdXJvcmEudmVyY2VsLmFwcC8iLCJydCI6ImNvZGUifQ&session_code=qQYGrvuA9T35qfXMaf4cnyYZ2zFtm0n5VfUj-pHtVHE
+              - generic [ref=e46]:
+                - img [ref=e47]
+                - text: inbot (microsoft)

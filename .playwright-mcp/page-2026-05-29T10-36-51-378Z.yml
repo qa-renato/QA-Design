@@ -1,0 +1,166 @@
+- generic [ref=e2]:
+  - generic [ref=e3]:
+    - link "Skip to content" [ref=e4] [cursor=pointer]:
+      - /url: "#start-of-content"
+    - banner [ref=e6]:
+      - heading "Navigation Menu" [level=2] [ref=e7]
+      - generic [ref=e8]:
+        - link "Homepage" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - img [ref=e11]
+        - generic [ref=e13]:
+          - navigation "Global" [ref=e16]:
+            - list [ref=e17]:
+              - listitem [ref=e18]:
+                - button "Platform" [ref=e20] [cursor=pointer]:
+                  - text: Platform
+                  - img [ref=e21]
+              - listitem [ref=e23]:
+                - button "Solutions" [ref=e25] [cursor=pointer]:
+                  - text: Solutions
+                  - img [ref=e26]
+              - listitem [ref=e28]:
+                - button "Resources" [ref=e30] [cursor=pointer]:
+                  - text: Resources
+                  - img [ref=e31]
+              - listitem [ref=e33]:
+                - button "Open Source" [ref=e35] [cursor=pointer]:
+                  - text: Open Source
+                  - img [ref=e36]
+              - listitem [ref=e38]:
+                - button "Enterprise" [ref=e40] [cursor=pointer]:
+                  - text: Enterprise
+                  - img [ref=e41]
+              - listitem [ref=e43]:
+                - link "Pricing" [ref=e44] [cursor=pointer]:
+                  - /url: https://github.com/pricing
+                  - generic [ref=e45]: Pricing
+          - generic [ref=e46]:
+            - button "Search or jump to…" [ref=e49] [cursor=pointer]:
+              - img [ref=e51]
+            - link "Sign in" [ref=e54] [cursor=pointer]:
+              - /url: /login?return_to=https%3A%2F%2Fgithub.com%2Forgs%2Fin-bot%2Fprojects%3Fquery%3Dis%253Aopen
+            - link "Sign up" [ref=e55] [cursor=pointer]:
+              - /url: /signup?ref_cta=Sign+up&ref_loc=header+logged+out&ref_page=%2Forgs%2Fin-bot%2Fprojects&source=header
+            - button "Appearance settings" [ref=e58] [cursor=pointer]:
+              - img
+  - generic [ref=e60]:
+    - generic [ref=e61]:
+      - heading "@in-bot in-bot" [level=1] [ref=e63]:
+        - link "@in-bot in-bot" [ref=e64] [cursor=pointer]:
+          - /url: /in-bot
+          - img "@in-bot" [ref=e65]
+          - text: in-bot
+      - navigation "Organization" [ref=e67]:
+        - list [ref=e69]:
+          - listitem [ref=e70]:
+            - link "Overview" [ref=e71] [cursor=pointer]:
+              - /url: /in-bot
+              - img [ref=e72]
+              - text: Overview
+          - listitem [ref=e74]:
+            - link "Repositories" [ref=e75] [cursor=pointer]:
+              - /url: /orgs/in-bot/repositories
+              - img [ref=e76]
+              - text: Repositories
+          - listitem [ref=e78]:
+            - link "Projects" [ref=e79] [cursor=pointer]:
+              - /url: /orgs/in-bot/projects
+              - img [ref=e80]
+              - text: Projects
+          - listitem [ref=e82]:
+            - link "Packages" [ref=e83] [cursor=pointer]:
+              - /url: /orgs/in-bot/packages
+              - img [ref=e84]
+              - text: Packages
+          - listitem [ref=e86]:
+            - link "People" [ref=e87] [cursor=pointer]:
+              - /url: /orgs/in-bot/people
+              - img [ref=e88]
+              - text: People
+    - main [ref=e90]:
+      - heading "in-bot projects" [level=1] [ref=e91]
+      - generic [ref=e93]:
+        - generic "Projects views" [ref=e96]:
+          - navigation "Projects views" [ref=e97]:
+            - list [ref=e98]:
+              - listitem [ref=e99]:
+                - link "Projects" [ref=e100] [cursor=pointer]:
+                  - /url: /orgs/in-bot/projects?query=is%3Aopen
+                  - generic:
+                    - img
+                  - generic [ref=e101]: Projects
+              - listitem [ref=e102]:
+                - link "Templates" [ref=e103] [cursor=pointer]:
+                  - /url: /orgs/in-bot/projects?query=is%3Aopen+is%3Atemplate
+                  - generic:
+                    - img
+                  - generic [ref=e104]: Templates
+        - generic [ref=e105]:
+          - generic [ref=e111]:
+            - generic [ref=e112]: Search all projects
+            - generic [ref=e113]:
+              - generic:
+                - img
+              - textbox "Search all projects" [ref=e114]: is:open
+              - button "Clear" [ref=e115] [cursor=pointer]:
+                - img [ref=e116]
+          - generic [ref=e118]:
+            - heading "Search results" [level=2] [ref=e119]
+            - generic [ref=e120]:
+              - generic [ref=e122]:
+                - generic [ref=e123]:
+                  - link "Open 0" [ref=e124] [cursor=pointer]:
+                    - /url: /orgs/in-bot/projects?is_search=true&query=is%3Aopen
+                    - text: Open
+                    - generic "0" [ref=e125]
+                  - link "Closed 0" [ref=e126] [cursor=pointer]:
+                    - /url: /orgs/in-bot/projects?is_search=true&query=is%3Aclosed
+                    - text: Closed
+                    - generic "0" [ref=e127]
+                - button "Sort" [ref=e130] [cursor=pointer]:
+                  - generic [ref=e132]: Sort
+                  - generic:
+                    - img
+              - list "Open 0 Closed 0 Sort" [ref=e133]:
+                - listitem [ref=e134]:
+                  - generic [ref=e136]:
+                    - img [ref=e137]
+                    - heading "No open projects" [level=2] [ref=e139]
+                    - paragraph
+  - contentinfo [ref=e140]:
+    - heading "Footer" [level=2] [ref=e141]
+    - generic [ref=e142]:
+      - generic [ref=e143]:
+        - link "GitHub Homepage" [ref=e144] [cursor=pointer]:
+          - /url: https://github.com
+          - img [ref=e145]
+        - generic [ref=e147]: © 2026 GitHub, Inc.
+      - navigation "Footer" [ref=e148]:
+        - heading "Footer navigation" [level=3] [ref=e149]
+        - list "Footer navigation" [ref=e150]:
+          - listitem [ref=e151]:
+            - link "Terms" [ref=e152] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/github-terms/github-terms-of-service
+          - listitem [ref=e153]:
+            - link "Privacy" [ref=e154] [cursor=pointer]:
+              - /url: https://docs.github.com/site-policy/privacy-policies/github-privacy-statement
+          - listitem [ref=e155]:
+            - link "Security" [ref=e156] [cursor=pointer]:
+              - /url: https://github.com/security
+          - listitem [ref=e157]:
+            - link "Status" [ref=e158] [cursor=pointer]:
+              - /url: https://www.githubstatus.com/
+          - listitem [ref=e159]:
+            - link "Community" [ref=e160] [cursor=pointer]:
+              - /url: https://github.community/
+          - listitem [ref=e161]:
+            - link "Docs" [ref=e162] [cursor=pointer]:
+              - /url: https://docs.github.com/
+          - listitem [ref=e163]:
+            - link "Contact" [ref=e164] [cursor=pointer]:
+              - /url: https://support.github.com?tags=dotcom-footer
+          - listitem [ref=e165]:
+            - button "Manage cookies" [ref=e167] [cursor=pointer]
+          - listitem [ref=e168]:
+            - button "Do not share my personal information" [ref=e170] [cursor=pointer]

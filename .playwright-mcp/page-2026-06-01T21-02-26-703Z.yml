@@ -1,0 +1,113 @@
+- generic [ref=e2]:
+  - region "Notifications (F8)":
+    - list
+  - region "Notifications alt+T"
+  - generic [ref=e3]:
+    - banner [ref=e6]:
+      - button "Aurora" [ref=e8] [cursor=pointer]:
+        - img
+        - generic [ref=e9]: Aurora
+        - img
+      - img [ref=e11]
+      - button "Toggle theme" [ref=e16] [cursor=pointer]:
+        - img
+        - generic [ref=e17]: Toggle theme
+    - generic [ref=e18]:
+      - generic [ref=e23]:
+        - button "Toggle sidebar" [ref=e26] [cursor=pointer]:
+          - img
+          - generic [ref=e27]: Toggle sidebar
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - generic [ref=e30]: Menu
+            - list [ref=e32]:
+              - listitem [ref=e33]:
+                - link "Home" [ref=e34] [cursor=pointer]:
+                  - /url: /
+                  - img [ref=e35]
+                  - generic [ref=e38]: Home
+          - generic [ref=e39]:
+            - generic [ref=e40]: Dashboards
+            - list [ref=e42]:
+              - listitem [ref=e43]:
+                - link "Resumo de Adesão" [ref=e44] [cursor=pointer]:
+                  - /url: /adesao
+                  - img [ref=e45]
+                  - generic [ref=e49]: Resumo de Adesão
+              - listitem [ref=e50]:
+                - link "Métricas da IA" [ref=e51] [cursor=pointer]:
+                  - /url: /metricas-ia
+                  - img [ref=e52]
+                  - generic [ref=e55]: Métricas da IA
+          - generic [ref=e56]:
+            - generic [ref=e57]: Colaboradores
+            - list [ref=e59]:
+              - listitem [ref=e60]:
+                - link "Gestão de Colaboradores" [ref=e61] [cursor=pointer]:
+                  - /url: /colaboradores
+                  - img [ref=e62]
+                  - generic [ref=e67]: Gestão de Colaboradores
+              - listitem [ref=e68]:
+                - link "Pedidos de Protocolo" [ref=e69] [cursor=pointer]:
+                  - /url: /pedidos
+                  - img [ref=e70]
+                  - generic [ref=e73]: Pedidos de Protocolo
+          - generic [ref=e74]:
+            - generic [ref=e75]: Sistema
+            - list [ref=e77]:
+              - listitem [ref=e78]:
+                - link "Auditoria" [ref=e79] [cursor=pointer]:
+                  - /url: /auditoria
+                  - img [ref=e80]
+                  - generic [ref=e83]: Auditoria
+              - listitem [ref=e84]:
+                - link "Configurações" [ref=e85] [cursor=pointer]:
+                  - /url: /configuracoes
+                  - img [ref=e86]
+                  - generic [ref=e89]: Configurações
+        - list [ref=e92]:
+          - generic [ref=e94]:
+            - generic [ref=e95]: U
+            - generic [ref=e96]:
+              - paragraph [ref=e97]: User
+              - paragraph
+            - button [ref=e98] [cursor=pointer]:
+              - img
+      - main [ref=e99]:
+        - generic [ref=e100]:
+          - 'heading "Aurora: Empresa Demo" [level=1] [ref=e102]'
+          - generic [ref=e103]:
+            - generic [ref=e104]:
+              - generic [ref=e105]:
+                - heading "Índice de Bem-Estar" [level=3] [ref=e106]
+                - button "?" [ref=e107]:
+                  - generic [ref=e108]: "?"
+              - img [ref=e110]
+              - generic [ref=e115]:
+                - generic [ref=e116]: "54"
+                - generic [ref=e117]: Regular
+            - generic [ref=e118]:
+              - generic [ref=e119]:
+                - heading "Média Geral de Risco" [level=3] [ref=e120]
+                - button "?" [ref=e121]:
+                  - generic [ref=e122]: "?"
+              - img [ref=e124]
+              - generic [ref=e129]:
+                - generic [ref=e130]: "2.80"
+                - generic [ref=e131]: Moderado
+            - generic [ref=e132]:
+              - generic [ref=e133]:
+                - 'heading "Balança: Trabalho vs. Vida" [level=3] [ref=e134]'
+                - button "?" [ref=e135]:
+                  - generic [ref=e136]: "?"
+              - img [ref=e138]
+              - generic [ref=e143]:
+                - generic [ref=e144]: "2.70"
+                - generic [ref=e145]: Atenção
+          - generic [ref=e146]:
+            - button "Relatórios das Entrevistas Individuais" [ref=e148] [cursor=pointer]:
+              - generic [ref=e149]: Relatórios das Entrevistas Individuais
+              - img [ref=e151]
+            - button "Relatório da Entrevista Ocupacional (COPSOQ)" [ref=e154] [cursor=pointer]:
+              - generic [ref=e155]: Relatório da Entrevista Ocupacional (COPSOQ)
+              - img [ref=e157]

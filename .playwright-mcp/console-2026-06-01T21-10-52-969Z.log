@@ -1,0 +1,13 @@
+[     327ms] [LOG] [@inbot/auth] 🔧 Criando instância Keycloak: {url: https://keycloak.staging.e-auth.cloud, realm: stg-inprofile, clientId: app-admin} @ https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:47
+[     887ms] [LOG] [@inbot/auth] 🔧 Criando instância Keycloak: {url: https://keycloak.staging.e-auth.cloud, realm: stg-inprofile, clientId: app-admin} @ https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:47
+[    1160ms] [ERROR] Access to fetch at 'https://keycloak.staging.e-auth.cloud/realms/stg-inprofile/protocol/openid-connect/token' from origin 'https://sandbox-inbot-aurora.vercel.app' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://sandbox-inbot-aurora.vercel.app/:0
+[    1160ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://keycloak.staging.e-auth.cloud/realms/stg-inprofile/protocol/openid-connect/token:0
+[    1160ms] [LOG] [InbotAuthProvider] 🔑 Keycloak evento: onAuthError @ https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:47
+[    1160ms] [LOG] [InbotAuthProvider] 🔑 Keycloak evento: onInitError @ https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:47
+[    1160ms] [ERROR] [InbotAuthProvider] ❌ Keycloak erro: TypeError: Failed to fetch
+    at D8 (https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:48:12571)
+    at rc (https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:48:12503)
+    at R8 (https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:48:12170)
+    at x8.Ma (https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:48:6244)
+    at x8.h2 (https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:48:651)
+    at async x8.init (https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:40:61190) @ https://sandbox-inbot-aurora.vercel.app/assets/index-COgKjxPb.js:47

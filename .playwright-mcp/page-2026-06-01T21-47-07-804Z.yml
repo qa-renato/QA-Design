@@ -1,0 +1,259 @@
+- generic [ref=e2]:
+  - region "Notifications (F8)":
+    - list
+  - region "Notifications alt+T"
+  - generic [ref=e3]:
+    - banner [ref=e6]:
+      - button "Aurora" [ref=e8] [cursor=pointer]:
+        - img
+        - generic [ref=e9]: Aurora
+        - img
+      - img [ref=e11]
+      - button "Toggle theme" [ref=e16] [cursor=pointer]:
+        - img
+        - generic [ref=e17]: Toggle theme
+    - generic [ref=e18]:
+      - generic [ref=e23]:
+        - button "Toggle sidebar" [ref=e26] [cursor=pointer]:
+          - img
+          - generic [ref=e27]: Toggle sidebar
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - generic [ref=e30]: Menu
+            - list [ref=e32]:
+              - listitem [ref=e33]:
+                - link "Home" [ref=e34] [cursor=pointer]:
+                  - /url: /
+                  - img [ref=e35]
+                  - generic [ref=e38]: Home
+          - generic [ref=e39]:
+            - generic [ref=e40]: Dashboards
+            - list [ref=e42]:
+              - listitem [ref=e43]:
+                - link "Resumo de Adesão" [ref=e44] [cursor=pointer]:
+                  - /url: /adesao
+                  - img [ref=e45]
+                  - generic [ref=e49]: Resumo de Adesão
+              - listitem [ref=e50]:
+                - link "Métricas da IA" [ref=e51] [cursor=pointer]:
+                  - /url: /metricas-ia
+                  - img [ref=e52]
+                  - generic [ref=e55]: Métricas da IA
+          - generic [ref=e56]:
+            - generic [ref=e57]: Colaboradores
+            - list [ref=e59]:
+              - listitem [ref=e60]:
+                - link "Gestão de Colaboradores" [ref=e61] [cursor=pointer]:
+                  - /url: /colaboradores
+                  - img [ref=e62]
+                  - generic [ref=e67]: Gestão de Colaboradores
+              - listitem [ref=e68]:
+                - link "Pedidos de Protocolo" [ref=e69] [cursor=pointer]:
+                  - /url: /pedidos
+                  - img [ref=e70]
+                  - generic [ref=e73]: Pedidos de Protocolo
+          - generic [ref=e74]:
+            - generic [ref=e75]: Sistema
+            - list [ref=e77]:
+              - listitem [ref=e78]:
+                - link "Auditoria" [ref=e79] [cursor=pointer]:
+                  - /url: /auditoria
+                  - img [ref=e80]
+                  - generic [ref=e83]: Auditoria
+              - listitem [ref=e84]:
+                - link "Configurações" [ref=e85] [cursor=pointer]:
+                  - /url: /configuracoes
+                  - img [ref=e86]
+                  - generic [ref=e89]: Configurações
+        - list [ref=e92]:
+          - generic [ref=e94]:
+            - generic [ref=e95]: U
+            - generic [ref=e96]:
+              - paragraph [ref=e97]: User
+              - paragraph
+            - button [ref=e98] [cursor=pointer]:
+              - img
+      - main [ref=e99]:
+        - generic [ref=e100]:
+          - navigation "breadcrumb" [ref=e103]:
+            - list [ref=e104]:
+              - listitem [ref=e105]:
+                - link "Gestão de Colaboradores" [disabled] [ref=e106]
+          - generic [ref=e107]:
+            - generic [ref=e108]:
+              - switch "Mostrar Inativos" [ref=e109] [cursor=pointer]
+              - generic [ref=e110] [cursor=pointer]: Mostrar Inativos
+            - generic [ref=e111]:
+              - generic [ref=e112]: Departamento
+              - combobox "Departamento" [ref=e113] [cursor=pointer]:
+                - generic: Todos
+                - img [ref=e114]
+          - generic [ref=e116]:
+            - button "Adicionar" [ref=e119] [cursor=pointer]:
+              - img
+              - text: Adicionar
+            - generic [ref=e120]:
+              - generic [ref=e122]:
+                - generic [ref=e123]:
+                  - img [ref=e124]
+                  - textbox "Buscar por nome, e-mail ou CPF..." [ref=e127]
+                - combobox "Itens por página" [ref=e128] [cursor=pointer]:
+                  - generic: 10 itens
+                  - img [ref=e129]
+              - table [ref=e133]:
+                - rowgroup [ref=e134]:
+                  - row "Nome CPF E-mail Departamento Cargo Status Ações" [ref=e135]:
+                    - columnheader "Nome" [ref=e136] [cursor=pointer]:
+                      - generic [ref=e137]:
+                        - text: Nome
+                        - generic [ref=e138]:
+                          - img [ref=e139]
+                          - img [ref=e141]
+                    - columnheader "CPF" [ref=e143]:
+                      - generic [ref=e144]: CPF
+                    - columnheader "E-mail" [ref=e145] [cursor=pointer]:
+                      - generic [ref=e146]:
+                        - text: E-mail
+                        - generic [ref=e147]:
+                          - img [ref=e148]
+                          - img [ref=e150]
+                    - columnheader "Departamento" [ref=e152] [cursor=pointer]:
+                      - generic [ref=e153]:
+                        - text: Departamento
+                        - generic [ref=e154]:
+                          - img [ref=e155]
+                          - img [ref=e157]
+                    - columnheader "Cargo" [ref=e159] [cursor=pointer]:
+                      - generic [ref=e160]:
+                        - text: Cargo
+                        - generic [ref=e161]:
+                          - img [ref=e162]
+                          - img [ref=e164]
+                    - columnheader "Status" [ref=e166] [cursor=pointer]:
+                      - generic [ref=e167]:
+                        - text: Status
+                        - generic [ref=e168]:
+                          - img [ref=e169]
+                          - img [ref=e171]
+                    - columnheader "Ações" [ref=e173]:
+                      - generic [ref=e174]: Ações
+                - rowgroup [ref=e175]:
+                  - row "TESTEZAO DA SILVA SANTOS TESTEZAO DA SILVA SANTOS ... 123.456.789-00 ana.ferreira@aurora-demoo.com.br Financeiro Analista Pleno Inativar TESTEZAO DA SILVA SANTOS TESTEZAO DA SILVA SANTOS TESTEZAO DA SILVA SANTOS TESTEZAO DA SILVA SANTOS TESTEZAO DA SILVA SA" [ref=e176]:
+                    - cell "TESTEZAO DA SILVA SANTOS TESTEZAO DA SILVA SANTOS ..." [ref=e177]
+                    - cell "123.456.789-00" [ref=e178]
+                    - cell "ana.ferreira@aurora-demoo.com.br" [ref=e179]
+                    - cell "Financeiro" [ref=e180]
+                    - cell "Analista Pleno" [ref=e181]
+                    - cell "Inativar TESTEZAO DA SILVA SANTOS TESTEZAO DA SILVA SANTOS TESTEZAO DA SILVA SANTOS TESTEZAO DA SILVA SANTOS TESTEZAO DA SILVA SA" [ref=e182]:
+                      - button "Inativar TESTEZAO DA SILVA SANTOS TESTEZAO DA SILVA SANTOS TESTEZAO DA SILVA SANTOS TESTEZAO DA SILVA SANTOS TESTEZAO DA SILVA SA" [ref=e183] [cursor=pointer]
+                    - cell [ref=e185]:
+                      - button [ref=e187] [cursor=pointer]:
+                        - img
+                  - row "Bruno Henrique Souza 234.567.890-11 bruno.souza@aurora-demo.com.br Tecnologia da Informação Analista Júnior Inativar Bruno Henrique Souza" [ref=e188]:
+                    - cell "Bruno Henrique Souza" [ref=e189]
+                    - cell "234.567.890-11" [ref=e190]
+                    - cell "bruno.souza@aurora-demo.com.br" [ref=e191]
+                    - cell "Tecnologia da Informação" [ref=e192]
+                    - cell "Analista Júnior" [ref=e193]
+                    - cell "Inativar Bruno Henrique Souza" [ref=e194]:
+                      - button "Inativar Bruno Henrique Souza" [ref=e195] [cursor=pointer]
+                    - cell [ref=e197]:
+                      - button [ref=e199] [cursor=pointer]:
+                        - img
+                  - row "Carla Menezes Oliveira 345.678.901-22 carla.oliveira@aurora-demo.com.br Financeiro Analista Júnior Inativar Carla Menezes Oliveira" [ref=e200]:
+                    - cell "Carla Menezes Oliveira" [ref=e201]
+                    - cell "345.678.901-22" [ref=e202]
+                    - cell "carla.oliveira@aurora-demo.com.br" [ref=e203]
+                    - cell "Financeiro" [ref=e204]
+                    - cell "Analista Júnior" [ref=e205]
+                    - cell "Inativar Carla Menezes Oliveira" [ref=e206]:
+                      - button "Inativar Carla Menezes Oliveira" [ref=e207] [cursor=pointer]
+                    - cell [ref=e209]:
+                      - button [ref=e211] [cursor=pointer]:
+                        - img
+                  - row "Diego Martins Costa 456.789.012-33 diego.costa@aurora-demo.com.br Tecnologia Tech Lead Inativar Diego Martins Costa" [ref=e212]:
+                    - cell "Diego Martins Costa" [ref=e213]
+                    - cell "456.789.012-33" [ref=e214]
+                    - cell "diego.costa@aurora-demo.com.br" [ref=e215]
+                    - cell "Tecnologia" [ref=e216]
+                    - cell "Tech Lead" [ref=e217]
+                    - cell "Inativar Diego Martins Costa" [ref=e218]:
+                      - button "Inativar Diego Martins Costa" [ref=e219] [cursor=pointer]
+                    - cell [ref=e221]:
+                      - button [ref=e223] [cursor=pointer]:
+                        - img
+                  - row "Eduarda Lima Santos 567.890.123-44 eduarda.santos@aurora-demo.com.br Marketing Coordenadora de Mkt Inativar Eduarda Lima Santos" [ref=e224]:
+                    - cell "Eduarda Lima Santos" [ref=e225]
+                    - cell "567.890.123-44" [ref=e226]
+                    - cell "eduarda.santos@aurora-demo.com.br" [ref=e227]
+                    - cell "Marketing" [ref=e228]
+                    - cell "Coordenadora de Mkt" [ref=e229]
+                    - cell "Inativar Eduarda Lima Santos" [ref=e230]:
+                      - button "Inativar Eduarda Lima Santos" [ref=e231] [cursor=pointer]
+                    - cell [ref=e233]:
+                      - button [ref=e235] [cursor=pointer]:
+                        - img
+                  - row "Felipe Rocha Alves 678.901.234-55 felipe.alves@aurora-demo.com.br Financeiro Analista Júnior Inativar Felipe Rocha Alves" [ref=e236]:
+                    - cell "Felipe Rocha Alves" [ref=e237]
+                    - cell "678.901.234-55" [ref=e238]
+                    - cell "felipe.alves@aurora-demo.com.br" [ref=e239]
+                    - cell "Financeiro" [ref=e240]
+                    - cell "Analista Júnior" [ref=e241]
+                    - cell "Inativar Felipe Rocha Alves" [ref=e242]:
+                      - button "Inativar Felipe Rocha Alves" [ref=e243] [cursor=pointer]
+                    - cell [ref=e245]:
+                      - button [ref=e247] [cursor=pointer]:
+                        - img
+                  - row "Gabriela Torres Pereira 789.012.345-66 gabriela.pereira@aurora-demo.com.br Recursos Humanos Analista Pleno Inativar Gabriela Torres Pereira" [ref=e248]:
+                    - cell "Gabriela Torres Pereira" [ref=e249]
+                    - cell "789.012.345-66" [ref=e250]
+                    - cell "gabriela.pereira@aurora-demo.com.br" [ref=e251]
+                    - cell "Recursos Humanos" [ref=e252]
+                    - cell "Analista Pleno" [ref=e253]
+                    - cell "Inativar Gabriela Torres Pereira" [ref=e254]:
+                      - button "Inativar Gabriela Torres Pereira" [ref=e255] [cursor=pointer]
+                    - cell [ref=e257]:
+                      - button [ref=e259] [cursor=pointer]:
+                        - img
+                  - row "Henrique Castro Nunes 890.123.456-77 henrique.nunes@aurora-demo.com.br Jurídico Advogado Inativar Henrique Castro Nunes" [ref=e260]:
+                    - cell "Henrique Castro Nunes" [ref=e261]
+                    - cell "890.123.456-77" [ref=e262]
+                    - cell "henrique.nunes@aurora-demo.com.br" [ref=e263]
+                    - cell "Jurídico" [ref=e264]
+                    - cell "Advogado" [ref=e265]
+                    - cell "Inativar Henrique Castro Nunes" [ref=e266]:
+                      - button "Inativar Henrique Castro Nunes" [ref=e267] [cursor=pointer]
+                    - cell [ref=e269]:
+                      - button [ref=e271] [cursor=pointer]:
+                        - img
+                  - row "Isabella Moura Cardoso 901.234.567-88 isabella.cardoso@aurora-demo.com.br Financeiro Controler Inativar Isabella Moura Cardoso" [ref=e272]:
+                    - cell "Isabella Moura Cardoso" [ref=e273]
+                    - cell "901.234.567-88" [ref=e274]
+                    - cell "isabella.cardoso@aurora-demo.com.br" [ref=e275]
+                    - cell "Financeiro" [ref=e276]
+                    - cell "Controler" [ref=e277]
+                    - cell "Inativar Isabella Moura Cardoso" [ref=e278]:
+                      - button "Inativar Isabella Moura Cardoso" [ref=e279] [cursor=pointer]
+                    - cell [ref=e281]:
+                      - button [ref=e283] [cursor=pointer]:
+                        - img
+                  - row "João Victor Ribeiro 882.718.090-75 joao.ribeiro@aurora-demo.com.br Tecnologia da Informação Analista Júnior Inativar João Victor Ribeiro" [ref=e284]:
+                    - cell "João Victor Ribeiro" [ref=e285]
+                    - cell "882.718.090-75" [ref=e286]
+                    - cell "joao.ribeiro@aurora-demo.com.br" [ref=e287]
+                    - cell "Tecnologia da Informação" [ref=e288]
+                    - cell "Analista Júnior" [ref=e289]
+                    - cell "Inativar João Victor Ribeiro" [ref=e290]:
+                      - button "Inativar João Victor Ribeiro" [ref=e291] [cursor=pointer]
+                    - cell [ref=e293]:
+                      - button [ref=e295] [cursor=pointer]:
+                        - img
+              - generic [ref=e296]:
+                - generic [ref=e297]: Mostrando 1-10 de 41 itens
+                - generic [ref=e298]:
+                  - button "Ant" [disabled]:
+                    - img
+                    - text: Ant
+                  - button "Prox" [ref=e299] [cursor=pointer]:
+                    - text: Prox
+                    - img

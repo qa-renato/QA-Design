@@ -1,0 +1,15 @@
+[     351ms] [LOG] [@inbot/auth] 🔧 Criando instância Keycloak: {url: https://keycloak.staging.e-auth.cloud, realm: stg-inprofile, clientId: app-admin} @ https://sandbox-inbot-aurora.vercel.app/assets/index-DIkvCTwo.js:47
+[     578ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://aurora-api-sandbox.inbot.com.br/configuracoes:0
+[     578ms] [ERROR] Failed to load resource: net::ERR_CONNECTION_CLOSED @ https://aurora-api-sandbox.inbot.com.br/colaboradores:0
+[   23551ms] [LOG] [@inbot/auth] 🔧 Criando instância Keycloak: {url: https://keycloak.staging.e-auth.cloud, realm: stg-inprofile, clientId: app-admin} @ https://sandbox-inbot-aurora.vercel.app/assets/index-DIkvCTwo.js:47
+[   24288ms] [ERROR] Access to fetch at 'https://keycloak.staging.e-auth.cloud/realms/stg-inprofile/protocol/openid-connect/token' from origin 'https://sandbox-inbot-aurora.vercel.app' has been blocked by CORS policy: No 'Access-Control-Allow-Origin' header is present on the requested resource. @ https://sandbox-inbot-aurora.vercel.app/colaboradores:0
+[   24289ms] [ERROR] Failed to load resource: net::ERR_FAILED @ https://keycloak.staging.e-auth.cloud/realms/stg-inprofile/protocol/openid-connect/token:0
+[   24289ms] [LOG] [InbotAuthProvider] 🔑 Keycloak evento: onAuthError @ https://sandbox-inbot-aurora.vercel.app/assets/index-DIkvCTwo.js:47
+[   24289ms] [LOG] [InbotAuthProvider] 🔑 Keycloak evento: onInitError @ https://sandbox-inbot-aurora.vercel.app/assets/index-DIkvCTwo.js:47
+[   24289ms] [ERROR] [InbotAuthProvider] ❌ Keycloak erro: TypeError: Failed to fetch
+    at iz (https://sandbox-inbot-aurora.vercel.app/assets/index-DIkvCTwo.js:48:12571)
+    at lc (https://sandbox-inbot-aurora.vercel.app/assets/index-DIkvCTwo.js:48:12503)
+    at oz (https://sandbox-inbot-aurora.vercel.app/assets/index-DIkvCTwo.js:48:12170)
+    at U8.$a (https://sandbox-inbot-aurora.vercel.app/assets/index-DIkvCTwo.js:48:6244)
+    at U8.w2 (https://sandbox-inbot-aurora.vercel.app/assets/index-DIkvCTwo.js:48:651)
+    at async U8.init (https://sandbox-inbot-aurora.vercel.app/assets/index-DIkvCTwo.js:40:61190) @ https://sandbox-inbot-aurora.vercel.app/assets/index-DIkvCTwo.js:47
