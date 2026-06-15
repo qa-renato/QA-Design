@@ -3,3 +3,10 @@ dist/
 .env
 .env.*
 .DS_Store
+
+# Playwright MCP debug artifacts (console logs / page snapshots)
+.playwright-mcp/
+
+# Screenshots avulsos
+intable-home.png
+intable-login.png
