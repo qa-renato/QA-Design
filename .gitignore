@@ -10,3 +10,13 @@ dist/
 # Screenshots avulsos
 intable-home.png
 intable-login.png
+
+# Artefatos de QA / evidências (screenshots + scripts Playwright avulsos)
+sup*.png
+sup*.mjs
+operator-*.png
+supervisor-*.png
+client-*.png
+inchat-admin.png
+us-sup-*.png
+cleanup-convs.mjs
